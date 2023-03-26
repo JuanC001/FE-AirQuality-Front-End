@@ -2,22 +2,45 @@ import { AppBar, Box, Button, Divider, IconButton, Menu, Stack, Toolbar } from '
 
 import ImageUEB from '../../assets/images/logoUniversidadElBosque.png'
 import AirImg from '../../assets/images/air_img.png'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import MenuIcon from '@mui/icons-material/Menu';
 
 import './NavBar.css'
 import { useMenuPop } from '../hooks/useMenuPop';
 import { MenuGeneral } from '../components/MenuGeneral';
+import { useEffect, useState } from 'react';
+import { AppBarIf } from '../components/AppBarIf';
+import { LoginButton } from '../components/LoginButton';
 
-export const NavBar = () => {
+export const NavBar = ({ authStatus }) => {
 
     const { anchorElNav, openNav, menuOpen, menuClose } = useMenuPop()
-    const { anchorElNav: anchor2, openNav: open2, menuOpen: menuOpen2, menuClose: menuClose2 } = useMenuPop()
 
+    const [loginPage, setLoginPage] = useState(false)
+    const [dashboardPage, setDashboardPage] = useState(false)
+
+    const location = useLocation()
+
+    useEffect(() => {
+
+        if (location.pathname === '/auth/login') {
+            setLoginPage(true)
+        } else {
+            setLoginPage(false)
+        }
+
+        if (location.pathname === '/dashboard') {
+            setDashboardPage(true);
+        } else {
+            setDashboardPage(false);
+        }
+
+    })
 
     return (
-        <AppBar>
+
+        <AppBarIf isLoginPage={loginPage}>
 
             <Toolbar>
 
@@ -28,32 +51,38 @@ export const NavBar = () => {
 
                 </Stack>
 
-                <Box sx={{ flexGrow: 1 }} />
+                {!loginPage && <Box sx={{ flexGrow: 1 }} />}
 
-                <Box direction={'row'} sx={{ display: { md: 'flex', xs: 'none' } }} mx={1}>
+                {
+                    !loginPage &&
+                    <Box direction={'row'} sx={{ display: { md: 'flex', xs: 'none' } }} mx={1}>
 
-                    <Button color='inherit' component={NavLink} to={'/'}>Inicio</Button>
-                    <Button color='inherit' component={NavLink} to={'/'}>Sobre Nosotros</Button>
-                    <Button color='inherit' component={NavLink} to={'/'}>Mas sobre el aire</Button>
-                    <Divider orientation='vertical' color={'white'} variant={'middle'} />
-                    <Button color='inherit' component={NavLink} to={'/auth/login'}>Iniciar Sesion</Button>
+                        <Button color={'inherit'} component={NavLink} to={'/'}>Inicio</Button>
+                        <Button color='inherit' component={NavLink} to={'/'}>Sobre Nosotros</Button>
+                        <Button color='inherit' component={NavLink} to={'/'}>Mas sobre el aire</Button>
 
-                </Box>
+                    </Box>
+                }
 
-                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                <LoginButton authStatus={authStatus} isLoginPage={loginPage}/>
 
-                    <IconButton size="large" aria-label='MenuReduced' aria-controls='menu-general' aria-haspopup='true' color='inherit' onClick={menuOpen}>
-                        <MenuIcon />
-                    </IconButton>
 
-                </Box>
+                {!loginPage &&
 
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+
+                        <IconButton size="large" aria-label='MenuReduced' aria-controls='menu-general' aria-haspopup='true' color='inherit' onClick={menuOpen}>
+                            <MenuIcon />
+                        </IconButton>
+
+                    </Box>
+                }
                 <Menu anchorEl={anchorElNav} open={openNav}>
                     <MenuGeneral menuClose={menuClose} />
                 </Menu>
 
             </Toolbar>
 
-        </AppBar>
+        </AppBarIf>
     )
 }

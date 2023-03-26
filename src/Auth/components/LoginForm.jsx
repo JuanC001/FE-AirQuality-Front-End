@@ -26,7 +26,7 @@ export const LoginForm = () => {
 
     return (
 
-        <Box component={Paper} height={'100vh'} borderRadius={0} elevation={3} display={'flex'} alignItems={'center'}>
+        <Box component={Paper} height={'100vh'} borderRadius={0} elevation={3} display={'flex'} alignItems={'center'} bgcolor={'white'}>
             <Box>
                 <Stack spacing={2} paddingTop={9} alignItems={'center'} mb={2}>
                     <Box component={'img'} src={ImageUEB} className='img_ueb' alt='ueb_logo' maxWidth={'40%'} />
