@@ -1,0 +1,13 @@
+.img-logo{
+
+    width: auto;
+    height: 50px;
+    filter: invert(100%)
+
+}
+
+.active{
+
+    background-color: grey;
+
+}
