@@ -13,8 +13,6 @@ export const MGroup = () => {
 
     const { deviceSelected, ready } = useContext(DashboardContext)
 
-    const [readyRender, setReadyRender] = useState(false)
-
     const theme = useTheme()
 
     const cutNumber = (num) => {
