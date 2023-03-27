@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { AppBarIf } from '../components/AppBarIf';
 import { LoginButton } from '../components/LoginButton';
 
-export const NavBar = ({ authStatus }) => {
+export const NavBar = () => {
 
     const { anchorElNav, openNav, menuOpen, menuClose } = useMenuPop()
 
@@ -64,7 +64,7 @@ export const NavBar = ({ authStatus }) => {
                     </Box>
                 }
 
-                <LoginButton authStatus={authStatus} isLoginPage={loginPage}/>
+                <LoginButton isLoginPage={loginPage}/>
 
 
                 {!loginPage &&

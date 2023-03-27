@@ -1,7 +1,6 @@
 import { Box, Button, CssBaseline, Grid, Slide, Typography, useScrollTrigger, IconButton, Fade, Stack } from '@mui/material'
 
 import { ImgBox } from '../components'
-import { Footer } from '../../Global/components'
 
 import placeholder from '../../assets/images/placeholder.png'
 
@@ -42,7 +41,7 @@ export const Home = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Footer />
+            <Typography variant="h6" color="initial">FOOTER</Typography>
           </Grid>
 
         </Grid>

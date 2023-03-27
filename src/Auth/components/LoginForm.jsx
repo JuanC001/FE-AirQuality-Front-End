@@ -7,21 +7,31 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import ImageUEB from './../../assets/images/ueb_logomin.png';
 import { useForm } from '../hooks/useForm';
+import { useAuthStore } from '../hooks/useAuthStore';
+import { useNavigate } from 'react-router-dom';
+
 
 export const LoginForm = () => {
 
-    const {user, password, onInputChange, onResetForm } = useForm({
+    const { startLogin } = useAuthStore()
+    const navigate = useNavigate()
+
+    const { user, password, onInputChange, onResetForm } = useForm({
 
         user: '',
         password: '',
 
     })
 
-    const login = (e) => {
+    const login = async (e) => {
 
         e.preventDefault();
-        console.log('Login 2');
+        const userResp = await startLogin(user, password)
+        if(userResp){
 
+            navigate('/dashboard')
+
+        }
     }
 
     return (

@@ -16,13 +16,13 @@ export const InvestigatorDashboard = () => {
                 <Grid container mt={'6vh'} spacing={3} >
 
                     <Grid item xs={12} sm={6} md={6} lg={4}>
-                        <DashBox component={Paper} elevation={3} sx={{ padding: 0 }} height={500}>
+                        <DashBox component={Paper} elevation={3} sx={{ padding: 0 }} height={'50vh'}>
                             <Map />
                         </DashBox>
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={6} lg={8}>
-                        <DashBox component={Paper} elevation={3} height={500}>
+                        <DashBox component={Paper} elevation={3} height={'50vh'}>
                             <Typography variant="h4" color="initial" mb={1}><strong>Dispositivos</strong></Typography>
                             <Divider variant='middle' />
                             <Box my={1} />
@@ -41,15 +41,14 @@ export const InvestigatorDashboard = () => {
                         </DashBox>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
-
-                        <Box height={500}>
+                    <Grid item xs={12} md={6} >
+                        <Box >
                             <MeasuresGroup />
                         </Box>
                     </Grid>
 
-                    <Grid item xs={6} lg={1}>
-                        <DashBox component={Paper} elevation={3} height={500}>
+                    <Grid item xs={12} lg={1}>
+                        <DashBox component={Paper} elevation={3} height={'50vh'}>
                             %
                         </DashBox>
                     </Grid>

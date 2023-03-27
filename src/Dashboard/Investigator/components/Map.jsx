@@ -4,7 +4,6 @@ import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import './Map.css'
-import { userCoords } from '../hooks/userCoords'
 import { Box, Button, Typography } from '@mui/material'
 
 const Map = () => {
@@ -16,9 +15,9 @@ const Map = () => {
         navigator.geolocation.getCurrentPosition((position) => {
 
             setcoords([position.coords.latitude, position.coords.longitude])
-            console.log(position.coords)
-        })
+            console.log(coords)
 
+        })
 
 
     }
@@ -28,9 +27,10 @@ const Map = () => {
         navigator.geolocation.getCurrentPosition((position) => {
 
             setcoords([position.coords.latitude, position.coords.longitude])
+            console.log(coords)
 
         })
-        console.log(coords)
+
 
     }, [])
 

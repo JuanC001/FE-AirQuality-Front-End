@@ -7,13 +7,13 @@ export const MeasuresGroup = () => {
     return (
         <>
 
-            <Grid container height={'100%'} spacing={5}>
+            <Grid container spacing={3}>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                     <PmGroup />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                     <MGroup />
                 </Grid>
 
