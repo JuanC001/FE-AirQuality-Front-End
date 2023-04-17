@@ -6,13 +6,10 @@ import { DashboardContext } from '../../../Context/DashboardContext'
 
 export const PMChart = ({ particle }) => {
 
+    const theme = useTheme()
     const { deviceSelected, selectedMeasure, ready } = useContext(DashboardContext)
 
     if (!ready) return;
-
-
-    const theme = useTheme()
-
     const dataChartLabel = particle;
     const lineColor = theme.palette.secondary.main;
 
@@ -32,12 +29,14 @@ export const PMChart = ({ particle }) => {
 
         if (deviceSelected.measures === undefined) return;
 
-        if (particle === 'pm25') {
+        const arrayMeasures = deviceSelected.measures.pop()
 
-            return deviceSelected.measures[19].pm25
+        if (particle === 'pm25') {
+            
+            return arrayMeasures.pm25
 
         } else {
-            return deviceSelected.measures[19].pm10
+            return arrayMeasures.pm10
         }
 
     }

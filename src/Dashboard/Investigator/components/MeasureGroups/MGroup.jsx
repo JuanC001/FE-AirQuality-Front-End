@@ -13,6 +13,12 @@ export const MGroup = () => {
 
     const { deviceSelected, ready } = useContext(DashboardContext)
 
+    if(!ready) return
+
+    if(deviceSelected.measures === undefined) {
+        return
+    }
+    
     const theme = useTheme()
 
     const cutNumber = (num) => {
@@ -32,7 +38,7 @@ export const MGroup = () => {
                         <Typography variant="h4" color="initial" mb={1}><DeviceThermostatIcon /> <strong>Temperatura</strong></Typography>
                         <Divider variant='middle' />
                         <Box my={1} />
-                        {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures[19].temp)}°</strong></Typography>}
+                        {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures.pop().temp)}°</strong></Typography>}
                     </DashBox>
 
                 </Grid>
@@ -42,7 +48,7 @@ export const MGroup = () => {
                         <Typography variant="h4" color="initial" mb={1}><OpacityIcon /> <strong>Humedad</strong></Typography>
                         <Divider variant='middle' />
                         <Box my={1} />
-                        {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures[19].rh)}</strong></Typography>}
+                        {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures.pop().rh)}</strong></Typography>}
                     </DashBox>
                 </Grid>
 
@@ -51,7 +57,7 @@ export const MGroup = () => {
                         <Box my={1} height={'10%'}>
                             <Typography variant="h4" color="initial" mb={1}><ArrowCircleDownIcon /> <strong>Presión Atmosferica</strong></Typography>
                             <Divider variant='middle' />
-                            {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures[19].pressure)}</strong></Typography>}
+                            {deviceSelected.measures !== undefined && <Typography variant="h4" color="initial" textAlign={'center'} sx={{ textShadow: `2px 2px 2px ${theme.palette.primary.dark}` }}><strong>{cutNumber(deviceSelected.measures.pop().pressure)}</strong></Typography>}
                         </Box>
 
                     </DashBox>

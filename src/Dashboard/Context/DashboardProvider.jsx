@@ -24,7 +24,6 @@ export const DashboardProvider = ({ children }) => {
     const getSelected = async () => {
         const resp = await getOneDevice(deviceString)
         setdeviceSelected(resp)
-
     }
 
     useEffect(() => {

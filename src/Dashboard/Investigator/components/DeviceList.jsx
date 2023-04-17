@@ -6,7 +6,7 @@ import { DashboardContext } from '../../Context/DashboardContext'
 
 export const DeviceList = () => {
 
-    const {devicesList, setdeviceString, setready} = useContext(DashboardContext)
+    const {devicesList, setdeviceString, setready, deviceString} = useContext(DashboardContext)
 
     const columns = [
 
@@ -24,9 +24,12 @@ export const DeviceList = () => {
         </>
     }
 
-    const rowClickHandler = (e) => {
+    const rowClickHandler = async (e) => {
 
-        setdeviceString(e.row._id)
+        console.log(e.row._id)
+        if(e.row._id === deviceString) return
+        setready(false)
+        await setdeviceString(e.row._id)
         setready(true)
         
     }
