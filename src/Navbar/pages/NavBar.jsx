@@ -58,8 +58,8 @@ export const NavBar = () => {
                     <Box direction={'row'} sx={{ display: { md: 'flex', xs: 'none' } }} mx={1}>
 
                         <Button color={'inherit'} component={NavLink} to={'/'}>Inicio</Button>
-                        <Button color='inherit' component={NavLink} to={'/'}>Sobre Nosotros</Button>
-                        <Button color='inherit' component={NavLink} to={'/'}>Mas sobre el aire</Button>
+                        <Button color='inherit' component={NavLink} to={'/about-us'}>Sobre Nosotros</Button>
+                        <Button color='inherit' component={NavLink} to={'/about-air'}>Mas sobre el aire</Button>
 
                     </Box>
                 }

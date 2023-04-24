@@ -11,8 +11,8 @@ export const MenuGeneral = (props) => {
         <>
 
             <MenuItem onClick={menuClose} component={NavLink} to={'/'}>Inicio</MenuItem>
-            <MenuItem onClick={menuClose} component={NavLink} to={'/'}>Sobre Nosotros</MenuItem>
-            <MenuItem onClick={menuClose} component={NavLink} to={'/'}>Sobre el Aire</MenuItem>
+            <MenuItem onClick={menuClose} component={NavLink} to={'/about-us'}>Sobre Nosotros</MenuItem>
+            <MenuItem onClick={menuClose} component={NavLink} to={'/about-air'}>Sobre el Aire</MenuItem>
             <Divider />
             <MenuItem onClick={menuClose} component={NavLink} to={'/auth/login'}>Iniciar Sesion</MenuItem>
 

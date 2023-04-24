@@ -50,6 +50,7 @@ export const PMChart = ({ particle }) => {
                     <Tooltip active={true} cursor={false} content={<CustomTooltip />} position={{ y: 100 }} />
                 </LineChart>
             </ResponsiveContainer>
+            
             <Typography variant='h5' textAlign={'center'} my={1}><strong>{selectorParticula()}PPm</strong></Typography>
         </>
 

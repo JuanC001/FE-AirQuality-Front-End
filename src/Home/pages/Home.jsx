@@ -1,35 +1,20 @@
-import { Box, CssBaseline, Grid, Typography } from '@mui/material'
+import { Box, CssBaseline, Grid } from '@mui/material'
 
 import { HomeStart } from '../components/HomeStart'
 import { AirControl } from '../components/AirControl'
-import { Footer } from '../components/Footer/Footer'
 
 export const Home = () => {
 
   return (
     <>
       <CssBaseline />
-      <Box mt={'5vh'} component={'main'} bgcolor={'inherit'} height={'93vh'}>
+      <Box mt={'5vh'} component={'main'} bgcolor={'inherit'} minHeight={'93vh'}>
 
-        <Grid container alignItems={'center'}>
+        <HomeStart />
 
-          <Grid item xs={12}>
-            <HomeStart />
-          </Grid>
+        <AirControl />
 
-          <Grid item xs={12}>
-
-            <AirControl />
-
-          </Grid>
-
-          <Grid item xs={12}>
-            <Footer />
-          </Grid>
-
-        </Grid>
-
-      </Box>
+      </Box >
 
     </>
   )
