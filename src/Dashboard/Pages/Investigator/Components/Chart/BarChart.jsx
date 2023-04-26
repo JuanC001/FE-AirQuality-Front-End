@@ -1,11 +1,11 @@
 import { Box, CircularProgress, Typography, useTheme } from '@mui/material'
 import React, { useContext } from 'react'
 import { DashboardContext } from '../../../../Context/DashboardContext'
-import { Bar, ResponsiveContainer, BarChart as BC, LabelList } from 'recharts'
+import { Bar, ResponsiveContainer, BarChart as BC, LabelList, Tooltip } from 'recharts'
 
 export const BarChart = () => {
 
-    const { deviceData, deviceInfo, dataReady } = useContext(DashboardContext)
+    const { deviceData, deviceInfo, dataReady, keyActive } = useContext(DashboardContext)
     const theme = useTheme()
 
     if (deviceInfo === null) {
@@ -18,6 +18,14 @@ export const BarChart = () => {
         )
     }
 
+    
+    const cutNumber = (num) => {
+
+        return +(Math.round(num + "e+2") + "e-2");
+
+    }
+
+
     return (
 
         <Box width={'100%'} height={'93%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -26,17 +34,18 @@ export const BarChart = () => {
             {dataReady &&
                 <Box width={'100%'} height={'100%'}>
 
-                <ResponsiveContainer width={'100%'} height={'100%'}>
+                    <ResponsiveContainer width={'100%'} height={'100%'}>
 
-                    <BC data={deviceData.measures} margin={{top: 100}}>
-                        <Bar dataKey={'pm25'} fill={theme.palette.primary.main}>
+                        <BC data={deviceData.measures} margin={{ top: 100 }}>
+                            <Bar dataKey={keyActive} fill={theme.palette.primary.main}>
 
-                            <LabelList dataKey={'pm25'} position={'top'}/>
+                                <LabelList dataKey={keyActive} position={'top'} formatter={cutNumber} />
 
-                        </Bar>
-                    </BC>
+                            </Bar>
+                            <Tooltip />
+                        </BC>
 
-                </ResponsiveContainer>
+                    </ResponsiveContainer>
 
 
                 </Box>}

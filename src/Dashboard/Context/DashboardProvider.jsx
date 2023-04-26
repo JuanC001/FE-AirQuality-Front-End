@@ -1,8 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DashboardContext } from './DashboardContext'
 import { useDevices } from '../Hooks/useDevices'
 
 export const DashboardProvider = ({ children }) => {
+
+    const DATATYPES = {
+
+        pm25: 'pm25',
+        temp: 'temp',
+        pressure: 'pressure',
+        pm10: 'pm10',
+        rh: 'rh',
+
+    }
 
     const { getAllDevices, getOneDevice } = useDevices()
 
@@ -12,21 +22,14 @@ export const DashboardProvider = ({ children }) => {
 
     const [dataReady, setDataReady] = useState(false)
 
-    const DATATYPES = {
+    const [keyActive, setKeyActive] = useState(DATATYPES.pm25)
 
-        PM25: 'pm25',
-        TMP: 'temp',
-        PRS: 'pressure',
-        PM10: 'pm10',
-        HMD: 'rh',
-
-    }
+    const [timer, setTimer] = useState(0)
 
     const getList = async () => {
 
         const resp = await getAllDevices()
         setDevices(resp)
-
 
     }
 
@@ -35,10 +38,45 @@ export const DashboardProvider = ({ children }) => {
         setDataReady(false)
         setDeviceInfo(rowInfo)
         const resp = await getOneDevice(rowInfo._id)
+
         setDeviceData(resp)
         setDataReady(true)
 
     }
+
+    const getDevice = async () => {
+
+        const newArray = [...devices]
+        const resp = await getOneDevice(deviceInfo._id)
+
+        for (let i = 0; i < newArray.length; i++) {
+
+            if (newArray[i]._id === deviceInfo._id) {
+                if (resp.lastUpdated !== deviceInfo.lastUpdated) {
+
+                    deviceInfo.lastUpdated = resp.lastUpdated
+                    newArray[i].lastUpdated = resp.lastUpdated
+                    setDevices(newArray)
+                    setDeviceData(resp)
+
+                }
+            }
+
+        }
+
+
+    }
+
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            getDevice()
+            setTimer(10000)
+        }, timer)
+        return () => clearInterval(interval)
+
+    })
+
 
     return (
         <DashboardContext.Provider value={{
@@ -47,10 +85,13 @@ export const DashboardProvider = ({ children }) => {
             deviceInfo,
             deviceData,
             dataReady,
+            keyActive,
+            DATATYPES,
 
             getList,
             setDevice,
             setDeviceData,
+            setKeyActive
 
         }}>
             {children}
