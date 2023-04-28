@@ -5,10 +5,11 @@ import { TitleBox } from '../TitleBox'
 import { LineChart } from './LineChart'
 import { DashboardContext } from '../../../../Context/DashboardContext'
 import { TextMeasures } from './TextMeasures'
+import { Quality } from './Quality'
 
 export const GroupMeasures = () => {
 
-    const {keyActive, DATATYPES, setKeyActive} = useContext(DashboardContext)
+    const { keyActive, DATATYPES, setKeyActive } = useContext(DashboardContext)
 
     const theme = useTheme()
 
@@ -54,7 +55,7 @@ export const GroupMeasures = () => {
                 <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.temp ? active : {}} onClick={e => particleHandler(DATATYPES.temp)}>
 
                     <TitleBox title={'Temperatura'} />
-                    <TextMeasures particle={DATATYPES.temp} tag={'°'}/>
+                    <TextMeasures particle={DATATYPES.temp} tag={'°'} />
 
                 </DashBox>
 
@@ -64,7 +65,7 @@ export const GroupMeasures = () => {
 
                 <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pressure ? active : {}} onClick={e => particleHandler(DATATYPES.pressure)}>
                     <TitleBox title={'Presion Atmosferica'} />
-                    <TextMeasures particle={DATATYPES.pressure} tag={'mmHg'}/>
+                    <TextMeasures particle={DATATYPES.pressure} tag={'mmHg'} />
 
                 </DashBox>
 
@@ -84,7 +85,7 @@ export const GroupMeasures = () => {
 
                 <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.rh ? active : {}} onClick={e => particleHandler(DATATYPES.rh)}>
                     <TitleBox title={'Humedad'} />
-                    <TextMeasures particle={DATATYPES.rh} tag={'%'}/>
+                    <TextMeasures particle={DATATYPES.rh} tag={'%'} />
 
                 </DashBox>
 
@@ -95,6 +96,7 @@ export const GroupMeasures = () => {
                 <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2}>
 
                     <TitleBox title={'Calidad'} />
+                    <Quality />
 
                 </DashBox>
 

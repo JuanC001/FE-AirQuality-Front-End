@@ -1,0 +1,20 @@
+.blur_effect {
+
+    filter: blur(8px);
+    animation: blurry 2s forwards;
+
+}
+
+@keyframes blurry {
+
+    0% {
+
+        filter: blur(8px);
+
+    }
+
+    100% {
+        filter: blur(0px);
+    }
+
+}

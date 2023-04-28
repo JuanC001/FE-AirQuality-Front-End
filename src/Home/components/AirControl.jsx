@@ -9,7 +9,7 @@ import OpacityIcon from '@mui/icons-material/Opacity';
 
 export const AirControl = () => {
     return (
-        <Grid container alignItems={'center'} bgcolor={'secondary.light'}>
+        <Grid container alignItems={'center'} bgcolor={'secondary.light'} pb={4}>
             <Grid item xs={12} md={6}>
 
                 <Box p={4} id={'about-us'}>

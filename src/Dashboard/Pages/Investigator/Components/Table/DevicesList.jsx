@@ -1,8 +1,9 @@
-import { Box, CircularProgress } from '@mui/material'
+import { Box, Button, CircularProgress } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import { useDevices } from '../../../../Hooks/useDevices'
 import { DataGrid, GridToolbarFilterButton } from '@mui/x-data-grid'
 import { DashboardContext } from '../../../../Context/DashboardContext'
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 export const DevicesList = () => {
 
@@ -22,6 +23,14 @@ export const DevicesList = () => {
     const toolBar = () => {
 
         return <GridToolbarFilterButton />
+
+    }
+
+    const onRefresh = async () => {
+
+        setloaded(false)
+        await getList()
+        setloaded(true)
 
     }
 
@@ -52,12 +61,22 @@ export const DevicesList = () => {
     }
 
     return (
-        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} height={'90%'} px={2}>
+        <>
+            <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} height={'80%'} px={2} mb={1}>
 
-            {!loaded && <CircularProgress variant='indeterminate' size={100} />}
+                {!loaded && <CircularProgress variant='indeterminate' size={100} />}
 
-            {loaded && <DataGrid rows={devices} columns={columns} components={{ Toolbar: toolBar }} sx={{ width: '90%' }} onRowClick={rowClickHandler} />}
+                {loaded && <>
 
-        </Box>
+                    <DataGrid rows={devices} columns={columns} components={{ Toolbar: toolBar }} sx={{ width: '90%' }} onRowClick={rowClickHandler} />
+
+                </>}
+
+
+            </Box>
+            <Box display={'flex'} justifyContent={'end'}>
+                <Button onClick={onRefresh} variant='outlined' startIcon={<RefreshIcon />}>Actualizar</Button>
+            </Box>
+        </>
     )
 }

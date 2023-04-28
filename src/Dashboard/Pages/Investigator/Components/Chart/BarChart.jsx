@@ -21,7 +21,7 @@ export const BarChart = () => {
     
     const cutNumber = (num) => {
 
-        return +(Math.round(num + "e+2") + "e-2");
+        return +(Math.round(num + "e+1") + "e-1");
 
     }
 
