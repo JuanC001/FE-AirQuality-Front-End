@@ -2,7 +2,7 @@ import { Button, Divider } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../Global/Context/UserContext'
+import { UserContext } from '../../../Context/UserContext'
 
 
 export const LoginButton = ({ isLoginPage }) => {

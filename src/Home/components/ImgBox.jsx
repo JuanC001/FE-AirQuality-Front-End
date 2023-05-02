@@ -10,6 +10,7 @@ export const ImgBox = styled(Box)(() => ({
     ":hover": {
       backgroudColor: 'red',
       transform: 'translateY(-5px)',
+      filter: 'drop-shadow(10px 10px 10px lightgrey)'
     }
   
   }));

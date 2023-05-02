@@ -1,17 +1,17 @@
 import { AppBar, Box, Button, Divider, IconButton, Menu, Stack, Toolbar } from '@mui/material'
 
-import ImageUEB from '../../assets/images/logoUniversidadElBosque.png'
-import AirImg from '../../assets/images/air_img.png'
+import ImageUEB from '../../../assets/images/logoUniversidadElBosque.png'
+import AirImg from '../../../assets/images/air_img.png'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import MenuIcon from '@mui/icons-material/Menu';
 
 import './NavBar.css'
-import { useMenuPop } from '../hooks/useMenuPop';
-import { MenuGeneral } from '../components/MenuGeneral';
+import { useMenuPop } from './hooks/useMenuPop';
+import { MenuGeneral } from './components/MenuGeneral';
 import { useEffect, useState } from 'react';
-import { AppBarIf } from '../components/AppBarIf';
-import { LoginButton } from '../components/LoginButton';
+import { AppBarIf } from './components/AppBarIf';
+import { LoginButton } from './components/LoginButton';
 
 export const NavBar = () => {
 

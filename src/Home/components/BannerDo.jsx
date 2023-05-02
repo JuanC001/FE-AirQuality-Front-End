@@ -1,10 +1,10 @@
 import { Box, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
-import { CardVM } from './CardVM'
+import { CardVM } from '../../AboutUs/components/CardVM'
 
 export const BannerDo = () => {
   return (
-    <Box display={'flex'} justifyContent={'center'} alignItems={'center'} pb={5} bgcolor={'secondary.light'}>
+    <Box display={'flex'} justifyContent={'center'} alignItems={'center'} pb={5} bgcolor={'primary.light'}>
 
       <Stack px={3} justifyContent={'center'} alignItems={'center'}>
 

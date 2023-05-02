@@ -1,45 +1,36 @@
 import { Box, CssBaseline, Divider, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
-import { BannerDo } from '../components/BannerDo'
 import { ContactUs } from '../components/ContactUs'
 import { CardVM } from '../components/CardVM'
 import { V_M } from '../components/V_M'
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+
 import { Who } from '../components/Who'
+import { VisionMision } from '../components/VisionMision'
+import { OurTeam } from '../components/OurTeam'
 
 export const About = () => {
 
-  const vision = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut saepe iste officiis maxime quae consequuntur nemo nobis delectus veniam magni iure deserunt deleniti, eius cupiditate tempora officia ullam rerum. Dicta.'
-  const mision = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut saepe iste officiis maxime quae consequuntur nemo nobis delectus veniam magni iure deserunt deleniti, eius cupiditate tempora officia ullam rerum. Dicta.'
 
   return (
     <>
 
       <CssBaseline />
-      <Box minHeight={'100vh'} pt={10}>
+      <Box pt={10}>
 
-        <Who />
-
-        <BannerDo />
-        <Box px={3}>
-          <Grid container columnSpacing={3} rowSpacing={3}>
-
-            <Grid item xs={12} md={6}>
-              <CardVM component={Paper} elevation={12} display={'flex'} justifyContent={'center'}>
-                <V_M text={vision} icon={VisibilityIcon} title={'Visión'}/>
-              </CardVM>
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <CardVM component={Paper} elevation={12} display={'flex'} justifyContent={'center'}>
-                <V_M text={mision} icon={TrendingUpIcon} title={'Misión'}/>
-              </CardVM>
-            </Grid>
-
-          </Grid>
+        <Box minHeight={'50vh'} display={'flex'} alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
+          <Who />
         </Box>
+
+        <Box display={'flex'} minHeight={'50vh'} mb={5}>
+
+          <Box component={Paper} elevation={0} height={'100%'} zIndex={'10'} display={'flex'} alignItems={'center'} justifyContent={'center'} >
+            <VisionMision />
+          </Box>
+
+        </Box>
+
+        <OurTeam />
 
         <ContactUs />
 

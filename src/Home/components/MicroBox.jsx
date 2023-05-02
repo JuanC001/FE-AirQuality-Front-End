@@ -12,7 +12,8 @@ export const MicroBox = styled(Box)(({ theme }) => ({
   ":hover": {
     transform: 'scale(1.1)',
     boxShadow: '0px 0px 1px 1px white',
-    border: '2px solid white'
+    border: '2px solid white',
+
   }
 
 }))

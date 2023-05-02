@@ -4,10 +4,12 @@ import { Login } from '../Auth'
 import { Dashboard } from '../Dashboard/Dashboard'
 import { UserProvider } from '../Global/Context/UserProvider'
 import { Home } from '../Home'
-import { NavBar } from '../Navbar/pages/NavBar'
 import { About } from '../AboutUs/pages/About'
 import { AboutAir } from '../AboutAir/pages/AboutAir'
-import { Footer } from '../Home/components/Footer/Footer'
+import { NavBar } from '../Global/Components/Navbar/NavBar'
+import { Footer } from '../Global/Components/Footer/Footer'
+
+
 
 export const AppRouter = () => {
 
