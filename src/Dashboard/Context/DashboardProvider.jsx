@@ -1,56 +1,101 @@
 import React, { useEffect, useState } from 'react'
-import { useDevices } from '../Investigator/hooks/useDevices'
 import { DashboardContext } from './DashboardContext'
+import { useDevices } from '../Hooks/useDevices'
 
 export const DashboardProvider = ({ children }) => {
 
-    const [selectedMeasure, setselectedMeasure] = useState('pm25')
-    const [deviceSelected, setdeviceSelected] = useState([])
-    const [deviceString, setdeviceString] = useState('')
-    const [devicesList, setdevicesList] = useState([])
-    const [measuresSelected, setMeasuresSelected] = useState([])
-    const [ready, setready] = useState(false)
+    const DATATYPES = {
 
-    const [timer, setTimer] = useState(2000)
+        pm25: 'pm25',
+        temp: 'temp',
+        pressure: 'pressure',
+        pm10: 'pm10',
+        rh: 'rh',
+
+    }
 
     const { getAllDevices, getOneDevice } = useDevices()
 
-    const getAllList = async () => {
+    const [devices, setDevices] = useState(null)
+    const [deviceInfo, setDeviceInfo] = useState(null)
+    const [deviceData, setDeviceData] = useState(null)
+
+    const [dataReady, setDataReady] = useState(false)
+
+    const [keyActive, setKeyActive] = useState(DATATYPES.pm25)
+
+    const [timer, setTimer] = useState(0)
+
+    const getList = async () => {
+
         const resp = await getAllDevices()
-        setdevicesList(resp)
+        setDevices(resp)
 
     }
 
-    const getSelected = async () => {
-        const resp = await getOneDevice(deviceString)
-        setdeviceSelected(resp)
+    const setDevice = async (rowInfo) => {
+
+        setDataReady(false)
+        setDeviceInfo(rowInfo)
+        const resp = await getOneDevice(rowInfo._id)
+
+        setDeviceData(resp)
+        setDataReady(true)
 
     }
 
-    useEffect(() => {
+    const getDevice = async () => {
 
-        getSelected()
+        const newArray = [...devices]
+        const resp = await getOneDevice(deviceInfo._id)
 
-    }, [deviceString])
+        for (let i = 0; i < newArray.length; i++) {
+
+            if (newArray[i]._id === deviceInfo._id) {
+                if (resp.lastUpdated !== deviceInfo.lastUpdated) {
+
+                    deviceInfo.lastUpdated = resp.lastUpdated
+                    newArray[i].lastUpdated = resp.lastUpdated
+                    setDevices(newArray)
+                    setDeviceData(resp)
+
+                }
+            }
+
+        }
+
+
+    }
 
     useEffect(() => {
 
         const interval = setInterval(() => {
-
-            getAllList()
-            if (ready) getSelected()
+            getDevice()
             setTimer(10000)
         }, timer)
         return () => clearInterval(interval)
 
     })
 
+
     return (
         <DashboardContext.Provider value={{
-            selectedMeasure, deviceSelected, deviceString, devicesList, measuresSelected, ready,
-            setdeviceString, setready
+
+            devices,
+            deviceInfo,
+            deviceData,
+            dataReady,
+            keyActive,
+            DATATYPES,
+
+            getList,
+            setDevice,
+            setDeviceData,
+            setKeyActive
+
         }}>
             {children}
         </DashboardContext.Provider>
     )
+
 }

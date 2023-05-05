@@ -1,33 +1,32 @@
 import React, { useContext } from 'react'
-import Typography from '@mui/material/Typography'
-import { InvestigatorDashboard } from './Investigator/pages/InvestigatorDashboard'
 import { UserContext } from '../Global/Context/UserContext'
+import { Dashboard as InvDash } from './Pages/Investigator/Pages/Dashboard'
 import { Navigate } from 'react-router-dom'
 import { DashboardProvider } from './Context/DashboardProvider'
 
 export const Dashboard = () => {
 
     const { user } = useContext(UserContext)
+    if (user) {
+        const role = user.role
 
-    if (!user) {
-        return <Navigate to={'/'} />
+        const USER_TYPES = {
+
+            INV: 'Investigador',
+            ADM: 'Admin',
+            USR: 'User'
+
+        }
+
+        return (
+            <>
+                <DashboardProvider>
+                    {role === USER_TYPES.INV && <InvDash />}
+                </DashboardProvider>
+            </>
+        )
     }
 
-    return (
-        <>
-            <DashboardProvider>
-                {
-                    user.role === 'Investigador' && <InvestigatorDashboard />
-                }
+    return <Navigate to={'/'} />
 
-                {
-                    user.role === 'user' && <InvestigatorDashboard />
-                }
-
-                {
-                    user.role === 'admin' && <InvestigatorDashboard />
-                }
-            </DashboardProvider>
-        </>
-    )
 }

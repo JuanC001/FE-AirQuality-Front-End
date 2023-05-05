@@ -4,6 +4,6 @@
     height: fit-content;
     width: fit-content;
     object-fit: cover;
+    transition: all 1s;
 
 }
-

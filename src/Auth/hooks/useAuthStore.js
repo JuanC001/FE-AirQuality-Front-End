@@ -2,6 +2,8 @@ import { useContext } from "react"
 import { airqualityApi } from "../../api"
 import { UserContext } from "../../Global/Context/UserContext"
 
+import Swal from "sweetalert2"
+
 export const useAuthStore = () => {
 
     const { loggedIn } = useContext(UserContext);
@@ -17,12 +19,41 @@ export const useAuthStore = () => {
                 console.log('Logged in as ' + JSON.stringify(resp.data.role))
                 loggedIn(resp.data);
 
+            } else if (resp.status === 401) {
+
+                Swal.fire(
+                    {
+                        icon: 'error',
+                        title: 'Ooops! Algo salió Mal...',
+                        text: 'Contraseña o usuario equivocado'
+                    }
+                )
+
             }
 
             return true;
 
         } catch (err) {
-            console.log(err)
+
+
+            if (err.response.status === 401) {
+                Swal.fire(
+                    {
+                        icon: 'error',
+                        title: 'Ooops! Algo salió Mal...',
+                        text: 'Contraseña o usuario incorrectos'
+                    }
+                )
+            } else {
+                Swal.fire(
+                    {
+                        icon: 'error',
+                        title: 'Ooops! Algo salió Mal...',
+                        text: 'Servidor en mantenimiento'
+                    }
+                )
+            }
+
         }
 
     }
