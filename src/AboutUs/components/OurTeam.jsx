@@ -1,4 +1,4 @@
-import { Box, Divider, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Divider, Grid, Stack, Typography, useTheme } from '@mui/material'
 import React from 'react'
 import { AvatarBox } from './AvatarBox'
 
@@ -6,7 +6,7 @@ export const OurTeam = () => {
 
     const theme = useTheme()
     const color1 = theme.palette.primary.light
-    const color2 = theme.palette.secondary.main
+    const color2 = theme.palette.secondary.light
 
 
     return (
@@ -25,57 +25,98 @@ export const OurTeam = () => {
 
             </Box>
 
-            <Box bgcolor={color1} minHeight={'50vh'} width={'100%'} pb={2}>
+            <Box bgcolor={color1} minHeight={'50vh'} width={'100%'} pb={20} justifyContent={'center'} >
 
                 <Box width={'80%'} mx={'auto'} mb={3}>
                     <Typography variant="h4" color="secondary.main" textAlign={'center'} mb={2}><strong>Directores</strong></Typography>
                     <Divider variant='middle' />
                 </Box>
 
-                <Stack direction={'row'} gap={5} justifyContent={'center'} mb={5}>
+                <Grid container width={'90%'} mx={'auto'} gap={0}>
 
-                    <AvatarBox title={'Gustavo'} />
-                    <AvatarBox title={'Hector'} />
-                    <AvatarBox title={'Laura'} />
-                </Stack>
+                    <Grid item xs={6} md={4} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
 
-                <Box width={'80%'} mx={'auto'} mb={3}>
+                    <Grid item xs={6} md={4} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={4} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                </Grid>
+
+                <Box width={'80%'} mx={'auto'} mb={3} mt={8}>
                     <Typography variant="h4" color="secondary.main" textAlign={'center'} mb={2}><strong>Desarrolladores</strong></Typography>
                     <Divider variant='middle' />
                 </Box>
 
-                <Stack direction={'row'} gap={5} justifyContent={'center'} mb={3}>
-                    <AvatarBox title={'Juan'} />
-                    <AvatarBox title={'Julio'} />
-                    <AvatarBox title={'Rabih'} />
-                    <AvatarBox title={'Gendel'} />
-                    <AvatarBox title={'Laura'} />
-                </Stack>
+                <Grid container width={'90%'} mx={'auto'} gap={0}>
 
-                <Box width={'80%'} mx={'auto'} mb={3}>
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                </Grid>
+
+                <Box width={'80%'} mx={'auto'} mb={3} mt={8}>
                     <Typography variant="h4" color="secondary.main" textAlign={'center'} mb={2}><strong>Colaboradores</strong></Typography>
                     <Divider variant='middle' />
                 </Box>
 
-                <Stack direction={'row'} gap={5} justifyContent={'center'}>
-                    <AvatarBox title={'X'} />
-                    <AvatarBox title={'Y'} />
-                    <AvatarBox title={'Z'} />
-                    <AvatarBox title={'X'} />
-                    <AvatarBox title={'Z'} />
-                </Stack>
+                <Grid container width={'90%'} mx={'auto'} gap={0}>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                    <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
+                        <AvatarBox title={'Persona'} subtittle={'Director'} />
+                    </Grid>
+
+                </Grid>
+
             </Box>
 
-            <Box style={{
-
-                backgroundImage: `linear-gradient(${color1} 50%, ${color2})`,
-            }} >
-
-                <Box height={'20vh'}>
-
-                </Box>
-
-            </Box>
+            
 
         </>
     )
