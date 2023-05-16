@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import AirqualityApi from "../../api/airQualityApi.js"
+import AirqualityApi from "../../api/airqualityApi"
 import { UserContext } from "../../Global/Context/UserContext"
 
 import Swal from "sweetalert2"
