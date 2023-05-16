@@ -3,7 +3,7 @@ import { getEnvVariables } from '../helpers';
 
 const { VITE_API_URL } = getEnvVariables()
 
-export const airqualityApi = axios.create({
+export const AirqualityApi = axios.create({
 
     baseURL: VITE_API_URL
 
