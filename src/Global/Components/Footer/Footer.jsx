@@ -6,7 +6,7 @@ import './Footer.css'
 
 export const Footer = () => {
   return (
-    <Box width={'100%'} minHeight={'30vh'} bgcolor={'secondary.main'}>
+    <Box width={'100%'} minHeight={'30vh'} bgcolor={'primary.main'}>
 
       <Grid container spacing={1} textAlign={'center'} p={4} height={'100%'} pt={3}>
 

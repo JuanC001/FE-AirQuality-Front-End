@@ -32,7 +32,7 @@ export const OurTeam = () => {
                     <Divider variant='middle' />
                 </Box>
 
-                <Grid container width={'90%'} mx={'auto'} gap={0}>
+                <Grid container width={'90%'} mx={'auto'} gap={0} rowGap={5}>
 
                     <Grid item xs={6} md={4} display={'flex'} justifyContent={'center'}>
                         <AvatarBox title={'Persona'} subtittle={'Director'} />
@@ -53,7 +53,7 @@ export const OurTeam = () => {
                     <Divider variant='middle' />
                 </Box>
 
-                <Grid container width={'90%'} mx={'auto'} gap={0}>
+                <Grid container width={'90%'} mx={'auto'} gap={0} rowGap={5}>
 
                     <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
                         <AvatarBox title={'Persona'} subtittle={'Director'} />
@@ -86,7 +86,7 @@ export const OurTeam = () => {
                     <Divider variant='middle' />
                 </Box>
 
-                <Grid container width={'90%'} mx={'auto'} gap={0}>
+                <Grid container width={'90%'} mx={'auto'} gap={0} rowGap={5}>
 
                     <Grid item xs={6} md={2} display={'flex'} justifyContent={'center'}>
                         <AvatarBox title={'Persona'} subtittle={'Director'} />
