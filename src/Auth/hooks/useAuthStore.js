@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { airqualityApi } from "../../api/airQualityApi"
+import { AirqualityApi } from "../../api/airQualityApi"
 import { UserContext } from "../../Global/Context/UserContext"
 
 import Swal from "sweetalert2"
@@ -12,7 +12,7 @@ export const useAuthStore = () => {
 
         try {
 
-            const resp = await airqualityApi.post('/auth/login', { user, password });
+            const resp = await AirqualityApi.post('/auth/login', { user, password });
 
             if (resp.status === 200) {
 

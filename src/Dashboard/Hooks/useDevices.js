@@ -1,4 +1,4 @@
-import { airqualityApi } from "../../api/airQualityApi"
+import { AirqualityApi } from "../../api/airQualityApi"
 
 export const useDevices = () => {
 
