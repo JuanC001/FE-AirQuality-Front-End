@@ -1,15 +1,15 @@
-import { airqualityApi as api } from "../../api/airQualityApi"
+import { airqualityApi } from "../../api/airQualityApi"
 
 export const useDevices = () => {
 
     const getAllDevices = async () => {
-        const devices = await api.post('/device/getAllList')
+        const devices = await airqualityApi.post('/device/getAllList')
         return devices.data
     }
 
     const getOneDevice = async (id) => {
 
-        const device = await api.post('/device/getOneDevice', { id })
+        const device = await airqualityApi.post('/device/getOneDevice', { id })
         return device.data
     }
 
