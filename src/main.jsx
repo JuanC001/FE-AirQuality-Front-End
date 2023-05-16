@@ -2,11 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import AirQualityApp from './AirQualityApp'
 
+import { UserProvider } from './Global/Context/UserProvider'
+
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createTheme, ThemeProvider } from '@mui/material';
+
+
 
 const theme = createTheme({
   palette: {
@@ -22,6 +26,7 @@ const theme = createTheme({
       dark: '#B55D16',
       contrastText: '#fff',
     },
+    divider: '#E8771D'
   },
 
 });
@@ -29,7 +34,9 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <AirQualityApp />
+      <UserProvider>
+        <AirQualityApp />
+      </UserProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )

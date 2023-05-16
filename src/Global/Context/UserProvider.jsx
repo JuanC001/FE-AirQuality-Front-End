@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { UserContext } from './UserContext';
 
 
 export const UserProvider = ({ children }) => {
-
 
     const [user, setUser] = useState(null);
     const [authStatus, setAuthStatus] = useState(false);
