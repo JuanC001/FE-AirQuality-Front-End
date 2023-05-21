@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'
 import { DashboardProvider } from './Context/DashboardProvider'
 import { Admin } from './Pages/Admin/Pages/Admin'
 import { User } from './Pages/User/Pages/User'
+import { CssBaseline } from '@mui/material'
 
 
 export const Dashboard = () => {
@@ -24,6 +25,7 @@ export const Dashboard = () => {
 
         return (
             <>
+                <CssBaseline />
                 <DashboardProvider>
                     {role === USER_TYPES.INV && <InvDash />}
                     {role === USER_TYPES.ADM && <Admin />}

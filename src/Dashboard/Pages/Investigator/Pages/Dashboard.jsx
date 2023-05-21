@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Grid, Paper } from '@mui/material'
+import { Box, Grid, Paper } from '@mui/material'
 import React from 'react'
 import { Map } from '../Components/Map/Map'
 import { DashBox } from '../Components/DashBox'
@@ -12,8 +12,6 @@ import './Dashboard.css'
 export const Dashboard = () => {
     return (
         <>
-
-            <CssBaseline />
 
             <div className='blur_effect'>
                 <Box bgcolor={'secondary.light'} minHeight={'100vh'} maxWidth={'100vw'} pt={10} justifyContent={'center'} display={'flex'} pb={2} >

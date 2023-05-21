@@ -1,0 +1,8 @@
+.backblur {
+
+    backdrop-filter: blur(8px);
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+
+}
