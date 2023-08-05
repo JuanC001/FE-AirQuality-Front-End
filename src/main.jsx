@@ -15,18 +15,17 @@ import { createTheme, ThemeProvider } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#E1FFA1',
-      main: '#8CB23A',
-      dark: '#A9BF78',
+      light: '#EFF7FF',
+      main: '#349ED2',
+      dark: '#0071BC',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ECA163',
-      main: '#E8771D',
-      dark: '#B55D16',
-      contrastText: '#fff',
+      light: '#E5EFCE',
+      main: '#BFD686',
+      dark: '#7EB312',
+      contrastText: '#000',
     },
-    divider: '#E8771D'
   },
 
 });

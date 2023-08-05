@@ -14,27 +14,27 @@ export const About = () => {
 
   return (
     <>
+      
+        <CssBaseline />
+        <Box pt={10}>
 
-      <CssBaseline />
-      <Box pt={10}>
-
-        <Box minHeight={'50vh'} display={'flex'} alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
-          <Who />
-        </Box>
-
-        <Box display={'flex'} minHeight={'50vh'} mb={5}>
-
-          <Box component={Paper} elevation={0} height={'100%'} zIndex={'10'} display={'flex'} alignItems={'center'} justifyContent={'center'} >
-            <VisionMision />
+          <Box minHeight={'50vh'} display={'flex'} alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
+            <Who />
           </Box>
 
+          <Box display={'flex'} minHeight={'50vh'} mb={5}>
+
+            <Box component={Paper} elevation={0} height={'100%'} zIndex={'10'} display={'flex'} alignItems={'center'} justifyContent={'center'} >
+              <VisionMision />
+            </Box>
+
+          </Box>
+
+          <OurTeam />
+
+          <ContactUs />
+
         </Box>
-
-        <OurTeam />
-
-        <ContactUs />
-
-      </Box>
 
     </>
   )

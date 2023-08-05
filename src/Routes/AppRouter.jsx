@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Login } from '../Auth'
 import { Dashboard } from '../Dashboard/Dashboard'
@@ -8,30 +8,54 @@ import { AboutAir } from '../AboutAir/pages/AboutAir'
 import { NavBar } from '../Global/Components/Navbar/NavBar'
 import { Footer } from '../Global/Components/Footer/Footer'
 import { UserContext } from '../Global/Context/UserContext'
+import { AnimatePresence } from 'framer-motion'
 
-
+import { motion } from 'framer-motion'
 
 export const AppRouter = () => {
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        console.log('scroll')
+    }, []);
 
     const { authStatus } = useContext(UserContext)
 
     return (
         <>
             <NavBar />
-            <Routes>
-                <Route path='/about-us' element={<About />} />
-                <Route path='/about-air' element={<AboutAir />} />
-                <Route path='/auth/*' element={<Login />} />
-                <Route path='/' element={<Home />} />
-                <Route path='/*' element={<Navigate to={'/'} />} />
+            <AnimatePresence>
+                <Routes>
 
-                {authStatus ?
+                    <Route path='/about-us' element={
+                        <About />
+                    }
+                    />
+                    <Route path='/about-air' element={
+                        <AboutAir />
+                    }
+                    />
+                    <Route path='/auth/*' element={
+                        <Login />
+                    }
+                    />
+                    <Route path='/' element={
+                        <Home />
+                    } />
+                    <Route path='/*' element={
+                        <Navigate to={'/'} />
+                    } />
 
-                    <Route path='/dashboard/' element={<Dashboard />} /> : <></>
+                    {authStatus ?
 
-                }
+                        <Route path='/dashboard/' element={<Dashboard />} /> : <></>
 
-            </Routes>
+                    }
+
+                </Routes>
+            </AnimatePresence >
+
             <Footer />
 
         </>

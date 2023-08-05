@@ -2,8 +2,11 @@ import { Box, Button, Fade, Grid, IconButton, Slide, Stack, Typography, useScrol
 import React from 'react'
 import { ImgBox } from './ImgBox'
 
+import { motion, useScroll, useTransform } from 'framer-motion'
+
 import { scrollDownTo } from '../hooks/scrollDownTo'
-import dotmap from '../../assets/images/dotmap.png'
+import dotmap from '../../assets/images/mapa.png'
+import fnline1 from '../../assets/images/fondo01.png'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import './HomeStart.css'
@@ -27,16 +30,31 @@ function ArrowDown(props) {
 
 export const HomeStart = () => {
 
+    const { scrollYProgress } = useScroll()
+
+    const left = useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"])
+    const right = useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"])
+    const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0])
+
+    const variants = {
+        'scale-init': {
+            scale: [0, 1.1, 1.2, 1, 1],
+        },
+        'opacity-line': {
+            opacity: [0, 0, 0, 0.5, 0.5]
+        }
+    }
+
     return (
         <>
-            <Box mt={9} minHeight={'100vh'}>
-                <AirParticles />
-                <Grid container>
+            <Box mt={9} minHeight={'100vh'} sx={{ overflow: 'hidden' }}>
+                <Grid container sx={{ overflow: 'hidden' }}>
                     <Grid item xs={12} md={6} display={'flex'}>
-                        <Slide direction={'right'} in={true}>
-                            <Box p={5} display={'flex'}>
 
-                                <Box margin={'auto'} my={'auto'} sx={{ transition: 'all 0.2s ease-in-out', ':hover': { transform: 'translateY(5px)', filter: 'drop-shadow(10px 10px 5px lightgrey)' } }}>
+                        <Box p={5} display={'flex'}>
+
+                            <Box margin={'auto'} my={'auto'} sx={{ transition: 'all 0.2s ease-in-out', ':hover': { transform: 'translateY(5px)', filter: 'drop-shadow(10px 10px 5px lightgrey)' } }}>
+                                <motion.div variants={variants} animate={'scale-init'} style={{ x: left }} layout>
                                     <Stack m={'auto'}>
                                         <Typography variant='h3' align='center' color={'primary.main'} mb={2}><strong>Conozcamos nuestro aire</strong></Typography>
                                         <Typography variant='p' align='justify'>
@@ -49,29 +67,23 @@ export const HomeStart = () => {
                                             <Button variant='outlined' color='primary' size='large' onClick={e => scrollDownTo('about-us')}>Conocer mas</Button>
                                         </Box>
                                     </Stack>
-                                </Box>
+                                </motion.div>
                             </Box>
-                        </Slide>
+
+                        </Box>
                     </Grid>
 
                     <Grid item xs={12} md={6}>
-                        <Slide direction={'left'} in={true}>
-
-                            <Box textAlign={'center'}>
-                                <ImgBox margin={'auto'} mt={3} component={'img'} src={dotmap} className={'img-dot'} sx={{
-                                    ":hover": {
-
-                                        filter: 'invert(0.5) sepia(1) hue-rotate(10deg) saturate(1000%) drop-shadow(10px 10px 2px lightgrey)'
-
-                                    }
-                                }} />
-                            </Box>
-                        </Slide>
+                        <Box textAlign={'center'}>
+                            <motion.div variants={variants} animate={'scale-init'} transition={{ delay: '0.2' }} style={{ x: right }}>
+                                <ImgBox margin={'auto'} mt={3} component={'img'} src={dotmap} className={'img-dot'} />
+                            </motion.div>
+                        </Box>
                     </Grid>
                     <Grid item xs={12} mb={16}>
-                        <Slide direction={'up'} in={true}>
+                        <Box>
+                            <motion.div variants={variants} animate={'scale-init'} transition={{ delay: '0.4' }} style={{ y: right, opacity: opacity }}>
 
-                            <Box>
                                 <Box textAlign={'center'} sx={{ transition: 'all 0.2s ease-in-out', ':hover': { transform: 'translateY(5px)', filter: 'drop-shadow(10px 10px 10px lightgrey)' } }}>
 
                                     <Box p={4} textAlign={'center'}>
@@ -86,11 +98,14 @@ export const HomeStart = () => {
                                     </ArrowDown>
 
                                 </Box>
-                            </Box>
-                        </Slide>
+                            </motion.div>
+                        </Box>
                     </Grid>
                 </Grid>
+
             </Box>
+            <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: -200, rotate: '90deg', transform: 'scaleX(-1)', left: -150, opacity: 0.5, zIndex: -1 }} style={{ x: left }} variants={variants} animate={'opacity-line'} />
+            <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: 400, rotate: '90deg', transform: 'scaleX(-1)', right: -200, opacity: 0.5, zIndex: -1 }} style={{ y: left }} variants={variants} animate={'opacity-line'} />
         </>
     )
 }
