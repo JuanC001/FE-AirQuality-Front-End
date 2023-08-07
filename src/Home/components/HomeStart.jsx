@@ -25,8 +25,34 @@ function ArrowDown(props) {
 
 export const HomeStart = () => {
 
+<<<<<<< Updated upstream
     return (
         <>
+=======
+    const { scrollYProgress } = useScroll()
+
+    const isMobile = window.innerWidth < 760
+
+    const left = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"])
+    const right = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"])
+    const opacity = !isMobile && useTransform(scrollYProgress, [0, 0.1], [1, 0])
+
+
+    const variants = {
+        'scale-init': {
+            scale: [0, 1.1, 1.2, 1, 1],
+        },
+        'opacity-line': {
+            opacity: [0, 0, 0, 0.5, 0.5]
+        }
+    }
+
+    return (
+        <>
+            <Box minHeight={'100vh'} sx={{ overflow: 'hidden', position: 'relative' }}>
+                <Grid container sx={{ overflow: 'hidden' }}>
+                    <Grid item xs={12} md={6} display={'flex'}>
+>>>>>>> Stashed changes
 
             <Grid container mt={3}>
                 <Grid item xs={12} md={6} display={'flex'}>
@@ -51,6 +77,7 @@ export const HomeStart = () => {
                     </Slide>
                 </Grid>
 
+<<<<<<< Updated upstream
                 <Grid item xs={12} md={6}>
                     <Slide direction={'left'} in={true}>
 
@@ -82,6 +109,12 @@ export const HomeStart = () => {
                 </Grid>
             </Grid>
 
+=======
+                <Box component={motion.img} src={fnline1} sx={{ position: 'absolute', top: 400, rotate: '90deg', transform: 'scaleX(-1)', right: -200, opacity: 0.5, zIndex: -1 }} style={{ y: left }} variants={variants} animate={'opacity-line'} />
+                <Box component={motion.img} src={fnline1} sx={{ position: 'absolute', top: -200, rotate: '90deg', transform: 'scaleX(-1)', left: -150, opacity: 0.5, zIndex: -1 }} style={{ x: left }} variants={variants} animate={'opacity-line'} />
+
+            </Box>
+>>>>>>> Stashed changes
         </>
     )
 }

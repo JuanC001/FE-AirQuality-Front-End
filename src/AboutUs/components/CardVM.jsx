@@ -13,7 +13,7 @@ export const CardVM = styled(Box)(({ theme }) => ({
     ":hover": {
 
         transform: 'scale(1.01)',
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.secondary.main
 
     },
 

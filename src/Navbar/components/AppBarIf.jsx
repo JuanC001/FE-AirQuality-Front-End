@@ -6,7 +6,7 @@ export const AppBarIf = ({ children, isLoginPage }) => {
     if (isLoginPage) {
         return (
 
-            <AppBar color='secondary' sx={{boxShadow: '0px 0px'}}>
+            <AppBar color='primary' sx={{boxShadow: '0px 0px'}} enableColorOnDark>
                 {children}
             </AppBar>
 
@@ -14,7 +14,7 @@ export const AppBarIf = ({ children, isLoginPage }) => {
     } else {
         return (
 
-            <AppBar>
+            <AppBar color='secondary' sx={{backgroundColor: 'secondary.dark', color: 'white'}}>
                 {children}
             </AppBar>
 
