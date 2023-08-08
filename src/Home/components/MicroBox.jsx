@@ -3,12 +3,13 @@ import { Box, styled } from "@mui/material";
 export const MicroBox = styled(Box)(({ theme }) => ({
 
   height: '100px',
-  backgroundColor: theme.palette.primary.light,
+  backgroundColor: theme.palette.secondary.light,
   width: '100px',
   borderRadius: '20%',
   transition: 'all 0.3s',
-  border: '1px none transparent',
-  boxShadow: '0px 0px 1px 1px transparent',
+  border: '1px none black',
+  boxShadow: '0px 0px 1px 1px white',
+  color: theme.palette.primary.dark,
   ":hover": {
     transform: 'scale(1.1)',
     boxShadow: '0px 0px 1px 1px white',

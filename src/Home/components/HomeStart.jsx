@@ -1,5 +1,5 @@
 import { Box, Button, Fade, Grid, IconButton, Slide, Stack, Typography, useScrollTrigger, useTheme } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ImgBox } from './ImgBox'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -32,9 +32,11 @@ export const HomeStart = () => {
 
     const { scrollYProgress } = useScroll()
 
-    const left = useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"])
-    const right = useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"])
-    const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0])
+    const isMobile = window.innerWidth < 768 ? true : false
+
+    const left = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"])
+    const right = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"])
+    const opacity = !isMobile && useTransform(scrollYProgress, [0, 0.1], [1, 0])
 
     const variants = {
         'scale-init': {
@@ -47,7 +49,7 @@ export const HomeStart = () => {
 
     return (
         <>
-            <Box mt={9} minHeight={'100vh'} sx={{ overflow: 'hidden' }}>
+            <Box mt={9} minHeight={'100vh'} sx={{ overflow: 'hidden', position: 'relative' }}>
                 <Grid container sx={{ overflow: 'hidden' }}>
                     <Grid item xs={12} md={6} display={'flex'}>
 
@@ -104,8 +106,11 @@ export const HomeStart = () => {
                 </Grid>
 
             </Box>
-            <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: -200, rotate: '90deg', transform: 'scaleX(-1)', left: -150, opacity: 0.5, zIndex: -1 }} style={{ x: left }} variants={variants} animate={'opacity-line'} />
-            <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: 400, rotate: '90deg', transform: 'scaleX(-1)', right: -200, opacity: 0.5, zIndex: -1 }} style={{ y: left }} variants={variants} animate={'opacity-line'} />
+            {!isMobile && <>
+                <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: -200, rotate: '90deg', transform: 'scaleX(-1)', left: -150, opacity: 0.5, zIndex: -1 }} style={{ x: left }} variants={variants} animate={'opacity-line'} />
+                <Box component={motion.img} src={fnline1} sx={{ position: 'fixed', top: 400, rotate: '90deg', transform: 'scaleX(-1)', right: -200, opacity: 0.5, zIndex: -1 }} style={{ y: left }} variants={variants} animate={'opacity-line'} />
+            </>
+            }
         </>
     )
 }
