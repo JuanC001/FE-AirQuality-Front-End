@@ -6,7 +6,7 @@ export const BannerDo = () => {
   return (
     <Box pb={5} bgcolor={'primary.light'} minHeight={'60vh'} display={'flex'}>
 
-      <Box width={'99%'} mx={'auto'} mb={5}>
+      <Box width={'90%'} mx={'auto'} mb={5}>
 
         <Stack divider={<Divider variant='middle' />} display={'flex'} alignItems={'center'} my={2}>
           <Typography variant="h2" color="primary.dark" textAlign={'center'} my={2}><strong>Lo que hacemos</strong></Typography>

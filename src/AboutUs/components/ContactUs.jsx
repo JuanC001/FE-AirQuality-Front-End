@@ -8,12 +8,12 @@ export const ContactUs = () => {
 
   const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
-      color: 'white',
+      color: 'primary.dark',
     },
 
     '& .MuiInputLabel-root': {
 
-      color: 'white'
+      color: 'primary.dark'
 
     },
 
@@ -26,29 +26,29 @@ export const ContactUs = () => {
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'white',
-        color: 'white',
+        borderColor: 'primary.dark',
+        color: 'primary.dark',
 
       },
       '&:hover fieldset': {
-        borderColor: 'white',
+        borderColor: 'primary.dark',
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'white',
+        borderColor: 'primary.dark',
       },
     },
   });
 
   return (
-    <Box minHeight={'80vh'} bgcolor={theme.palette.secondary.light} pt={5}>
+    <Box minHeight={'80vh'} bgcolor={theme.palette.secondary.light} py={5}>
 
       <Box width={'80%'} mx={'auto'} mb={3}>
-        <Typography variant="h4" color="primary.light" textAlign={'center'} mb={2}><strong>Contactanos</strong></Typography>
+        <Typography variant="h4" color="primary.dark" textAlign={'center'} mb={2}><strong>Contactanos</strong></Typography>
         <Divider variant='middle' />
       </Box>
 
       <Box width={'80%'} justifyContent={'center'} mx={'auto'} my={6}>
-        <Typography variant="body1" color="primary.contrastText">
+        <Typography variant="body1" color="inherit" width={'80%'} mx={'auto'}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Error reiciendis accusantium ad nobis corporis assumenda dolore veritatis ex, illo, nostrum mollitia earum autem eius. Reprehenderit sint ea voluptatem, non et dolorem officiis qui debitis excepturi facilis, eum distinctio? Expedita, et?
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Error reiciendis accusantium ad nobis corporis assumenda dolore veritatis ex, illo, nostrum mollitia earum autem eius. Reprehenderit sint ea voluptatem, non et dolorem officiis qui debitis excepturi facilis, eum distinctio? Expedita, et?
         </Typography>
@@ -60,7 +60,7 @@ export const ContactUs = () => {
             <CssTextField label={'Nombres'} variant='outlined' />
             <CssTextField label={'Correo'} />
             <CssTextField label={'Telefono'} />
-            <TextareaAutosize minRows={10} placeholder='Comentarios' style={{ width: '100%' }} />
+            <CssTextField label={'Comentarios'} multiline rows={5}/>
           </Stack>
           <Button size='medium' variant='contained' color='secondary'>Enviar</Button>
 
