@@ -14,7 +14,7 @@ const InsideGrid = () => {
 
     return (
         <>
-            <Grid container columnSpacing={3} rowSpacing={3} rowGap={5}>
+            <Grid container columnSpacing={3} rowSpacing={3} rowGap={5} mb={8}>
                 <Slide in={true} direction='left'>
                     <Grid item xs={12}>
                         <CardVM component={Paper} elevation={6} display={'flex'} justifyContent={'center'}>
@@ -38,7 +38,7 @@ export const VisionMision = () => {
 
 
     return (
-        <Box px={3} width={'98%'} display={'flex'} justifyContent={'center'}>
+        <Box px={3} width={'90%'} display={'flex'} justifyContent={'center'} mx={'auto'}>
             <InsideGrid />
         </Box>
     )

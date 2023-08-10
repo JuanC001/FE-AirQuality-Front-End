@@ -21,7 +21,7 @@ export const AirControl = () => {
     },
     animate: {
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      transition: { duration: 2, delay: 0.5 },
+      transition: { duration: 2},
     },
 
     microBoxAnim: {
@@ -35,6 +35,7 @@ export const AirControl = () => {
 
     img_anim: {
       y: [0, 0, -20, 0, 0],
+      transition: { duration: 2, delay: 0.5 },
     },
   };
 
@@ -215,9 +216,8 @@ export const AirControl = () => {
               src={placeholder}
               sx={{ maxWidth: "80%", opacity: "50%" }}
               variants={wrapperVariants}
-              initial={"img_initial"}
               animate={animar && "img_anim"}
-              transition={{ delay: "2.2" }}
+              transition={{ delay: 2.2 }}
             />
           </motion.div>
         </Grid>

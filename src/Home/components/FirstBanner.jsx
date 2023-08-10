@@ -122,7 +122,7 @@ const Stack_item = ({ title, text, delay = 0 }) => {
         }}
         py={2}
       >
-        <Typography variant="h5" mb={2}>
+        <Typography color={'primary.main'} variant="h5" mb={2}>
           <strong>{title}</strong>
         </Typography>
         <Typography variant="body1" color="initial" textAlign={"justify"} p={2}>
