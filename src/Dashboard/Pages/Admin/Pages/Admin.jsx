@@ -8,7 +8,10 @@ export const Admin = () => {
         <>
 
             <div className='blur_effect'>
-                <Box minHeight={'100vh'} bgcolor={'secondary.light'} p={1} px={2}>
+                <Box minHeight={'100vh'} p={1} px={2} width={{
+                    sx: '90%',
+                    md: '80%'
+                }} mx={'auto'}>
                         <Box minHeight={'6vh'} mt={8}>
                             <Actions />
                         </Box>

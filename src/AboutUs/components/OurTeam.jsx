@@ -1,6 +1,10 @@
 import { Box, Divider, Grid, Stack, Typography, useTheme } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { AvatarBox } from './AvatarBox'
+
+import { AnimatePresence, motion } from 'framer-motion'
+
+import fnd01 from '../../assets/images/fondo02.png'
 
 export const OurTeam = () => {
 
@@ -38,33 +42,26 @@ export const OurTeam = () => {
         title: 'Desarrolladores',
         persons: [
             {
-                name: 'Rabih Nabyi Souiden',
-                title: 'Estudiante',
+                name: 'Rabih Souiden',
+                title: 'Ingenieria de Sistemas',
                 img_url: '',
                 descripcion: 'Proyecto de Grado',
                 url_social: ''
             },
             {
-                name: 'Juan Camilo Florez',
-                title: 'Estudiante',
+                name: 'Juan Florez',
+                title: 'Ingenieria de Sistemas ',
                 img_url: '',
                 descripcion: 'Proyecto de Grado',
                 url_social: ''
             },
             {
-                name: 'Julio Mario Alonso',
-                title: 'Estudiante',
+                name: 'Julio Alonso',
+                title: 'Ingenieria de Sistemas',
                 img_url: '',
                 descripcion: 'Proyecto de Grado',
                 url_social: ''
             },
-            {
-                name: 'Gendel Izquierdo Rojas',
-                title: 'Estudiante',
-                img_url: '',
-                descripcion: 'Proyecto de Grado',
-                url_social: ''
-            }
         ]
     }
     const colaborators = {
@@ -106,15 +103,16 @@ export const OurTeam = () => {
 
             </Box>
 
-            <Box bgcolor={color1} minHeight={'50vh'} width={'100%'} justifyContent={'center'} pb={10}>
+            <Box minHeight={'50vh'} width={'100%'} pb={10} position={'relative'}>
+
+                <Box bgcolor={color1} width={'100%'} height={'100%'} position={'absolute'} zIndex={-2} />
+                <Box component={motion.img} src={fnd01} position={'absolute'} zIndex={-1} width={'100%'} height={800} sx={{ scaleX: '-1', opacity: '0.3' }} whileInView={{ clipPath: ['circle(0% at 0% 100%)', 'circle(150% at 0% 100%)'] }} viewport={{ once: 'true' }} transition={{ duration: 2, delay: 2 }} />
 
                 <DinamycStack group={principals} />
                 <DinamycStack group={developers} />
                 <DinamycStack group={colaborators} />
 
             </Box>
-
-
 
         </>
     )
@@ -124,16 +122,15 @@ const DinamycStack = ({ group }) => {
 
     return (
         <Box width={'100%'} display={'flex'} justifyContent={'center'} pt={2} mb={4}>
-            <Stack gap={3}>
+            <Stack spacing={3}>
                 <Typography variant="h4" color="primary.main" textAlign={'center'} mb={2}><strong>{group.title}</strong></Typography>
-                <Divider variant='middle' />
-
-                <Stack direction={'row'} gap={10}>
+                <Divider />
+                <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent={'center'} spacing={2}>
 
                     {group.persons.map(({ name, title }) =>
 
-                        <Box>
-                            <AvatarBox title={name} subtittle={title} />
+                        <Box display={'flex'} justifyContent={'center'}>
+                            <AvatarBox title={name} subtitle={title} />
                         </Box>
 
                     )}

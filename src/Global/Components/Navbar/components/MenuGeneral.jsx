@@ -19,7 +19,7 @@ export const MenuGeneral = (props) => {
       <MenuItem onClick={menuClose} component={NavLink} to={"/about-air"}>
         Sobre el Aire
       </MenuItem>
-      <Divider />
+      <Divider variant="middle" />
       {authStatus ? (
         <MenuItem onClick={menuClose} component={NavLink} to={"/dashboard"}>
           Dashboard

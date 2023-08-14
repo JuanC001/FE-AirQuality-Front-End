@@ -9,9 +9,7 @@ const ModalBoxStyle = styled(Box)(({ theme }) => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-
-    width: '50%',
-    height: '60vh',
+    height: '50vh',
     borderRadius: '20px'
 
 }))
@@ -29,6 +27,8 @@ const SelectType = () => (
 
 export const ModalBox = ({ open, handleClose }) => {
 
+    
+
     return (
 
         <Modal
@@ -36,87 +36,28 @@ export const ModalBox = ({ open, handleClose }) => {
             onClose={handleClose}
         >
 
-            <motion.div
+            <motion.div transition={{ duration: 0.5, type: 'spring' }} initial={{ x: '-100vw', y: '50vh' }} animate={{ x: 0, y: '50vh' }} exit={{ x: '100vw', opacity: 0 }}>
 
-                transition={{
-                    duration: 0.5,
-                    type: 'spring',
-                }}
-
-                initial={{
-                    x: '-100vw',
-                    y: '50vh'
-                }}
-
-                animate={{
-                    x: 0,
-                    y: '50vh'
-                }}
-
-                exit={{
-                    x: '100vw',
-                    opacity: 0
-                }}
-            >
-
-
-                <ModalBoxStyle component={Paper} elevation={6} p={4}>
+                <ModalBoxStyle component={Paper} elevation={6} p={4} width={{ xs: '90%', md: '50%', lg: '40%' }} position={'relative'}>
 
                     <IconButton sx={{
                         position: 'absolute',
-                        top: '1%',
-                        left: '95%',
+                        top: '0%',
+                        right: '0%',
                     }}
                         onClick={handleClose}
                     >
                         <CloseIcon />
                     </IconButton>
 
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Registrar un Usuario
-                    </Typography>
-                    <Divider />
-                    <Box height={'95%'} sx={{
-                        overflowY: 'scroll',
-                        borderTopLeftRadius: '10px',
-                        borderBottomLeftRadius: '10px',
-                        border: '1px solid #ccc',
-                        mt: 2,
+                    <Box height={'10%'}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Registrar Un Usuario
+                        </Typography>
+                        <Divider />
+                    </Box>
+                    <Box height={'90%'}>
 
-                        '&::-webkit-scrollbar': {
-                            width: '2px',
-                        },
-
-                        '&::-webkit-scrollbar-thumb': {
-                            background: '#888',
-                            borderRadius: '50%',
-                        }
-
-                    }}>
-                        <Box p={4} display={'flex'}>
-                            <Stack direction="row" spacing={3} mx={'auto'}>
-                                <TextField
-                                    id="outlined-basic"
-                                    label="Nombre"
-                                    value={''}
-                                />
-                                <TextField
-                                    id="outlined-basic"
-                                    label="Apellido"
-                                    value={''}
-                                />
-                                <TextField
-                                    id="outlined-basic"
-                                    label="Usuario"
-                                    placeholder="user@unbosque.edu.co"
-                                    value={''}
-                                />
-
-                                <SelectType />
-
-                            </Stack>
-                            <Stack></Stack>
-                        </Box>
                     </Box>
                 </ModalBoxStyle>
             </motion.div>

@@ -9,12 +9,15 @@ import { GroupMeasures } from '../Components/Measures/GroupMeasures'
 
 import './Dashboard.css'
 
+import fnd02 from '../../../../assets/images/fondo03.png'
+
 export const Dashboard = () => {
     return (
         <>
 
-            <div className='blur_effect'>
-                <Box bgcolor={'secondary.light'} minHeight={'100vh'} maxWidth={'100vw'} pt={10} justifyContent={'center'} display={'flex'} pb={2} >
+            <Box className='blur_effect' mb={10}>
+                <Box component={'img'} width={'100%'} height={800} src={fnd02} position='absolute' sx={{top: 150, opacity: '0.3'}} zIndex={-1}/>
+                <Box minHeight={'100vh'} maxWidth={'100vw'} pt={10} justifyContent={'center'} display={'flex'} pb={2}>
 
                     <Grid container width={'99%'} spacing={4} display={'flex'}>
 
@@ -57,7 +60,7 @@ export const Dashboard = () => {
 
                 </Box>
 
-            </div>
+            </Box>
         </>
     )
 }
