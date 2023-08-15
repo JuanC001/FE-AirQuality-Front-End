@@ -14,8 +14,6 @@ export const DevicesList = () => {
     const columns = [
 
         { field: "id", headerName: 'ID', width: '90' },
-        { field: "lat", headerName: 'Latitud', width: '150' },
-        { field: "lng", headerName: 'Longitud', width: '150' },
         { field: "lastUpdated", headerName: 'Ultima Actualización', width: '350' },
         { field: "_id", headerName: 'idDB', width: '10' },
     ]

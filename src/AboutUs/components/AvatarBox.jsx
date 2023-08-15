@@ -1,6 +1,8 @@
 import { Avatar as avs, Box, Stack, styled, Typography, useTheme } from '@mui/material'
 import React from 'react'
 
+import { motion } from 'framer-motion'
+
 const Avatar = styled(avs)(({ theme }) => ({
 
     height: '100%',
@@ -8,37 +10,37 @@ const Avatar = styled(avs)(({ theme }) => ({
 
 }))
 
-export const AvatarBox = ({ src, title, subtittle }) => {
-
-    const theme = useTheme()
+export const AvatarBox = ({ src, title, subtitle }) => {
 
     return (
         <>
-            <Box width={'150px'} height={'150px'} sx={{
+            <motion.div initial={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} whileHover={{
+                y: -10,
+                boxShadow: '10px 10px 15px grey',
+                borderTopLeftRadius: '20px', borderTopRightRadius: '20px'
+            }}
+                onClick={e => console.log('click')}
+            >
+                <Box width={'18vh'} height={'18vh'} position={'relative'}>
 
-                cursor: 'pointer',
-                transition: 'all 0.2s ease-in-out',
-                border: `2px solid ${theme.palette.secondary.light}`,
-                borderRadius: '50%',
-                ':hover': {
+                    <Avatar variant='square' sx={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
+                    <Box width={'100%'} height={'30%'} bgcolor={'primary.main'} color={'white'} position={'absolute'} sx={{ bottom: 0 }}>
+                        <Stack>
+                            <Typography variant='h6' textAlign={'center'} fontSize={'100%'}>
+                                <b>
+                                    {title}
+                                </b>
+                            </Typography>
+                            <Typography variant='caption' textAlign={'center'} fontSize={{ xs: '12px' }}>
+                                <b>
+                                    {subtitle}
+                                </b>
+                            </Typography>
+                        </Stack>
+                    </Box>
 
-                    transform: 'translateY(-5px)',
-                    filter: 'drop-shadow(5px 10px 10px lightgrey)',
-
-                }
-
-            }}>
-                <Avatar src={src}></Avatar>
-                <Box position={'relative'} bottom={'50px'} bgcolor={'white'} width={'100%'} height={'40%'} justifyContent={'center'} mx={'auto'} p={1}
-
-                    sx={{
-                        border: `2px solid ${theme.palette.secondary.light}`
-                    }}
-
-                >
-                    <Typography variant="body1" color="initial" textAlign={'center'} >{title}</Typography>
-                </Box>
-            </Box >
+                </Box >
+            </motion.div>
         </>
     )
 

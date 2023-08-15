@@ -33,7 +33,7 @@ export const Quality = () => {
     return (
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height={'90%'}>
 
-            <CircularProgressWithLabel value={'90'} />
+            <CircularProgressWithLabel value={'50'} />
 
         </Box>
     )
