@@ -5,7 +5,7 @@ export const AboutAir = () => {
   return (
     <>
       <CssBaseline />
-      <Box height={"100vh"} bgcolor={"secondary.dark"}></Box>
+      <Box height={"100vh"} bgcolor={"secondary.light"}></Box>
     </>
   );
 };
