@@ -1,125 +1,198 @@
-import { Box, Divider, IconButton, Modal, Paper, Typography, styled, Avatar, TextField, Stack, Select, MenuItem, Button, Grid, Stepper, StepLabel, Step } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Modal,
+  Paper,
+  Typography,
+  styled,
+  Avatar,
+  TextField,
+  Stack,
+  Select,
+  MenuItem,
+  Button,
+  Grid,
+  Stepper,
+  StepLabel,
+  Step,
+} from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { StepOne } from "./RegisterUser/StepOne";
 import { StepTwo } from "./RegisterUser/StepTwo";
 import { StepThree } from "./RegisterUser/StepThree";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "../../../Hooks/useForm";
+
+import Swal from "sweetalert2";
 
 const ModalBoxStyle = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  borderRadius: "20px",
+}));
 
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    borderRadius: '20px'
-
-}))
-
-const SelectType = () => (
+const StepAstep = ({ step, saveData, handleNext, handleBack }) => {
+  return (
     <>
-
-        <Select label="Tipo" defaultValue={"User"}>
-            <MenuItem value={"Investigator"}>Investigador</MenuItem>
-            <MenuItem value={"User"}>Usuario</MenuItem>
-        </Select>
-
+      <AnimatePresence>
+        <Box
+          width={"100%"}
+          height={"100%"}
+          display="flex"
+          alignItems={"center"}
+        >
+          {step == 0 && (
+            <motion.div
+              initial={{ x: "-100vw" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100vw" }}
+              key="stepone"
+            >
+              <StepOne saveData={saveData} handleNext={handleNext} />
+            </motion.div>
+          )}
+          {step == 1 && (
+            <Box
+              component={motion.div}
+              height="100%"
+              width="100%"
+              initial={{ x: "-100vw" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100vw" }}
+              key="steptwo"
+            >
+              <StepTwo
+                saveData={saveData}
+                handleNext={handleNext}
+                handleBack={handleBack}
+              />
+            </Box>
+          )}
+          {step == 2 && (
+            <motion.div
+              initial={{ x: "-100vw" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100vw" }}
+              key="stepthree"
+            >
+              <StepThree
+                saveData={saveData}
+                handleNext={handleNext}
+                handleBack={handleBack}
+              />
+            </motion.div>
+          )}
+        </Box>
+      </AnimatePresence>
     </>
-)
-
-const StepAstep = ({ step }) => {
-    return (
-        <>
-
-            {step == 0 && <StepOne />}
-            {step == 1 && <StepTwo />}
-            {step == 2 && <StepThree />}
-
-        </>
-    )
-}
+  );
+};
 
 export const ModalBox = ({ open, handleClose }) => {
+  const [step, setStep] = useState(0);
 
-    const [step, setStep] = useState(0)
+  const [data, setData] = useState({});
 
-    const steps = [
-        'Registrar Datos Usuario',
-        'Dirección',
-        'Crea una Contraseña'
-    ]
-
-    const handleNext = () => {
-
-
-        setStep(step + 1)
-
+  const saveData = (dataenv) => {
+    if (step === 0) {
+      setData({});
     }
 
-    return (
+    setData({
+      ...data,
+      ...dataenv,
+    });
+  };
 
-        <Modal
-            open={open}
-            onClose={handleClose}
-        >
+  const steps = ["Registrar Datos Usuario", "Dirección", "Crea una Contraseña"];
 
-            <motion.div transition={{ duration: 0.5, type: 'spring' }} initial={{ x: '-100vw', y: '50vh' }} animate={{ x: 0, y: '50vh' }} exit={{ x: '100vw', opacity: 0 }}>
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
-                <ModalBoxStyle component={Paper} elevation={6} p={4} width={{ xs: '90%', md: '50%', lg: '30%' }} position={'relative'}>
+  const handleNext = () => {
+    setStep(step + 1);
+  };
 
-                    <IconButton sx={{
-                        position: 'absolute',
-                        top: '0%',
-                        right: '0%',
-                    }}
-                        onClick={handleClose}
-                    >
-                        <CloseIcon />
-                    </IconButton>
+  const handleBack = () => {
+    setStep(step - 1);
+  };
 
-                    <Box height={'10%'}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Registrar Un Usuario
-                        </Typography>
-                        <Divider />
-                    </Box>
-                    <Box my={2}>
-                        <Stepper activeStep={step}>
+  return (
+    <AnimatePresence>
+      {open && (
+        <Modal open={true} onClose={handleClose}>
+          <motion.div
+            transition={{ duration: 0.5, type: "spring" }}
+            initial={{ x: "-100vw", y: "50vh" }}
+            animate={{ x: 0, y: "50vh" }}
+            exit={{ x: "100%", opacity: 0 }}
+            key="modal"
+            layout
+          >
+            <ModalBoxStyle
+              component={Paper}
+              elevation={6}
+              p={4}
+              width={{ xs: "99%", md: "50%", lg: "30%" }}
+              position={"relative"}
+              height={{ xs: "80vh", md: "80vh" }}
+            >
+              <IconButton
+                sx={{
+                  position: "absolute",
+                  top: "0%",
+                  right: "0%",
+                }}
+                onClick={handleClose}
+              >
+                <CloseIcon />
+              </IconButton>
 
-                            {steps.map((label) => (
-                                <Step key={label}>
-                                    <StepLabel>{label}</StepLabel>
-                                </Step>
-                            ))}
-
-                        </Stepper>
-                    </Box>
-                    <Box borderRadius={'20px'} border={'1px solid lightgrey'} minHeight={'100%'} p={2} alignItems={'center'} position={'relative'} my={5}>
-
-                        <StepAstep step={step} />
-
-                    </Box>
-
-                    <Box position={'relative'} width={'100%'} height={'10%'}>
-
-                        <Grid container>
-                            <Grid item xs={6}>
-                                <Box>
-                                    {step > 0 && <Button onClick={e => setStep(step - 1)}>Atras</Button>}
-                                </Box>
-                            </Grid>
-
-                            <Grid item xs={6} display={'flex'} justifyContent={'end'}>
-                                {step < 2 && <Button onClick={handleNext}>Siguiente</Button>}
-                                {step == 2 && <Button onClick={handleNext}>Finalizar</Button>}
-                            </Grid>
-                        </Grid>
-                    </Box>
-
-                </ModalBoxStyle>
-            </motion.div>
-        </Modal >
-
-    )
-}
+              <Box height={"10%"}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Registrar Un Usuario
+                </Typography>
+                <Divider />
+              </Box>
+              <Box my={2}>
+                <Stepper activeStep={step}>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Box>
+              <Box
+                borderRadius={"20px"}
+                border={"1px solid lightgrey"}
+                height={"70%"}
+                p={2}
+                alignItems={"center"}
+                position={"relative"}
+                mt={5}
+                mb={2}
+                sx={{
+                  overflowX: "hidden",
+                }}
+              >
+                <StepAstep
+                  step={step}
+                  saveData={saveData}
+                  handleNext={handleNext}
+                  handleBack={handleBack}
+                />
+              </Box>
+            </ModalBoxStyle>
+          </motion.div>
+        </Modal>
+      )}
+    </AnimatePresence>
+  );
+};
