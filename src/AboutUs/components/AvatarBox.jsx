@@ -18,7 +18,8 @@ export const AvatarBox = ({ src, title, subtitle }) => {
                 y: -10,
                 boxShadow: '10px 10px 15px grey',
                 borderTopLeftRadius: '20px', borderTopRightRadius: '20px'
-            }}
+            }
+        }
                 onClick={e => console.log('click')}
             >
                 <Box width={'18vh'} height={'18vh'} position={'relative'}>

@@ -7,6 +7,8 @@ import { DashboardContext } from '../../../../Context/DashboardContext'
 import { TextMeasures } from './TextMeasures'
 import { Quality } from './Quality'
 
+import { motion } from 'framer-motion'
+
 export const GroupMeasures = () => {
 
     const { keyActive, DATATYPES, setKeyActive } = useContext(DashboardContext)
@@ -40,66 +42,73 @@ export const GroupMeasures = () => {
         <Grid container height={'100%'} spacing={3}>
 
             <Grid item xs={6} md={4} lg={4} >
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.8 } }}>
 
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm25 ? active : {}} onClick={e => particleHandler(DATATYPES.pm25)}>
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm25 ? active : {}} onClick={e => particleHandler(DATATYPES.pm25)}>
 
-                    <TitleBox title={'PM 2.5'} />
-                    <LineChart particle={'pm25'} />
+                        <TitleBox title={'PM 2.5'} />
+                        <LineChart particle={'pm25'} />
 
-                </DashBox>
+                    </DashBox>
+                </motion.div>
+            </Grid>
+
+            <Grid item xs={6} md={4} lg={4}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1 } }}>
+
+
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.temp ? active : {}} onClick={e => particleHandler(DATATYPES.temp)}>
+
+                        <TitleBox title={'Temperatura'} />
+                        <TextMeasures particle={DATATYPES.temp} tag={'°'} />
+
+                    </DashBox>
+                </motion.div>
 
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.2 } }}>
 
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.temp ? active : {}} onClick={e => particleHandler(DATATYPES.temp)}>
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pressure ? active : {}} onClick={e => particleHandler(DATATYPES.pressure)}>
+                        <TitleBox title={'Presion Atmosferica'} />
+                        <TextMeasures particle={DATATYPES.pressure} tag={'mmHg'} />
 
-                    <TitleBox title={'Temperatura'} />
-                    <TextMeasures particle={DATATYPES.temp} tag={'°'} />
-
-                </DashBox>
-
+                    </DashBox>
+                </motion.div>
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.4 } }}>
 
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pressure ? active : {}} onClick={e => particleHandler(DATATYPES.pressure)}>
-                    <TitleBox title={'Presion Atmosferica'} />
-                    <TextMeasures particle={DATATYPES.pressure} tag={'mmHg'} />
-
-                </DashBox>
-
-            </Grid>
-
-            <Grid item xs={6} md={4} lg={4}>
-
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm10 ? active : {}} onClick={e => particleHandler(DATATYPES.pm10)}>
-                    <TitleBox title={'PM 10'} />
-                    <LineChart particle={'pm10'} />
-                </DashBox>
-
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm10 ? active : {}} onClick={e => particleHandler(DATATYPES.pm10)}>
+                        <TitleBox title={'PM 10'} />
+                        <LineChart particle={'pm10'} />
+                    </DashBox>
+                </motion.div>
             </Grid>
 
 
             <Grid item xs={6} md={4} lg={4}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.6 } }}>
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.rh ? active : {}} onClick={e => particleHandler(DATATYPES.rh)}>
+                        <TitleBox title={'Humedad'} />
+                        <TextMeasures particle={DATATYPES.rh} tag={'%'} />
 
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.rh ? active : {}} onClick={e => particleHandler(DATATYPES.rh)}>
-                    <TitleBox title={'Humedad'} />
-                    <TextMeasures particle={DATATYPES.rh} tag={'%'} />
-
-                </DashBox>
-
+                    </DashBox>
+                </motion.div>
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.8 } }}>
 
-                <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2}>
+                    <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2}>
 
-                    <TitleBox title={'Calidad'} />
-                    <Quality />
+                        <TitleBox title={'Calidad'} />
+                        <Quality />
 
-                </DashBox>
-
+                    </DashBox>
+                </motion.div>
             </Grid>
 
 
