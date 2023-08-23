@@ -95,7 +95,6 @@ const StepAstep = ({ step, saveData, handleNext, handleBack }) => {
 
 export const ModalBox = ({ open, handleClose }) => {
   const [step, setStep] = useState(0);
-
   const [data, setData] = useState({});
 
   const saveData = (dataenv) => {
@@ -126,7 +125,7 @@ export const ModalBox = ({ open, handleClose }) => {
   return (
     <AnimatePresence>
       {open && (
-        <Modal open={true} onClose={handleClose}>
+        <Modal open={true} onClose={handleClose} sx={{zIndex: 0}}>
           <motion.div
             transition={{ duration: 0.5, type: "spring" }}
             initial={{ x: "-100vw", y: "50vh" }}
@@ -135,7 +134,7 @@ export const ModalBox = ({ open, handleClose }) => {
             key="modal"
             layout
           >
-            <ModalBoxStyle
+            <ModalBoxStyle zIndex={-1}
               component={Paper}
               elevation={6}
               p={4}
@@ -172,7 +171,7 @@ export const ModalBox = ({ open, handleClose }) => {
               <Box
                 borderRadius={"20px"}
                 border={"1px solid lightgrey"}
-                height={"70%"}
+                height={"75%"}
                 p={2}
                 alignItems={"center"}
                 position={"relative"}
