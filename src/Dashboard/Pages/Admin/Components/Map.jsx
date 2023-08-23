@@ -1,26 +1,48 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
-import { Box, Button, Skeleton } from "@mui/material";
+import { Autocomplete, Box, Button, Input, Skeleton, TextField } from "@mui/material";
 
-import GoogleMapReact from 'google-map-react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
+import { getEnvVariables } from "../../../../helpers";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
+
+import ReactLeafletGoogleLayer from 'react-leaflet-google-layer'
+import { useGeocoding } from "../../../Hooks/useGeocoding";
+import { marker } from "leaflet";
 
 export const Map = () => {
 
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627
-    },
-    zoom: 11
-  };
-
+  const { getDirections } = useGeocoding()
   const [loadedMap, setloadedMap] = useState(false)
+  const [direction, setDirection] = useState('')
+  const [directions, setDirections] = useState([])
+  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 })
   const [coords, setCoords] = useState({
     lat: '',
     lng: ''
   })
+
+  const handleDirection = async (e) => {
+
+    setDirection(e.target.value)
+
+  }
+
+  useEffect(() => {
+
+    if (direction.length > 0) {
+
+      getDirections(direction).then((res) => {
+
+        setDirections(res.results)
+        console.log(res)
+
+      })
+
+    }
+
+  }, [direction])
 
   useEffect(() => {
 
@@ -37,6 +59,11 @@ export const Map = () => {
 
   }, [loadedMap])
 
+  const containerStyle = {
+    width: '100%',
+    height: '100%'
+  };
+
   if (!loadedMap) return <>
 
     <Box width={'100%'} height={'100%'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
@@ -45,19 +72,39 @@ export const Map = () => {
 
   </>
 
+  return loadedMap ? (
+    <>
+      <Box height={'60%'}>
+        <MapContainer center={coords} zoom={11} style={containerStyle}>
+          <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png" />
+          <Marker position={markerPosition} />
+        </MapContainer>
+      </Box>
+      <Box height={'37%'} mt={1}>
 
-  return (
-    <Box height={'100%'} width={'100%'}>
+        <Box height={'30%'} mb={1}>
+          <TextField onChange={handleDirection} fullWidth />
+        </Box>
+        <Box height={'70%'} sx={{ border: '1px solid lightgrey' }}>
 
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyCPuObuRHzziwD6kIDSh5BUa8U7oCfeI5E' }}
-        key={'AIzaSyCPuObuRHzziwD6kIDSh5BUa8U7oCfeI5E'}
-        defaultCenter={coords}
-        defaultZoom={defaultProps.zoom}
-      >
+          {directions.map((item) => (
+            <>
 
-      </GoogleMapReact>
+              {item.formatted_address}
 
-    </Box>
-  )
+            </>
+          ))}
+
+        </Box>
+
+      </Box>
+    </>
+  ) : <></>
+}
+
+
+const SearchList = ({ setItem, }) => {
+
+
+
 }
