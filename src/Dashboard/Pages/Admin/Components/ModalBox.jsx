@@ -98,6 +98,7 @@ export const ModalBox = ({ open, handleClose }) => {
   const [data, setData] = useState({});
 
   const saveData = (dataenv) => {
+
     if (step === 0) {
       setData({});
     }
@@ -106,6 +107,9 @@ export const ModalBox = ({ open, handleClose }) => {
       ...data,
       ...dataenv,
     });
+
+    console.log(data)
+
   };
 
   const steps = ["Registrar Datos Usuario", "Dirección", "Crea una Contraseña"];
