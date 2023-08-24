@@ -5,15 +5,49 @@ import { Map } from "../Map";
 import { useGeocoding } from "../../../../Hooks/useGeocoding";
 import { useRef } from "react";
 
-export const StepTwo = ({ saveData, handleNext, handleBack }) => {
-  const [address, setAddress] = useState("");
-  const [coords, setCoord] = useState({ lat: 0, lng: 0 });
+import Swal from "sweetalert2";
 
-  const handleSubmit = (e = Event) => {
+export const StepTwo = ({ saveData, handleNext, handleBack }) => {
+
+  const [address, setAddress] = useState({
+    lat: '',
+    lng: '',
+    address: ''
+  })
+
+  const saveAddress = (itemSave) => {
+
+    setAddress(itemSave)
+    console.log(itemSave)
+
+  }
+
+  const handleSubmit = async (e = Event) => {
     e.preventDefault();
 
-    const data = { lat, lng, address };
-    saveData(data);
+    if (address.address.length < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes seleccionar una dirección (Selecciona dando click en el icono de buscar en la lista)',
+      })
+      return;
+    }
+
+    const response = await Swal.fire({
+      title: '¿Estas seguro de guardar la calle ' + address.address + '?',
+      text: "Verifica en el mapa que el punto que se marca sea correcto",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    })
+
+    if (!response.isConfirmed) {
+      return
+    }
+
+    saveData(address);
     handleNext();
   };
 
@@ -22,7 +56,7 @@ export const StepTwo = ({ saveData, handleNext, handleBack }) => {
       <Box component="form" onSubmit={handleSubmit}>
         <Grid container>
           <Box width={"100%"} height={"470px"} mx={"auto"}>
-            <Map />
+            <Map saveAddress={saveAddress} />
           </Box>
         </Grid>
         <Grid container>

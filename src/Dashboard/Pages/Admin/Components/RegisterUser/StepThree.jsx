@@ -20,9 +20,9 @@ export const StepThree = ({ saveData, handleNext }) => {
   };
 
   return (
-    <Box component={"form"} onSubmit={handleSubmit}>
-      <Grid container gap={3}>
-        <Grid item xs="12">
+    <Box component={"form"} onSubmit={handleSubmit} bgcolor={'grey'}>
+      <Grid container>
+        <Grid item xs={12}>
           <TextField
             type="password"
             label="Cree una contraseña"
