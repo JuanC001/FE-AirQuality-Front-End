@@ -1,17 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import "leaflet/dist/leaflet.css";
-import { Autocomplete, Box, Button, Input, Skeleton, TextField } from "@mui/material";
+import { Autocomplete, Box, Button, Grid, IconButton, Input, Paper, Skeleton, TextField, Typography } from "@mui/material";
 
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import { getEnvVariables } from "../../../../helpers";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer'
 import { useGeocoding } from "../../../Hooks/useGeocoding";
 import { marker } from "leaflet";
 
-export const Map = () => {
+import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
+import { AnimatePresence, motion } from "framer-motion";
+
+export const Map = ({ saveAddress }) => {
 
   const { getDirections } = useGeocoding()
   const [loadedMap, setloadedMap] = useState(false)
@@ -23,26 +26,49 @@ export const Map = () => {
     lng: ''
   })
 
-  const handleDirection = async (e) => {
+  const handleSearch = (result) => {
 
-    setDirection(e.target.value)
+    const { lat, lng } = result.geometry.location
+    const { formatted_address } = result
+    setCoords({
+      lat, lng
+    })
+
+    setMarkerPosition({ lat, lng })
+
+    saveAddress({
+      lat, lng, address: formatted_address
+    })
 
   }
 
-  useEffect(() => {
+  const MapComponent = ({ coords }) => {
+    const map = useMap()
+    map.setView(coords, 15)
+    return null
+  }
 
-    if (direction.length > 0) {
+  const handleDirection = async (e) => {
 
-      getDirections(direction).then((res) => {
+    const dir = e.target.value
+
+    setDirection(dir)
+
+    if (dir.length > 0) {
+
+      getDirections(dir).then((res) => {
 
         setDirections(res.results)
-        console.log(res)
 
       })
 
     }
+    if (e.target.value == "") {
+      console.log("vacio")
+      setDirections([])
+    }
 
-  }, [direction])
+  }
 
   useEffect(() => {
 
@@ -78,33 +104,41 @@ export const Map = () => {
         <MapContainer center={coords} zoom={11} style={containerStyle}>
           <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png" />
           <Marker position={markerPosition} />
+          <MapComponent coords={coords} />
         </MapContainer>
       </Box>
       <Box height={'37%'} mt={1}>
 
         <Box height={'30%'} mb={1}>
-          <TextField onChange={handleDirection} fullWidth />
+          <TextField value={direction} label={'Ingrese aquí la dirección'} placeholder="Calle 123 45 67" onChange={handleDirection} fullWidth />
         </Box>
-        <Box height={'70%'} sx={{ border: '1px solid lightgrey' }}>
+        <Box height={'70%'} sx={{ overflowY: 'scroll', overflowX: 'hidden' }}>
+          <AnimatePresence>
+            {directions.map((item, ind) => (
+              <div key={ind}>
+                <motion.div key={ind} layout initial={{ x: '-100%' }} animate={{ x: 0 }}>
+                  <Grid container my={0.5} width={'90%'} mx={'auto'} component={Paper} elevation={'2'} alignContent={'center'} alignItems={'center'}>
 
-          {directions.map((item) => (
-            <>
+                    <Grid item xs={10}>
+                      <Typography variant="caption" color="initial">{item.formatted_address}</Typography>
+                    </Grid>
 
-              {item.formatted_address}
+                    <Grid item xs={2}>
+                      <IconButton onClick={e => handleSearch(item)}>
+                        <LocationSearchingIcon />
+                      </IconButton>
+                    </Grid>
 
-            </>
-          ))}
+                  </Grid>
+                </motion.div>
+
+              </div>
+            ))}
+          </AnimatePresence>
 
         </Box>
 
       </Box>
     </>
   ) : <></>
-}
-
-
-const SearchList = ({ setItem, }) => {
-
-
-
 }
