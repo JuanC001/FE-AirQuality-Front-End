@@ -129,6 +129,7 @@ export const HomeStart = () => {
                   component={"img"}
                   src={dotmap}
                   className={"img-dot"}
+
                 />
               </motion.div>
             </Box>

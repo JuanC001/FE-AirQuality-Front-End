@@ -7,6 +7,7 @@ import { Admin } from './Pages/Admin/Pages/Admin'
 import { User } from './Pages/User/Pages/User'
 import { CssBaseline } from '@mui/material'
 
+import { USER_TYPES } from '../Consts/UsersTypes'
 
 export const Dashboard = () => {
 
@@ -15,22 +16,12 @@ export const Dashboard = () => {
     if (user) {
         const role = user.role
 
-        const USER_TYPES = {
-
-            INV: 'Investigador',
-            ADM: 'Admin',
-            USR: 'User'
-
-        }
-
         return (
             <>
                 <CssBaseline />
-                <DashboardProvider>
-                    {role === USER_TYPES.INV && <InvDash />}
-                    {role === USER_TYPES.ADM && <Admin />}
-                    {role === USER_TYPES.USR && <User />}
-                </DashboardProvider>
+                {role === USER_TYPES.ADM && <Admin />}
+                {role === USER_TYPES.INV && <DashboardProvider><InvDash /></DashboardProvider>}
+                {role === USER_TYPES.USR && <DashboardProvider><User /></DashboardProvider>}
             </>
         )
     }

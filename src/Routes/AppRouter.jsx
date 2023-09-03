@@ -17,7 +17,6 @@ export const AppRouter = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        console.log('scroll')
     }, []);
 
     const { authStatus } = useContext(UserContext)

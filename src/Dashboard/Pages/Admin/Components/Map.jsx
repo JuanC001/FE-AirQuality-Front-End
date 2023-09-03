@@ -1,46 +1,33 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "leaflet/dist/leaflet.css";
-import { Autocomplete, Box, Button, Grid, IconButton, Input, Paper, Skeleton, TextField, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Skeleton, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import { getEnvVariables } from "../../../../helpers";
-import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, useMap } from "react-leaflet";
 
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer'
 import { useGeocoding } from "../../../Hooks/useGeocoding";
-import { marker } from "leaflet";
 
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { AnimatePresence, motion } from "framer-motion";
 
 export const Map = ({ saveAddress }) => {
 
-  const { getDirections } = useGeocoding()
+  const { VITE_API_MAPS_KEY } = getEnvVariables()
+
+  const { autocomplete, getLongLat } = useGeocoding()
   const [loadedMap, setloadedMap] = useState(false)
   const [direction, setDirection] = useState('')
   const [directions, setDirections] = useState([])
   const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 })
+  const [itemSelected, setItemSelected] = useState(null)
   const [coords, setCoords] = useState({
     lat: '',
     lng: ''
   })
 
-  const handleSearch = (result) => {
-
-    const { lat, lng } = result.geometry.location
-    const { formatted_address } = result
-    setCoords({
-      lat, lng
-    })
-
-    setMarkerPosition({ lat, lng })
-
-    saveAddress({
-      lat, lng, address: formatted_address
-    })
-
-  }
+  const [searchingState, setSearchingState] = useState(false)
 
   const MapComponent = ({ coords }) => {
     const map = useMap()
@@ -48,27 +35,67 @@ export const Map = ({ saveAddress }) => {
     return null
   }
 
-  const handleDirection = async (e) => {
+  const handleSearch = async (e) => {
 
-    const dir = e.target.value
+    const { result } = await getLongLat(e.place_id)
+    const { lat, lng } = result.geometry.location
+    const { formatted_address } = result
 
-    setDirection(dir)
+    setMarkerPosition({ lat, lng })
+    setCoords({ lat, lng })
+    saveAddress({
+      lat, lng, address: formatted_address
+    })
 
-    if (dir.length > 0) {
-
-      getDirections(dir).then((res) => {
-
-        setDirections(res.results)
-
-      })
-
-    }
-    if (e.target.value == "") {
-      console.log("vacio")
-      setDirections([])
-    }
 
   }
+
+  const handleClickToggle = (e, item) => {
+
+    setItemSelected(item)
+
+  }
+
+  const handleDirection = async (e) => {
+
+    const dir = direction
+    setItemSelected(null)
+
+    //    const dir = direction
+    setSearchingState(true)
+    autocomplete(dir).then((res) => {
+
+      setDirections(res)
+      setSearchingState(false)
+
+    })
+
+  }
+
+  useEffect(() => {
+    if (direction == "") {
+      setDirections([])
+      setSearchingState(false)
+    }
+  }, [direction])
+
+  useEffect(() => {
+
+    if (direction.length < 1) return
+
+    setSearchingState(true)
+
+    const delaySearch = setTimeout(() => {
+
+      if (direction.length > 0) {
+        handleDirection()
+      }
+
+    }, 1000)
+
+    return () => clearTimeout(delaySearch)
+
+  }, [direction])
 
   useEffect(() => {
 
@@ -85,11 +112,6 @@ export const Map = ({ saveAddress }) => {
 
   }, [loadedMap])
 
-  const containerStyle = {
-    width: '100%',
-    height: '100%'
-  };
-
   if (!loadedMap) return <>
 
     <Box width={'100%'} height={'100%'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
@@ -101,8 +123,8 @@ export const Map = ({ saveAddress }) => {
   return loadedMap ? (
     <>
       <Box height={'60%'}>
-        <MapContainer center={coords} zoom={11} style={containerStyle}>
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png" />
+        <MapContainer center={coords} style={{ width: '100%', height: '100%' }}>
+          <ReactLeafletGoogleLayer apiKey={VITE_API_MAPS_KEY} />
           <Marker position={markerPosition} />
           <MapComponent coords={coords} />
         </MapContainer>
@@ -110,30 +132,48 @@ export const Map = ({ saveAddress }) => {
       <Box height={'37%'} mt={1}>
 
         <Box height={'30%'} mb={1}>
-          <TextField value={direction} label={'Ingrese aquí la dirección'} placeholder="Calle 123 45 67" onChange={handleDirection} fullWidth />
+          <TextField value={direction} label={'Ingrese aquí la dirección'} placeholder="Calle 123 45 67" onChange={e => setDirection(e.target.value)} fullWidth
+
+            InputProps={{
+              endAdornment: (
+                <>
+                  {
+                    searchingState && <CircularProgress />
+                  }
+                </>
+              )
+            }}
+
+          />
         </Box>
+
         <Box height={'70%'} sx={{ overflowY: 'scroll', overflowX: 'hidden' }}>
           <AnimatePresence>
-            {directions.map((item, ind) => (
-              <div key={ind}>
-                <motion.div key={ind} layout initial={{ x: '-100%' }} animate={{ x: 0 }}>
-                  <Grid container my={0.5} width={'90%'} mx={'auto'} component={Paper} elevation={'2'} alignContent={'center'} alignItems={'center'}>
+            <ToggleButtonGroup orientation="vertical" value={itemSelected} onChange={handleClickToggle} exclusive fullWidth>
+              {directions.map((item, ind) => (
+                <ToggleButton key={ind} value={ind} color="secondary" fullWidth onClick={e => handleSearch(item)}>
 
-                    <Grid item xs={10}>
-                      <Typography variant="caption" color="initial">{item.formatted_address}</Typography>
-                    </Grid>
+                  <motion.div key={ind} layout initial={{ x: '-100%' }} animate={{ x: 0 }}>
+                    <Grid container my={0.5} width={'90%'} mx={'auto'} alignContent={'center'} alignItems={'center'}>
 
-                    <Grid item xs={2}>
-                      <IconButton onClick={e => handleSearch(item)}>
+                      <Grid item xs={10}>
+                        <Typography variant="caption" color="initial">{item.description}</Typography>
+                      </Grid>
+
+                      <Grid item xs={2}>
+
                         <LocationSearchingIcon />
-                      </IconButton>
+
+                      </Grid>
+
                     </Grid>
 
-                  </Grid>
-                </motion.div>
+                  </motion.div>
 
-              </div>
-            ))}
+                </ToggleButton>
+
+              ))}
+            </ToggleButtonGroup>
           </AnimatePresence>
 
         </Box>

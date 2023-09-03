@@ -8,7 +8,7 @@ import { Box, Button, Skeleton } from '@mui/material'
 
 import { getEnvVariables } from "../../../../../helpers";
 
-const { VITE_API_PLACES_KEY } = getEnvVariables()
+const { VITE_API_MAPS_KEY } = getEnvVariables()
 
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer'
 
@@ -49,7 +49,7 @@ export const Map = () => {
 
       <MapContainer center={coords} zoom={13} scrollWheelZoom={true}>
 
-        <ReactLeafletGoogleLayer apiKey={VITE_API_PLACES_KEY} />
+        <ReactLeafletGoogleLayer apiKey={VITE_API_MAPS_KEY} />
 
       </MapContainer>
 

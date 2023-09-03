@@ -9,5 +9,15 @@ const AirqualityApi = axios.create({
 
 })
 
+AirqualityApi.interceptors.request.use(
+    config => {
+        const token = sessionStorage.getItem('token')
+        if (token) {
+            config.headers['x-token'] = token
+        }
+        return config
+    }
+)
+
 export default AirqualityApi
 

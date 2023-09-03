@@ -46,6 +46,7 @@ export const DashboardProvider = ({ children }) => {
 
     const getDevice = async () => {
 
+        if (!deviceInfo) return
         const newArray = [...devices]
         const resp = await getOneDevice(deviceInfo._id)
 
@@ -63,7 +64,6 @@ export const DashboardProvider = ({ children }) => {
             }
 
         }
-
 
     }
 
