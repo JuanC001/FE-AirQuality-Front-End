@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import './User.css'
 import { useUsers } from '../../../Hooks/useUsers'
 import { IndividualUser } from './IndividualUser'
+import { USER_TYPES } from '../../../../Consts/UsersTypes'
 
 const SkeletonTemplate = () => {
 
@@ -47,24 +48,7 @@ const SkeletonTemplate = () => {
 
 }
 
-export const Users = () => {
-
-    const { getAllUsers } = useUsers()
-
-    const [users, setUser] = useState([])
-    const [searchingInfo, setSearchingInfo] = useState(false)
-
-    const getUsers = async () => {
-        const allUsers = await getAllUsers()
-        setUser(allUsers)
-        setSearchingInfo(false)
-    }
-
-    useEffect(() => {
-        setSearchingInfo(true)
-        getUsers()
-
-    }, [])
+export const Users = ({ getUsers, users, searchingInfo }) => {
 
     return (
         <Box component={Paper} elevation={6} height={'100%'} borderRadius={5} mt={2} display={'flex'} alignItems={'center'}>
@@ -81,8 +65,13 @@ export const Users = () => {
                     }
 
                     {users.map((user) => (
-                        <IndividualUser key={user.email} user={user} />
-                    ))}
+
+
+                        user.role !== USER_TYPES.ADM &&
+                        < IndividualUser key={user.email} user={user} getUsers={getUsers} />
+
+                    )
+                    )}
 
                 </Box>
 

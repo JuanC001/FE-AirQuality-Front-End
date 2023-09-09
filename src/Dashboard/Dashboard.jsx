@@ -5,9 +5,21 @@ import { Navigate } from 'react-router-dom'
 import { DashboardProvider } from './Context/DashboardProvider'
 import { Admin } from './Pages/Admin/Pages/Admin'
 import { User } from './Pages/User/Pages/User'
-import { CssBaseline } from '@mui/material'
+import { Box, CssBaseline } from '@mui/material'
 
 import { USER_TYPES } from '../Consts/UsersTypes'
+
+const ErrorDashboard = ({ role }) => {
+
+    if (role === USER_TYPES.ADM || role === USER_TYPES.INV || role === USER_TYPES.USR) return null
+
+    return (
+        <Box height={'90vh'} display={'flex'} alignItems={'center'} justifyContent={'center'} >
+            <h1>Rol no definido, contactese con el administrador</h1>
+        </Box>
+    )
+
+} 
 
 export const Dashboard = () => {
 
@@ -22,6 +34,7 @@ export const Dashboard = () => {
                 {role === USER_TYPES.ADM && <Admin />}
                 {role === USER_TYPES.INV && <DashboardProvider><InvDash /></DashboardProvider>}
                 {role === USER_TYPES.USR && <DashboardProvider><User /></DashboardProvider>}
+                <ErrorDashboard role={role} />
             </>
         )
     }

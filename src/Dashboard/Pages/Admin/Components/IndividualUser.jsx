@@ -5,6 +5,7 @@ import { Map } from './Map'
 import { USER_TYPES } from '../../../../Consts/UsersTypes'
 import CloseIcon from '@mui/icons-material/Close'
 import { useUsers } from '../../../Hooks/useUsers'
+import Swal from 'sweetalert2'
 
 const ModalEdit = ({ modalOpen, handleClose, user }) => {
 
@@ -72,7 +73,7 @@ const ModalEdit = ({ modalOpen, handleClose, user }) => {
 
 }
 
-export const IndividualUser = ({ user }) => {
+export const IndividualUser = ({ user, getUsers }) => {
 
     const { deleteUser } = useUsers()
 
@@ -86,7 +87,23 @@ export const IndividualUser = ({ user }) => {
 
     const handleRemove = () => {
 
-        deleteUser(id)
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No podras revertir esta accion",
+            icon: 'warning',
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteUser(id)
+                Swal.fire(
+                    'Eliminado!',
+                    'El usuario ha sido eliminado.',
+                    'success'
+                ).then(() => {
+                    getUsers()
+                })
+            }
+        })
 
     }
 

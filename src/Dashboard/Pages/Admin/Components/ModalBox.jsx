@@ -31,7 +31,7 @@ const ModalBoxStyle = styled(Box)(({ theme }) => ({
   borderRadius: "20px",
 }));
 
-const UserStepper = ({ step, saveData, handleNext, handleBack, data }) => {
+const UserStepper = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
 
   return (
     <>
@@ -60,7 +60,7 @@ const UserStepper = ({ step, saveData, handleNext, handleBack, data }) => {
         )}
 
         {step == 4 && (
-          <ConfirmationStep data={data} />
+          <ConfirmationStep data={data} handleClose={handleClose} />
         )}
       </Box>
     </>
@@ -68,7 +68,7 @@ const UserStepper = ({ step, saveData, handleNext, handleBack, data }) => {
 
 }
 
-const ElseStepper = ({ step, saveData, handleNext, handleBack, data }) => {
+const ElseStepper = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
 
   return (
     <Box
@@ -88,7 +88,7 @@ const ElseStepper = ({ step, saveData, handleNext, handleBack, data }) => {
       )}
 
       {step == 2 && (
-        <ConfirmationStep data={data} />
+        <ConfirmationStep data={data} handleClose={handleClose} />
       )}
 
     </Box>
@@ -96,7 +96,7 @@ const ElseStepper = ({ step, saveData, handleNext, handleBack, data }) => {
 
 }
 
-const StepAstep = ({ step, saveData, handleNext, handleBack, data }) => {
+const StepAstep = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
 
   const { role } = data
 
@@ -105,9 +105,9 @@ const StepAstep = ({ step, saveData, handleNext, handleBack, data }) => {
       <AnimatePresence>
 
         {role === USER_TYPES.USR ?
-          <UserStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+          <UserStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} handleClose={handleClose} />
           :
-          <ElseStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+          <ElseStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} handleClose={handleClose} />
         }
 
       </AnimatePresence >
@@ -228,6 +228,7 @@ export const ModalBox = ({ open, handleClose }) => {
                   handleNext={handleNext}
                   handleBack={handleBack}
                   data={data}
+                  handleClose={handleClose}
                 />
               </Box>
             </ModalBoxStyle>

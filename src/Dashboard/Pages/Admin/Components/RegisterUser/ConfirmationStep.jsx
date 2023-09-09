@@ -3,7 +3,9 @@ import React from 'react'
 import { useUsers } from '../../../../Hooks/useUsers'
 import { Box, Button, Divider, Grid, Typography } from '@mui/material'
 
-export const ConfirmationStep = ({ data }) => {
+import Swal from 'sweetalert2'
+
+export const ConfirmationStep = ({ data, handleClose }) => {
 
   const { createUser } = useUsers()
 
@@ -12,8 +14,25 @@ export const ConfirmationStep = ({ data }) => {
   }
 
   const handleSaveUser = async () => {
+
+    Swal.showLoading()
+
     const result = await createUser(data)
-    console.log(result)
+
+    if (result.result === false) {
+      Swal.fire({
+        title: 'Error al crear el usuario',
+        icon: 'error',
+      })
+      return
+    }
+
+    Swal.fire({
+      title: 'Se ha creado el usuario',
+      icon: 'success',
+    }).then(() => {
+      handleClose()
+    })
   }
 
   return (
