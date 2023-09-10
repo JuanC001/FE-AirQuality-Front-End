@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, IconButton, MenuItem, Modal, Paper, Select, Stack, TableCell, TableRow, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Map } from './Map'
 
@@ -88,7 +88,7 @@ export const IndividualUser = ({ user, getUsers }) => {
     const handleRemove = () => {
 
         Swal.fire({
-            title: '¿Estas seguro?',
+            title: `¿Estas seguro de eliminar a ${name}?`,
             text: "No podras revertir esta accion",
             icon: 'warning',
             showCancelButton: true,
@@ -110,43 +110,25 @@ export const IndividualUser = ({ user, getUsers }) => {
     return (
         <>
             <ModalEdit modalOpen={modalOpen} handleClose={handleClose} user={user} />
-            <Box minHeight={'40px'} width={'98%'} mx={'auto'} my={2}>
-                <Paper sx={{ height: '100%', p: 2 }}>
+            <TableRow>
 
-                    <Grid container>
+                <TableCell>{name}</TableCell>
+                <TableCell>{email}</TableCell>
+                <TableCell>{role}</TableCell>
+                <TableCell>
+                    <Grid container columnSpacing={2}>
 
-                        <Grid item xs={12} md={3}>
-                            <Typography variant={'h6'}><b>Nombre: </b></Typography>
-                            <Typography variant={'h6'}><i>{name}</i></Typography>
-
+                        <Grid item xs={12} md={6}>
+                            <Button variant={'outlined'} color={'primary'} onClick={() => { setModalOpen(true); }} fullWidth>Editar</Button>
                         </Grid>
-
-                        <Grid item xs={12} md={3}>
-
-                            <Typography variant={'h6'}><b>Email: </b></Typography>
-                            <Typography variant={'h6'}><i>{email}</i></Typography>
-
-                        </Grid>
-
-                        <Grid item xs={12} md={3} textAlign={'center'}>
-
-                            <Typography variant={'h6'}><b>Rol: </b></Typography>
-                            <Typography variant={'h6'}><i>{role}</i></Typography>
-
-                        </Grid>
-
-                        <Grid item xs={12} md={3} display={'flex'} justifyContent={'center'}>
-
-                            <Stack gap={1} width={'100px'}>
-                                <Button variant={'contained'} color={'primary'} onClick={e => setModalOpen(true)}>Editar</Button>
-                                <Button variant={'contained'} color={'error'} onClick={handleRemove}>Eliminar</Button>
-                            </Stack>
+                        <Grid item xs={12} md={6}>
+                            <Button variant={'outlined'} color={'error'} onClick={handleRemove} fullWidth>Eliminar</Button>
                         </Grid>
 
                     </Grid>
+                </TableCell>
 
-                </Paper>
-            </Box>
+            </TableRow>
         </>
     )
 }

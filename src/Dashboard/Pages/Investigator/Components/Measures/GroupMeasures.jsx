@@ -111,8 +111,6 @@ export const GroupMeasures = () => {
                 </motion.div>
             </Grid>
 
-
-
         </Grid>
     )
 }

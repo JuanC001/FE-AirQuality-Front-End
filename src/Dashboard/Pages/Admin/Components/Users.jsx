@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Skeleton, Stack, Typography } from '@mui/material'
+import { Box, Button, Grid, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
 import './User.css'
@@ -53,27 +53,35 @@ export const Users = ({ getUsers, users, searchingInfo }) => {
     return (
         <Box component={Paper} elevation={6} height={'100%'} borderRadius={5} mt={2} display={'flex'} alignItems={'center'}>
 
-            <Box className={'usersBox'} width={'100%'} height={'90%'} bgcolor={'white'} borderRadius={'20px'} sx={{ overflowY: 'scroll' }}>
+            <Box className={'usersBox'} width={'90%'} height={'90%'} bgcolor={'white'} borderRadius={'20px'} sx={{ overflowY: 'scroll' }} mx={'auto'}>
 
-                <Box>
+                <TableContainer sx={{ maxHeight: '100%' }}>
+                    <Table>
+                        <TableHead sx={{ position: 'sticky', top: 0, backgroundColor: 'rgba(255, 255, 255, 0.1)',backdropFilter: 'blur(10px)', zIndex: 1 }}>
+                            <TableRow>
+                                <TableCell>Nombre del Usuario</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Rol</TableCell>
+                                <TableCell>Acciones</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody sx={{ overflowY: 'scroll' }}>
+                            {
 
-                    {
-                        searchingInfo &&
-                        Array.from(Array(20).keys()).map((item) => (
-                            <SkeletonTemplate key={item} />
-                        ))
-                    }
-
-                    {users.map((user) => (
+                                users.map((user) => (
 
 
-                        user.role !== USER_TYPES.ADM &&
-                        < IndividualUser key={user.email} user={user} getUsers={getUsers} />
+                                    user.role !== USER_TYPES.ADM &&
 
-                    )
-                    )}
+                                    < IndividualUser key={user.email} user={user} getUsers={getUsers} />
 
-                </Box>
+                                )
+                                )
+
+                            }
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
             </Box>
 
