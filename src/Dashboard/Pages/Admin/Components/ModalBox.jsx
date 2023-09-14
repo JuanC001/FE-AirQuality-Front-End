@@ -152,7 +152,7 @@ export const ModalBox = ({ open, handleClose }) => {
   return (
     <AnimatePresence>
       {open && (
-        <Modal open={true} onClose={handleClose} sx={{ zIndex: 0 }}>
+        <Modal open={true} onClose={handleClose} sx={{ zIndex: 2 }}>
           <motion.div
             transition={{ duration: 0.5, type: "spring" }}
             initial={{ x: "-100vw", y: "50vh" }}
