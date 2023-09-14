@@ -2,6 +2,8 @@ import { useContext } from "react"
 import AirqualityApi from "../../api/airqualityApi"
 import { UserContext } from "../../Global/Context/UserContext"
 
+import { useNavigate } from "react-router-dom"
+
 import Swal from "sweetalert2"
 
 export const useAuthStore = () => {
@@ -12,12 +14,13 @@ export const useAuthStore = () => {
 
         try {
 
-            const resp = await AirqualityApi.post('/auth/login', { user, password });
+            const resp = await AirqualityApi.post('/auth/login', { user, password },);
 
             if (resp.status === 200) {
 
                 console.log('Logged in as ' + JSON.stringify(resp.data.role))
                 loggedIn(resp.data);
+                sessionStorage.setItem('token', resp.data.token);
 
             } else if (resp.status === 401) {
 
@@ -53,6 +56,18 @@ export const useAuthStore = () => {
                     }
                 )
             }
+
+        }
+
+    }
+
+    const checkAuthToken = async () => {
+
+        const token = sessionStorage.getItem('token')
+
+        if (!token) {
+
+            
 
         }
 

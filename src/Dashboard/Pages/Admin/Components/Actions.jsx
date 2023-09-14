@@ -10,7 +10,7 @@ import { ModalBox } from './ModalBox';
 import { AnimatePresence } from 'framer-motion';
 
 
-export const Actions = () => {
+export const Actions = ({ getUsers }) => {
 
     const [search, setSearch] = useState('')
 
@@ -22,7 +22,10 @@ export const Actions = () => {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false)
+        getUsers()
+    };
 
     return (
         <>
@@ -39,7 +42,7 @@ export const Actions = () => {
                     <ButtonGroup variant='text' size='small'>
                         <IconButton onClick={handleOpen}><PersonAddAlt1Icon color='primary' /></IconButton>
                         <IconButton><PersonRemoveIcon color='error' /></IconButton>
-                        <IconButton><RefreshIcon color='info' /></IconButton>
+                        <IconButton onClick={e => getUsers()}><RefreshIcon color='info' /></IconButton>
                     </ButtonGroup>
 
                 </Box>

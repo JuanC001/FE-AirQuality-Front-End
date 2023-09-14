@@ -2,8 +2,6 @@ import {
   Avatar,
   Button,
   Divider,
-  FormControl,
-  Typography,
   Box,
   Stack,
   Paper,
@@ -11,9 +9,6 @@ import {
   InputAdornment,
   FormControlLabel,
   Checkbox,
-  Input,
-  FormGroup,
-  InputLabel,
   Slide,
   CircularProgress,
 } from "@mui/material";
@@ -98,9 +93,10 @@ export const LoginForm = () => {
                   id="user"
                   name="user"
                   value={user}
-                  label="Usuario"
+                  label="Email"
                   variant="standard"
                   color="secondary"
+                  type="email"
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">

@@ -6,27 +6,22 @@ import {
   Paper,
   Typography,
   styled,
-  Avatar,
-  TextField,
-  Stack,
-  Select,
-  MenuItem,
-  Button,
-  Grid,
+
   Stepper,
   StepLabel,
-  Step,
+  Step, Grid, MobileStepper,
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { StepOne } from "./RegisterUser/StepOne";
-import { StepTwo } from "./RegisterUser/StepTwo";
-import { StepThree } from "./RegisterUser/StepThree";
+import { BasicInformation } from "./RegisterUser/BasicInformation";
+import { AddressInformation } from "./RegisterUser/AddressInformation";
+import { CreatePassword } from "./RegisterUser/CreatePassword";
 import { useEffect, useState } from "react";
-import { useForm } from "../../../Hooks/useForm";
+import { USER_TYPES } from "../../../../Consts/UsersTypes";
+import { DeviceInformation } from "./RegisterUser/DeviceInformation";
+import { ConfirmationStep } from "./RegisterUser/ConfirmationStep";
 
-import Swal from "sweetalert2";
 
 const ModalBoxStyle = styled(Box)(({ theme }) => ({
   position: "absolute",
@@ -36,66 +31,95 @@ const ModalBoxStyle = styled(Box)(({ theme }) => ({
   borderRadius: "20px",
 }));
 
-const StepAstep = ({ step, saveData, handleNext, handleBack }) => {
+const UserStepper = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
+
+  return (
+    <>
+      <Box
+        width={"100%"}
+        height={"100%"}
+        display="flex"
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        {step == 0 && (
+          <BasicInformation saveData={saveData} handleNext={handleNext} />
+        )}
+
+        {step == 1 && (
+          <DeviceInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+        )}
+
+        {step == 2 && (
+
+          <AddressInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} />
+
+        )}
+        {step == 3 && (
+          <CreatePassword saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+        )}
+
+        {step == 4 && (
+          <ConfirmationStep data={data} handleClose={handleClose} />
+        )}
+      </Box>
+    </>
+  )
+
+}
+
+const ElseStepper = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
+
+  return (
+    <Box
+      width={"100%"}
+      height={"100%"}
+      display="flex"
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+
+      {step == 0 && (
+        <BasicInformation saveData={saveData} handleNext={handleNext} />
+      )}
+
+      {step == 1 && (
+        <CreatePassword saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+      )}
+
+      {step == 2 && (
+        <ConfirmationStep data={data} handleClose={handleClose} />
+      )}
+
+    </Box>
+  )
+
+}
+
+const StepAstep = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
+
+  const { role } = data
+
   return (
     <>
       <AnimatePresence>
-        <Box
-          width={"100%"}
-          height={"100%"}
-          display="flex"
-          alignItems={"center"}
-        >
-          {step == 0 && (
-            <motion.div
-              initial={{ x: "-100vw" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100vw" }}
-              key="stepone"
-            >
-              <StepOne saveData={saveData} handleNext={handleNext} />
-            </motion.div>
-          )}
-          {step == 1 && (
-            <Box
-              component={motion.div}
-              height="100%"
-              width="100%"
-              initial={{ x: "-100vw" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100vw" }}
-              key="steptwo"
-            >
-              <StepTwo
-                saveData={saveData}
-                handleNext={handleNext}
-                handleBack={handleBack}
-              />
-            </Box>
-          )}
-          {step == 2 && (
-            <motion.div
-              initial={{ x: "-100vw" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100vw" }}
-              key="stepthree"
-            >
-              <StepThree
-                saveData={saveData}
-                handleNext={handleNext}
-                handleBack={handleBack}
-              />
-            </motion.div>
-          )}
-        </Box>
-      </AnimatePresence>
+
+        {role === USER_TYPES.USR ?
+          <UserStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} handleClose={handleClose} />
+          :
+          <ElseStepper step={step} saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} handleClose={handleClose} />
+        }
+
+      </AnimatePresence >
     </>
   );
 };
 
 export const ModalBox = ({ open, handleClose }) => {
   const [step, setStep] = useState(0);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    role: USER_TYPES.USR,
+  });
 
   const saveData = (dataenv) => {
 
@@ -108,11 +132,10 @@ export const ModalBox = ({ open, handleClose }) => {
       ...dataenv,
     });
 
-    console.log(data)
-
   };
 
-  const steps = ["Registrar Datos Usuario", "Dirección", "Crea una Contraseña"];
+  const steps = ["Registrar Datos Usuario", "Dispositivo", "Dirección", "Crea una Contraseña", "Confirmación"];
+  const steps2 = ["Registrar Datos Usuario", "Crea una Contraseña", "Confirmación"];
 
   useEffect(() => {
     console.log(data);
@@ -129,7 +152,7 @@ export const ModalBox = ({ open, handleClose }) => {
   return (
     <AnimatePresence>
       {open && (
-        <Modal open={true} onClose={handleClose} sx={{zIndex: 0}}>
+        <Modal open={true} onClose={handleClose} sx={{ zIndex: 2 }}>
           <motion.div
             transition={{ duration: 0.5, type: "spring" }}
             initial={{ x: "-100vw", y: "50vh" }}
@@ -142,7 +165,7 @@ export const ModalBox = ({ open, handleClose }) => {
               component={Paper}
               elevation={6}
               p={4}
-              width={{ xs: "99%", md: "50%", lg: "30%" }}
+              width={{ xs: "99%", md: "70%", lg: "60%", xl: "50%" }}
               position={"relative"}
               height={{ xs: "80vh", md: "80vh" }}
             >
@@ -163,14 +186,28 @@ export const ModalBox = ({ open, handleClose }) => {
                 </Typography>
                 <Divider />
               </Box>
-              <Box my={2}>
-                <Stepper activeStep={step}>
-                  {steps.map((label) => (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                    </Step>
-                  ))}
+              <Box my={2} width={'100%'}>
+                <Stepper activeStep={step} variant="outlined" sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                  {data.role === USER_TYPES.USR ?
+                    steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))
+                    :
+                    steps2.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))
+                  }
                 </Stepper>
+                <MobileStepper activeStep={step} steps={steps.length}
+                  title="pasos"
+                  variant="progress"
+                  position="static"
+                  sx={{ width: '100%', display: { xs: 'flex', sm: 'none' }, justifyContent: 'center' }}
+                />
               </Box>
               <Box
                 borderRadius={"20px"}
@@ -190,6 +227,8 @@ export const ModalBox = ({ open, handleClose }) => {
                   saveData={saveData}
                   handleNext={handleNext}
                   handleBack={handleBack}
+                  data={data}
+                  handleClose={handleClose}
                 />
               </Box>
             </ModalBoxStyle>

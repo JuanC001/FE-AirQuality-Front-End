@@ -1,23 +1,23 @@
-import axios from "axios";
-import mapsApi from "../../api/mapsApi"
-
-import { getEnvVariables } from "../../helpers";
-
-const { VITE_API_PLACES_KEY } = getEnvVariables()
+import AirqualityApi from "../../api/airqualityApi"
 
 export const useGeocoding = () => {
 
-    const getDirections = async (address) => {
+    const getLongLat = async (placeId) => {
 
-        const directions = await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=${VITE_API_PLACES_KEY}&region=co&radius=10000&query=${address}`)
-        console.log("DIRECTIONS -------------------------------------------------------------------")
-        console.log(directions.data)
+        const directions = await AirqualityApi.post('/admin/getLongLat', { placeId })
         return directions.data
 
     }
 
+    const autocomplete = async (address) => {
+
+        const prediction = await AirqualityApi.post('/admin/autocomplete', { address })
+        return prediction.data.predictions
+    }
+
     return {
-        getDirections
+        getLongLat,
+        autocomplete
     }
 
 }
