@@ -8,7 +8,7 @@ import { MicroBox } from "./MicroBox";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import OpacityIcon from "@mui/icons-material/Opacity";
 
-import placeholder from "../../assets/images/placeholder.png";
+import placeholder from "../../assets/images/devicev2.svg";
 import fondo from "../../assets/images/fondo02.png";
 
 export const AirControl = () => {
@@ -21,7 +21,7 @@ export const AirControl = () => {
     },
     animate: {
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      transition: { duration: 2},
+      transition: { duration: 2 },
     },
 
     microBoxAnim: {
@@ -214,7 +214,7 @@ export const AirControl = () => {
               mt={3}
               component={motion.img}
               src={placeholder}
-              sx={{ maxWidth: "80%", opacity: "50%" }}
+              sx={{ maxWidth: "60%", opacity: "90%", filter: "drop-shadow(0px 0px 10px rgb(164,238,250))" }}
               variants={wrapperVariants}
               animate={animar && "img_anim"}
               transition={{ delay: 2.2 }}

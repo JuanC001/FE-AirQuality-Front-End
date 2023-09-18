@@ -2,8 +2,6 @@ import { useContext } from "react"
 import AirqualityApi from "../../api/airqualityApi"
 import { UserContext } from "../../Global/Context/UserContext"
 
-import { useNavigate } from "react-router-dom"
-
 import Swal from "sweetalert2"
 
 export const useAuthStore = () => {
@@ -67,7 +65,7 @@ export const useAuthStore = () => {
 
         if (!token) {
 
-            
+
 
         }
 

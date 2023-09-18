@@ -16,6 +16,7 @@ export const DevicesList = () => {
         { field: "id", headerName: 'ID', width: '90' },
         { field: "lastUpdated", headerName: 'Ultima Actualización', width: '350' },
         { field: "_id", headerName: 'idDB', width: '10' },
+        { field: "owner", headerName: 'A cargo de', width: '200' },
     ]
 
     const toolBar = () => {

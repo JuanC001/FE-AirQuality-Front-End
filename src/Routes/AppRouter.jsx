@@ -47,10 +47,6 @@ export const AppRouter = () => {
                         <Navigate to={'/'} />
                     } />
 
-                    <Route path='/test/' element={
-                        <User />
-                    } />
-
                     {authStatus ?
 
                         <Route path='/dashboard/' element={<Dashboard />} /> : <></>

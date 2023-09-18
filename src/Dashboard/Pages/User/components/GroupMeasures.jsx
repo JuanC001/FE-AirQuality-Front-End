@@ -1,42 +1,11 @@
-import { Box, Button, Grid, Paper, styled } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box, Grid } from '@mui/material'
+import React from 'react'
 import { LineChart } from './LineChart'
 import { TextMetrics } from './TextMetrics'
-import { useDevice } from '../hooks/useDevice'
-
-
-const DashBox = styled(Box)(({ theme }) => ({
-
-    borderRadius: '10px',
-    transition: 'ease 0.2s',
-    cursor: 'pointer',
-    height: '100%',
-    width: '100%',
-    ':hover': {
-
-        backgroundColor: theme.palette.primary.light,
-        transform: 'translateY(-5px)',
-        boxShadow: `5px 10px 10px ${theme.palette.primary.main}`,
-
-    },
-
-    '.active': {
-
-        backgroundColor: theme.palette.primary.light,
-        transform: 'translateY(-5px)',
-        boxShadow: `5px 10px 10px ${theme.palette.primary.main}`,
-
-    }
-
-}))
 
 export const GroupMeasures = ({ deviceUse }) => {
-
-
-    const { lastMeasures, deviceData, dataReady, activeKeys, handleChange } = useDevice()
-
-
-
+ 
+    const { lastMeasures, deviceData, dataReady, activeKeys, handleChange } = deviceUse
 
     return (
 
@@ -47,8 +16,8 @@ export const GroupMeasures = ({ deviceUse }) => {
                     <TextMetrics text={'Temperatura'} dataUnit='C°' data={lastMeasures.temp} dataReady={dataReady} active={activeKeys.temp} />
                 </Grid>
 
-                <Grid item xs={6} md={4} minHeight={'200px'} onClick={e => handleChange('hum')} p={1}>
-                    <TextMetrics text={'Humedad'} dataUnit='%' data={lastMeasures.rh} dataReady={dataReady} active={activeKeys.hum} />
+                <Grid item xs={6} md={4} minHeight={'200px'} onClick={e => handleChange('rh')} p={1}>
+                    <TextMetrics text={'Humedad'} dataUnit='%' data={lastMeasures.rh} dataReady={dataReady} active={activeKeys.rh} />
                 </Grid>
 
                 <Grid item xs={12} md={4} minHeight={'150px'} onClick={e => handleChange('pressure')} p={1}>
