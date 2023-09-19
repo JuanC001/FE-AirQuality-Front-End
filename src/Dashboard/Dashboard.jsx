@@ -7,7 +7,9 @@ import { Admin } from './Pages/Admin/Pages/Admin'
 import { User } from './Pages/User/Pages/User'
 import { Box, CssBaseline } from '@mui/material'
 
+
 import { USER_TYPES } from '../Consts/UsersTypes'
+import { FirstLogin } from './components/FirstLogin'
 
 const ErrorDashboard = ({ role }) => {
 
@@ -19,7 +21,7 @@ const ErrorDashboard = ({ role }) => {
         </Box>
     )
 
-} 
+}
 
 export const Dashboard = () => {
 
@@ -31,7 +33,9 @@ export const Dashboard = () => {
         return (
             <>
                 <CssBaseline />
-                {role === USER_TYPES.ADM && <Admin />}
+                {user.firstLogin && <FirstLogin user={user} />}
+                {role === USER_TYPES.ADM && <Admin />
+                }
                 {role === USER_TYPES.INV && <DashboardProvider><InvDash /></DashboardProvider>}
                 {role === USER_TYPES.USR && <DashboardProvider><User /></DashboardProvider>}
                 <ErrorDashboard role={role} />

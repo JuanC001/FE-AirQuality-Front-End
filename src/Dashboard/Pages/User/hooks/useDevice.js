@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useDevices } from "../../../Hooks/useDevices"
 
+import { UserContext } from '../../../../Global/Context/UserContext'
+
 export const useDevice = () => {
+
+    const { user } = useContext(UserContext);
 
     const { getOneDevice } = useDevices()
     const [deviceData, setDeviceData] = useState(null)
@@ -37,22 +41,22 @@ export const useDevice = () => {
             [key]: !activeKeys[key]
         })
 
-        console.log(Object.keys(activeKeys).filter(key => activeKeys[key] === true)[0])
+        setActiveKey(key)
 
     }
 
     const handleDevice = async () => {
 
-        const data = await getOneDevice('64dac03ac00bf9548e1c9311')
+        const data = await getOneDevice(user.device)
         setDeviceData(data)
         setLastMeasures({
             pm25: data.measures[data.measures.length - 1].pm25,
             pm10: data.measures[data.measures.length - 1].pm10,
-            hum: data.measures[data.measures.length - 1].rh,
+            rh: data.measures[data.measures.length - 1].rh,
             temp: data.measures[data.measures.length - 1].temp,
             pressure: data.measures[data.measures.length - 1].pressure
         })
-        console.log(data)
+
         setDataReady(true)
     }
 
@@ -68,6 +72,7 @@ export const useDevice = () => {
         activeKeys,
         deviceData,
         dataReady,
+        activeKey,
 
         handleChange
 

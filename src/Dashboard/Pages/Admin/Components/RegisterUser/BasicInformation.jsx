@@ -54,6 +54,7 @@ export const BasicInformation = ({ handleNext, saveData }) => {
   }
 
   useEffect(() => {
+    setEmailError(false)
     if (email.length > 0) {
       setVerifying(true)
     } else {

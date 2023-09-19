@@ -12,7 +12,7 @@ import { useGeocoding } from "../../../Hooks/useGeocoding";
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { AnimatePresence, motion } from "framer-motion";
 
-export const Map = ({ saveAddress }) => {
+export const Map = ({ saveAddress, actualAddress }) => {
 
   const { VITE_API_MAPS_KEY } = getEnvVariables()
 

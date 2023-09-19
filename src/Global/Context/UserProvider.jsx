@@ -9,9 +9,9 @@ export const UserProvider = ({ children }) => {
 
     const loggedIn = (respUser) => {
 
-        const { uid, name, role, token } = respUser
+        const { uid, name, role, token, device, firstLogin } = respUser
         setUser({
-            uid, name, role, token
+            uid, name, role, token, device, firstLogin
         })
         setAuthStatus(true);
 
@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
         setAuthStatus(false);
 
     }
-
 
     return (
         <UserContext.Provider value={{ user, authStatus, loggedIn, logout }}>

@@ -1,32 +1,67 @@
-import { Box, Tooltip } from '@mui/material'
+import { Box, Paper, Tooltip, Typography, styled } from '@mui/material'
 import React from 'react'
-import { Bar, BarChart, Legend, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, LabelList, Legend, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 
-const data = [
+import { useTheme } from '@mui/material'
 
-    { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
+const DashBox = styled(Box)(({ theme }) => ({
 
-]
+    borderRadius: '10px',
+    transition: 'ease 0.2s',
+    height: '100%',
+    width: '100%',
+    ':hover': {
 
-export const MainChart = () => {
-    return (
-        <Box height={'100%'} >
+        backgroundColor: theme.palette.primary.light,
+        transform: 'translateY(-5px)',
+        boxShadow: `5px 10px 10px ${theme.palette.primary.main}`,
 
-            <ResponsiveContainer width={'100%'} height={'100%'}>
+    },
 
-                <BarChart data={data}>
-                    <Bar dataKey='uv' fill='#8884d8' />
-                    <Tooltip />
-                    <Legend />
-                </BarChart>
+}))
 
-            </ResponsiveContainer>
+export const MainChart = ({ deviceData, dataKey }) => {
 
-        </Box>
-    )
+    if (deviceData === undefined) return (
+        <DashBox display={'flex'} alignItems={'center'} justifyContent={'center'} height={'100%'}>
+            <Typography variant={'h4'}>No hay registros</Typography>
+        </DashBox >)
+
+    const theme = useTheme()
+
+    const cutNumber = (num) => {
+
+        return +(Math.round(num + "e+1") + "e-1");
+
+    }
+
+    try {
+
+        const { measures } = deviceData
+        return (
+            <DashBox component={Paper} elevation={6} height={'100%'} zIndex={1}>
+
+                <ResponsiveContainer width={'100%'} height={'100%'}>
+
+                    <BarChart data={measures} margin={{ top: 30 }}>
+
+                        <Bar dataKey={dataKey} fill={theme.palette.primary.main} >
+                            <LabelList dataKey={dataKey} position={'top'} formatter={cutNumber} />
+                        </Bar>
+
+                        <XAxis dataKey="date" />
+                        <Tooltip active={true} cursor={false} position={{ y: 100 }} />
+
+                    </BarChart>
+
+                </ResponsiveContainer>
+
+            </DashBox>
+        )
+
+    } catch (error) {
+
+    }
+
+
 }

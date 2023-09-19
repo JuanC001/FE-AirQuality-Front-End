@@ -10,6 +10,16 @@ import Swal from 'sweetalert2'
 const ModalEdit = ({ modalOpen, handleClose, user }) => {
 
     const { email, name, role } = user
+    const [selectedRole, setSelectedRole] = useState(role)
+
+    const handleSelectorChange = (e) => {
+
+        setSelectedRole(e.target.value)
+        if (e.target.value === role) {
+            console.log('No hay cambios')
+        }
+
+    }
 
     const handleSave = (e) => {
         e.preventDefault()
@@ -42,13 +52,13 @@ const ModalEdit = ({ modalOpen, handleClose, user }) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography variant={'body1'}><b>Rol: </b></Typography>
-                                <Select value={role} fullWidth>
+                                <Select value={selectedRole} fullWidth onChange={handleSelectorChange}>
                                     <MenuItem value={USER_TYPES.ADM}>Administrador</MenuItem>
                                     <MenuItem value={USER_TYPES.INV}>Investigador</MenuItem>
                                     <MenuItem value={USER_TYPES.USR}>Usuario</MenuItem>
                                 </Select>
                             </Grid>
-                            {role === USER_TYPES.USR &&
+                            {selectedRole === USER_TYPES.USR &&
                                 < Grid item xs={12} height={'400px'}>
 
                                     <Map />
