@@ -17,8 +17,6 @@ export const Map = () => {
 
   const { devices, deviceInfo } = useContext(DashboardContext)
 
-  console.log(deviceInfo)
-
   const [loadedMap, setloadedMap] = useState(false)
   const [coords, setCoords] = useState({
     lat: '',
@@ -68,13 +66,16 @@ export const Map = () => {
 
             if (device.lat === 0 && device.lng === 0) return
 
-            return <><Marker key={index} position={[device.lat, device.lng]}>
-              <Popup>
-                {device.owner}
-              </Popup>
-            </Marker>
-              <MapComponent />
-            </>
+            return (
+              <div key={index}>
+                <Marker position={[device.lat, device.lng]}>
+                  <Popup>
+                    {device.owner}
+                  </Popup>
+                </Marker>
+                <MapComponent />
+              </div>
+            )
           })
         }
 

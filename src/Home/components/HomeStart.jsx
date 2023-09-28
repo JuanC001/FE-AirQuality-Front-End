@@ -8,9 +8,8 @@ import {
   Stack,
   Typography,
   useScrollTrigger,
-  useTheme,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { ImgBox } from "./ImgBox";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -21,7 +20,6 @@ import fnline1 from "../../assets/images/fondo01.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import "./HomeStart.css";
-import { AirParticles } from "./Particles/AirParticles";
 
 import AirIcon from "@mui/icons-material/Air";
 
@@ -41,11 +39,11 @@ export const HomeStart = () => {
 
   const isMobile = window.innerWidth < 768 ? true : false;
 
-  const left =
-    !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"]);
-  const right =
-    !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"]);
-  const opacity = !isMobile && useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
+  const left = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "-1000px"]);
+  const right = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "1000px"]);
+  const down = !isMobile && useTransform(scrollYProgress, [0, 0.5], ["0px", "500px"]);
+  const opacity = !isMobile && useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const variants = {
     "scale-init": {
@@ -59,13 +57,14 @@ export const HomeStart = () => {
   return (
     <>
       <Box
-        mt={9}
-        minHeight={"100vh"}
-        sx={{ overflow: "hidden", position: "relative" }}
+        mt={'6vh'}
+        height={"100vh"}
+        sx={{ overflow: "hidden", position: "relative", pt: 2 }}
+        px={2}
       >
-        <Grid container sx={{ overflow: "hidden" }}>
-          <Grid item xs={12} md={6} display={"flex"}>
-            <Box p={5} display={"flex"}>
+        <Grid container sx={{ overflow: "hidden" }} height={'100%'}>
+          <Grid item xs={12} md={6} height={'50%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+            <Box display={"flex"}>
               <Box
                 margin={"auto"}
                 my={"auto"}
@@ -89,15 +88,12 @@ export const HomeStart = () => {
                       align="center"
                       color={"primary.main"}
                       mb={2}
+                      fontSize={{ xs: '5vw', md: '3vw' }}
                     >
                       <strong>Conozcamos nuestro aire</strong>
                     </Typography>
                     <Typography variant="p" align="justify">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Cupiditate, sint vero quo voluptas adipisci possimus
-                      libero! Enim, consectetur praesentium molestias earum
-                      provident minus eaque voluptatibus assumenda natus
-                      deleniti, facilis voluptates.
+                      Conocer la calidad del aire que ingresa a nuestros pulmones debe ser un aspecto por el cual todas las personas debemos preocuparnos. Según la Organización Mundial de la Salud – OMS (2022) se estima que a 2019 la contaminación del aire exterior ocasionó cerca de 4,2 millones de muertes prematuras. Además, si le queremos sumar los efectos de la calidad del aire en interiores la asociación puede llegar a los 6,7 millones de muertes prematuras al año.
                     </Typography>
                     <Box textAlign={"end"} p={3}>
                       <Button
@@ -114,70 +110,62 @@ export const HomeStart = () => {
               </Box>
             </Box>
           </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Box textAlign={"center"}>
-              <motion.div
-                variants={variants}
-                animate={"scale-init"}
-                transition={{ delay: "0.2" }}
-                style={{ x: right }}
-              >
-                <ImgBox
-                  margin={"auto"}
-                  mt={3}
-                  component={"img"}
-                  src={dotmap}
-                  className={"img-dot"}
-
-                />
-              </motion.div>
-            </Box>
+          <Grid item xs={12} md={6} height={'50%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+            <motion.div
+              variants={variants}
+              animate={"scale-init"}
+              transition={{ delay: "0.2" }}
+              style={{ x: right, height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            >
+              <ImgBox
+                margin={"auto"}
+                component={"img"}
+                src={dotmap}
+                className={"img-dot"}
+              />
+            </motion.div>
           </Grid>
-          <Grid item xs={12} mb={16}>
-            <Box>
-              <motion.div
-                variants={variants}
-                animate={"scale-init"}
-                transition={{ delay: "0.4" }}
-                style={{ y: right, opacity: opacity }}
+          <Grid item xs={12} mb={16} height={'50%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+            <motion.div
+              variants={variants}
+              animate={"scale-init"}
+              transition={{ delay: "0.4" }}
+              style={{ y: down, opacity: opacity }}
+            >
+              <Box
+                textAlign={"center"}
+                sx={{
+                  transition: "all 0.2s ease-in-out",
+                  ":hover": {
+                    transform: "translateY(5px)",
+                    filter: "drop-shadow(10px 10px 10px lightgrey)",
+                  },
+                }}
               >
-                <Box
-                  textAlign={"center"}
-                  sx={{
-                    transition: "all 0.2s ease-in-out",
-                    ":hover": {
-                      transform: "translateY(5px)",
-                      filter: "drop-shadow(10px 10px 10px lightgrey)",
-                    },
-                  }}
-                >
-                  <Box p={4} textAlign={"center"}>
-                    <AnimatedTitle />
-                    <Typography
-                      variant="h4"
-                      align="center"
-                      color={"primary.main"}
-                      mb={2}
-                    >
-                      <strong>Obten beneficios y ventajas</strong>
-                    </Typography>
-                    <Typography variant="p" align="center">
-                      {" "}
-                      Manten el control de calidad de aire en tu casa.
-                    </Typography>
-                  </Box>
-                  <ArrowDown>
-                    <IconButton
-                      aria-label="scroll down"
-                      onClick={() => scrollDownTo("about-us")}
-                    >
-                      <KeyboardArrowDownIcon />
-                    </IconButton>
-                  </ArrowDown>
+                <Box p={4} textAlign={"center"}>
+                  <AnimatedTitle />
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    color={"primary.main"}
+                    mb={2}
+                  >
+                    <strong>Obten beneficios y ventajas</strong>
+                  </Typography>
+                  <Typography variant="p" align="center">
+                    Manten el control de calidad de aire en tu casa.
+                  </Typography>
                 </Box>
-              </motion.div>
-            </Box>
+                <ArrowDown>
+                  <IconButton
+                    aria-label="scroll down"
+                    onClick={() => scrollDownTo("about-us")}
+                  >
+                    <KeyboardArrowDownIcon />
+                  </IconButton>
+                </ArrowDown>
+              </Box>
+            </motion.div>
           </Grid>
         </Grid>
       </Box>

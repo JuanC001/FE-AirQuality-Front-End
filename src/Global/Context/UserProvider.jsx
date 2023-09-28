@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
             uid, name, role, token, device, firstLogin
         })
         setAuthStatus(true);
+        window.sessionStorage.setItem('user', JSON.stringify({ uid, name, role, token, device, firstLogin }));
 
     }
 
@@ -21,6 +22,7 @@ export const UserProvider = ({ children }) => {
 
         setUser(null);
         setAuthStatus(false);
+        window.sessionStorage.removeItem('user');
 
     }
 

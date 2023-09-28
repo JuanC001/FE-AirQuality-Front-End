@@ -237,7 +237,6 @@ export const AirControl = () => {
         initial={"initial"}
         animate={animar && "animate"}
         viewport={{ once: true }}
-        onVie
       />
       <motion.div onViewportEnter={(e) => setAnimar(true)} />
     </Box>

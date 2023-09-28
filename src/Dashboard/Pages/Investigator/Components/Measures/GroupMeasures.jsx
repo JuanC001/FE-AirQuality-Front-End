@@ -12,6 +12,7 @@ import { motion } from 'framer-motion'
 export const GroupMeasures = () => {
 
     const { keyActive, DATATYPES, setKeyActive } = useContext(DashboardContext)
+    window.scrollTo(0, 0, { behavior: 'smooth' })
 
     const theme = useTheme()
 
@@ -42,7 +43,7 @@ export const GroupMeasures = () => {
         <Grid container height={'100%'} spacing={3}>
 
             <Grid item xs={6} md={4} lg={4} >
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.8 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.5 } }}>
 
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm25 ? active : {}} onClick={e => particleHandler(DATATYPES.pm25)}>
 
@@ -54,7 +55,7 @@ export const GroupMeasures = () => {
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.6 } }}>
 
 
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.temp ? active : {}} onClick={e => particleHandler(DATATYPES.temp)}>
@@ -68,7 +69,7 @@ export const GroupMeasures = () => {
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.2 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.7 } }}>
 
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pressure ? active : {}} onClick={e => particleHandler(DATATYPES.pressure)}>
                         <TitleBox title={'Presion Atmosferica'} />
@@ -79,7 +80,7 @@ export const GroupMeasures = () => {
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.4 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.5 } }}>
 
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.pm10 ? active : {}} onClick={e => particleHandler(DATATYPES.pm10)}>
                         <TitleBox title={'PM 10'} />
@@ -90,7 +91,7 @@ export const GroupMeasures = () => {
 
 
             <Grid item xs={6} md={4} lg={4}>
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.6 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.6 } }}>
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2} sx={keyActive === DATATYPES.rh ? active : {}} onClick={e => particleHandler(DATATYPES.rh)}>
                         <TitleBox title={'Humedad'} />
                         <TextMeasures particle={DATATYPES.rh} tag={'%'} />
@@ -100,7 +101,7 @@ export const GroupMeasures = () => {
             </Grid>
 
             <Grid item xs={6} md={4} lg={4}>
-                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 1.8 } }}>
+                <motion.div initial={{ scale: 0, rotate: 180 }} animate={{ scale: 1, rotate: 0, transition: { delay: 0.7 } }}>
 
                     <DashBox height={'23.5vh'} width={'100%'} component={Paper} elevation={6} p={2}>
 
