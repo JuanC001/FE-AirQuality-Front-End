@@ -9,18 +9,25 @@ import { NavBar } from '../Global/Components/Navbar/NavBar'
 import { Footer } from '../Global/Components/Footer/Footer'
 import { UserContext } from '../Global/Context/UserContext'
 import { AnimatePresence } from 'framer-motion'
+import { useAuthStore } from '../Auth/hooks/useAuthStore'
 
-import { motion } from 'framer-motion'
-import { User } from '../Dashboard/Pages/User/Pages/User'
 
 export const AppRouter = () => {
 
+
+    const { checkAuthToken } = useAuthStore()
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     const { authStatus } = useContext(UserContext)
+
+    useEffect(() => {
+
+        checkAuthToken()
+
+    }, [])
 
     return (
         <>

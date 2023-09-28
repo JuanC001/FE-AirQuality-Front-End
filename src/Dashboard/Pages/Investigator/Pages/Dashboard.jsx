@@ -24,7 +24,7 @@ export const Dashboard = () => {
                     <Grid container width={'99%'} spacing={4} display={'flex'}>
 
                         <Grid item xs={12} md={4}>
-                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.2 } }}>
+                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.3 } }}>
                                 <DashBox height={'50vh'} width={'100%'} component={Paper} elevation={6}>
                                     <Map />
                                 </DashBox>
@@ -44,7 +44,7 @@ export const Dashboard = () => {
                         </Grid>
 
                         <Grid item xs={12} md={12} lg={6}>
-                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.6 } }}>
+                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
 
                                 <DashBox component={Paper} elevation={6} height={'50vh'} bgcolor={'primary.contrastText'} p={2}>
                                     <TitleBox title={'Medición'} />

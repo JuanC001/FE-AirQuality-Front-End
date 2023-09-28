@@ -16,9 +16,7 @@ export const useAuthStore = () => {
 
             if (resp.status === 200) {
 
-                console.log('Logged in as ' + JSON.stringify(resp.data.role))
                 loggedIn(resp.data);
-                sessionStorage.setItem('token', resp.data.token);
 
             } else if (resp.status === 401) {
 
@@ -35,7 +33,6 @@ export const useAuthStore = () => {
             return true;
 
         } catch (err) {
-
 
             if (err.response.status === 401) {
                 Swal.fire(
@@ -58,21 +55,23 @@ export const useAuthStore = () => {
         }
 
     }
-
+    
     const checkAuthToken = async () => {
 
-        const token = sessionStorage.getItem('token')
+        const user = sessionStorage.getItem('user')
 
-        if (!token) {
+        if (user) {
 
-
+            const { token } = JSON.parse(user)
+            loggedIn(JSON.parse(user))
 
         }
 
     }
 
     return {
-        startLogin
+        startLogin,
+        checkAuthToken
     }
 
 }
