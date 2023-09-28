@@ -19,10 +19,12 @@ import { VisionMision } from "../components/VisionMision";
 import { OurTeam } from "../components/OurTeam";
 
 export const About = () => {
+  window.scrollTo(0, 0, { behavior: 'smooth' })
+
   return (
     <>
       <CssBaseline />
-      <Box pt={10}>
+      <Box pt={10} sx={{overflow: 'hidden'}}>
         <Box
           minHeight={"50vh"}
           display={"flex"}

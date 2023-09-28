@@ -4,7 +4,6 @@ export const scrollDownTo = (txt) => {
     if (element) {
 
         element.scrollIntoView({behavior: 'smooth'});
-        console.log(element);
 
     } else {
         console.log("Element not found");

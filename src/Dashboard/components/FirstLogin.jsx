@@ -33,9 +33,12 @@ export const FirstLogin = ({ user }) => {
 
         const passwordCheck = password1 !== password2
         setIsLoading(true)
-        const { result, msg } = await changePassword(user.uid, oldPassword, password1)
 
         setDoublePasswordError(passwordCheck)
+
+        if (passwordCheck) return setIsLoading(false)
+
+        const { result, msg } = await changePassword(user.uid, oldPassword, password1)
         setPasswordError(!result)
 
         if (result && !passwordCheck) {
