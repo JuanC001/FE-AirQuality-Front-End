@@ -11,6 +11,7 @@ export const useDevice = () => {
     const [deviceData, setDeviceData] = useState(null)
     const [dataReady, setDataReady] = useState(false)
     const [activeKey, setActiveKey] = useState('temp')
+    const [timer, setTimer] = useState(0)
 
     const [activeKeys, setActiveKeys] = useState({
         temp: true,
@@ -65,6 +66,16 @@ export const useDevice = () => {
         handleDevice()
 
     }, [])
+
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            handleDevice()
+            setTimer(150000)
+        }, timer)
+        return () => clearInterval(interval)
+
+    })
 
     return {
 
