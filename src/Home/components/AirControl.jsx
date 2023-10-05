@@ -2,13 +2,12 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { ImgBox } from "./ImgBox";
 import { MicroBox } from "./MicroBox";
 
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import OpacityIcon from "@mui/icons-material/Opacity";
 
-import placeholder from "../../assets/images/devicev2.svg";
+import placeholder from "../../assets/images/device.png";
 import fondo from "../../assets/images/fondo02.png";
 
 export const AirControl = () => {
