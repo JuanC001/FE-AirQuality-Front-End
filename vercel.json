@@ -1,8 +1,8 @@
 {
     "rewrites": [
-        {
-            "source": "/about-us",
-            "destination": "/about-us"
-        }
+      {
+        "source": "/((?!api/.*).*)",
+        "destination": "/index.html"
+      }
     ]
-}
+  }
