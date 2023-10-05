@@ -4,7 +4,6 @@ import {
   Fade,
   Grid,
   IconButton,
-  Slide,
   Stack,
   Typography,
   useScrollTrigger,
