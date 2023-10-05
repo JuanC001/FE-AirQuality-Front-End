@@ -71,7 +71,7 @@ export const DashboardProvider = ({ children }) => {
 
         const interval = setInterval(() => {
             getDevice()
-            setTimer(10000)
+            setTimer(150000)
         }, timer)
         return () => clearInterval(interval)
 

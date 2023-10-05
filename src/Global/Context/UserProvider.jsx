@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserContext } from './UserContext';
 
 
 export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [authStatus, setAuthStatus] = useState(false);
+    const [authStatus, setAuthStatus] = useState("checking");
 
     const loggedIn = (respUser) => {
 
@@ -25,6 +25,22 @@ export const UserProvider = ({ children }) => {
         window.sessionStorage.removeItem('user');
 
     }
+
+    useEffect(() => {
+
+        const user = window.sessionStorage.getItem('user');
+        console.log("Checking...");
+        if (user) {
+            loggedIn(JSON.parse(user));
+            return
+        }
+
+        setAuthStatus(false);
+
+
+
+    }, [])
+
 
     return (
         <UserContext.Provider value={{ user, authStatus, loggedIn, logout }}>

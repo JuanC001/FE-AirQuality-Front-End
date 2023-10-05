@@ -29,6 +29,8 @@ export const AppRouter = () => {
 
     }, [])
 
+    if (authStatus === "checking") return (<></>)
+
     return (
         <>
             <NavBar />
@@ -54,11 +56,7 @@ export const AppRouter = () => {
                         <Navigate to={'/'} />
                     } />
 
-                    {authStatus ?
-
-                        <Route path='/dashboard/' element={<Dashboard />} /> : <></>
-
-                    }
+                    <Route path='/dashboard/' element={authStatus ? <Dashboard /> : <Navigate to={'/'} />} />
 
                 </Routes>
             </AnimatePresence >
