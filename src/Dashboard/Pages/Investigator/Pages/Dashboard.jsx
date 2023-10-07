@@ -47,7 +47,7 @@ export const Dashboard = () => {
                             <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
 
                                 <DashBox component={Paper} elevation={6} height={'50vh'} bgcolor={'primary.contrastText'} p={2}>
-                                    <TitleBox title={'Medición'} />
+                                    <TitleBox title={'Medición (24Hrs)'} />
                                     <BarChart />
                                 </DashBox>
                             </motion.div>

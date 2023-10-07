@@ -29,7 +29,6 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
 
         const user = window.sessionStorage.getItem('user');
-        console.log("Checking...");
         if (user) {
             loggedIn(JSON.parse(user));
             return
@@ -37,10 +36,7 @@ export const UserProvider = ({ children }) => {
 
         setAuthStatus(false);
 
-
-
     }, [])
-
 
     return (
         <UserContext.Provider value={{ user, authStatus, loggedIn, logout }}>

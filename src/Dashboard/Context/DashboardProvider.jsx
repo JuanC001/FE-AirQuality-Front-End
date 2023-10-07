@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { DashboardContext } from './DashboardContext'
 import { useDevices } from '../Hooks/useDevices'
 
+import { useAuthStore } from '../../Auth/hooks/useAuthStore'
+import Swal from 'sweetalert2'
+
 export const DashboardProvider = ({ children }) => {
 
     const DATATYPES = {
@@ -14,6 +17,8 @@ export const DashboardProvider = ({ children }) => {
 
     }
 
+
+    const { checkAuthToken, closeSession } = useAuthStore()
     const { getAllDevices, getOneDevice } = useDevices()
 
     const [devices, setDevices] = useState(null)
@@ -46,22 +51,35 @@ export const DashboardProvider = ({ children }) => {
 
     const getDevice = async () => {
 
-        if (!deviceInfo) return
-        const newArray = [...devices]
-        const resp = await getOneDevice(deviceInfo._id)
+        try {
 
-        for (let i = 0; i < newArray.length; i++) {
+            if (!deviceInfo) return
+            const newArray = [...devices]
+            const resp = await getOneDevice(deviceInfo._id)
 
-            if (newArray[i]._id === deviceInfo._id) {
-                if (resp.lastUpdated !== deviceInfo.lastUpdated) {
+            for (let i = 0; i < newArray.length; i++) {
 
-                    deviceInfo.lastUpdated = resp.lastUpdated
-                    newArray[i].lastUpdated = resp.lastUpdated
-                    setDevices(newArray)
-                    setDeviceData(resp)
+                if (newArray[i]._id === deviceInfo._id) {
+                    if (resp.lastUpdated !== deviceInfo.lastUpdated) {
 
+                        deviceInfo.lastUpdated = resp.lastUpdated
+                        newArray[i].lastUpdated = resp.lastUpdated
+                        setDevices(newArray)
+                        setDeviceData(resp)
+
+                    }
                 }
+
             }
+
+        } catch (error) {
+
+            Swal.fire({
+                title: 'Tu sesión ha expirado',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            })
+            closeSession()
 
         }
 

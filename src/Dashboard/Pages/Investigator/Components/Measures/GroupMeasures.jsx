@@ -12,7 +12,6 @@ import { motion } from 'framer-motion'
 export const GroupMeasures = () => {
 
     const { keyActive, DATATYPES, setKeyActive } = useContext(DashboardContext)
-    window.scrollTo(0, 0, { behavior: 'smooth' })
 
     const theme = useTheme()
 

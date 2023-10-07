@@ -17,10 +17,6 @@ export const AppRouter = () => {
 
     const { checkAuthToken } = useAuthStore()
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     const { authStatus } = useContext(UserContext)
 
     useEffect(() => {

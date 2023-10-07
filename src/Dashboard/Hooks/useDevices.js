@@ -6,16 +6,27 @@ export const useDevices = () => {
 
     const getAdminDeviceList = async () => {
         const devices = await AirqualityApi.post('/admin/getDeviceList')
+        if (devices.status === 401) {
+            console.log('Bloqueado, sesión expirada')
+        }
         return devices.data
     }
 
     const getAllDevices = async () => {
-        const devices = await AirqualityApi.post('/device/getAllList', {}, {
-            headers: {
-                'x-token': token
-            }
-        })
-        return devices.data
+        try {
+            
+            const devices = await AirqualityApi.post('/device/getAllList', {}, {
+                headers: {
+                    'x-token': token
+                }
+            })
+
+            return devices.data
+
+        } catch (error) {
+            console.log("Sesion Expirada")
+            return "Token invalido"
+        }
     }
 
     const getOneDevice = async (id) => {
