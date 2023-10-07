@@ -6,7 +6,7 @@ import Swal from "sweetalert2"
 
 export const useAuthStore = () => {
 
-    const { loggedIn } = useContext(UserContext);
+    const { loggedIn, logout } = useContext(UserContext);
 
     const startLogin = async (user, password) => {
 
@@ -55,23 +55,42 @@ export const useAuthStore = () => {
         }
 
     }
-    
+
     const checkAuthToken = async () => {
 
-        const user = sessionStorage.getItem('user')
+        if (!sessionStorage.getItem('user')) return
 
-        if (user) {
+        try {
+            const user = sessionStorage.getItem('user')
+            const { uid } = JSON.parse(user)
+            const result = await AirqualityApi.post('/auth/renew', { uid })
+            loggedIn(result.data)
+            console.log('token renovado')
+            return
 
-            const { token } = JSON.parse(user)
-            loggedIn(JSON.parse(user))
+
+        } catch (error) {
+
+            Swal.fire(
+                {
+                    icon: 'warning',
+                    text: 'Se ha expirado la sesión'
+                }
+            )
+            logout()
 
         }
 
     }
 
+    const closeSession = async () => {
+        logout()
+    }
+
     return {
         startLogin,
-        checkAuthToken
+        checkAuthToken,
+        closeSession
     }
 
 }

@@ -55,14 +55,16 @@ export const DeviceInformation = ({ handleNext, saveData, data }) => {
 
     const filtro = (item) => {
         const { id } = item
-        const nId = id.toString()
-
         if (selectedDevice === '') return item
+
+        if (item === selectedDevice) return item
+
         if (selectedDevice.toString().includes(id)) return item
     }
 
     const handleToggle = (e, item) => {
 
+        if (item === null) return
         setSelectedDevice(item)
     }
 
