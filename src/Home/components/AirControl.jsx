@@ -9,6 +9,7 @@ import OpacityIcon from "@mui/icons-material/Opacity";
 
 import placeholder from "../../assets/images/device.png";
 import fondo from "../../assets/images/fondo02.png";
+import AirParticles from "./Particles/AirParticles";
 
 export const AirControl = () => {
   const [animar, setAnimar] = React.useState(false);
@@ -39,26 +40,19 @@ export const AirControl = () => {
   };
 
   return (
-    <Box position={"relative"} zIndex={1} bgcolor={"primary.light"}>
+    <Box position={"relative"} zIndex={1} bgcolor={"primary.light"} py={8}>
       <Grid container alignItems={"center"} pt={4} pb={4} zIndex={2}>
         <Grid item xs={12} md={6}>
-          <Box p={4} id={"about-us"}>
+          <Box p={4}>
             <Typography variant="h4" align="left" color={"primary.dark"} mb={2}>
               <strong>Manten el control del aire en tu hogar</strong>
             </Typography>
             <Typography
-              variant="h6"
+              variant="body1"
               align="justify"
               color={"secondary.contrastText"}
             >
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut,
-              delectus eveniet reprehenderit quisquam adipisci eligendi ipsam
-              unde repellendus, nostrum cupiditate veritatis quae blanditiis
-              placeat animi sunt suscipit voluptatibus, impedit rem debitis
-              reiciendis odio officiis quidem saepe! Voluptate inventore
-              veritatis iusto! Quae quasi aliquid quod consequuntur ullam ipsa
-              voluptas blanditiis excepturi dolores! Eius, consequatur odio
-              inventore doloremque neque a est sed.
+              Las condiciones de tu vivienda son muy importantes para tu salud, el aire interior húmedo fomenta el desarrollo de moho, e indica que no hay ventilación suficiente para dispersar la humedad generada por actividades como cocinar y bañarse. El humo del tabaco contiene carcinógenos y otros componentes tóxicos, también pueden existir otros contaminantes como el radón y el formaldehido, es importante tener en cuenta que a la vivienda también puede ingresar contaminantes del exterior, provenientes de tormentas de polvo, la industria o el transporte. De forma general te recomendamos los siguientes niveles de humedad, temperatura y material particulado.
             </Typography>
           </Box>
 
@@ -207,13 +201,13 @@ export const AirControl = () => {
         </Grid>
 
         <Grid item xs={12} md={6} textAlign={"center"}>
-          <motion.div whileHover={{ y: -10 }}>
+          <motion.div whileHover={{ y: -10 }} style={{ height: '400px' }}>
             <Box
               margin={"auto"}
               mt={3}
               component={motion.img}
               src={placeholder}
-              sx={{ maxWidth: "60%", opacity: "90%", filter: "drop-shadow(0px 0px 10px rgb(164,238,250))" }}
+              sx={{ maxWidth: "60%", opacity: "90%", filter: "drop-shadow(0px 0px 5px rgb(164,238,250))" }}
               variants={wrapperVariants}
               animate={animar && "img_anim"}
               transition={{ delay: 2.2 }}

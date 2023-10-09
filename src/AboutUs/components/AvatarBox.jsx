@@ -19,13 +19,13 @@ export const AvatarBox = ({ src, title, subtitle }) => {
                 boxShadow: '10px 10px 15px grey',
                 borderTopLeftRadius: '20px', borderTopRightRadius: '20px'
             }
-        }
+            }
                 onClick={e => console.log('click')}
             >
                 <Box width={'18vh'} height={'18vh'} position={'relative'}>
 
-                    <Avatar variant='square' sx={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
-                    <Box width={'100%'} height={'30%'} bgcolor={'primary.main'} color={'white'} position={'absolute'} sx={{ bottom: 0 }}>
+                    <Avatar variant='square' sx={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} src={src} />
+                    <Box width={'100%'} height={'30%'} bgcolor={'primary.main'} color={'white'} position={'absolute'} sx={{ bottom: -15 }}>
                         <Stack>
                             <Typography variant='h6' textAlign={'center'} fontSize={'100%'}>
                                 <b>

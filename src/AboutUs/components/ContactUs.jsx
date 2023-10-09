@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, Button, Divider, Stack, TextField, TextareaAutosize, Typography, useTheme } from '@mui/material'
+import { Box, Button, Checkbox, Divider, Stack, TextField, TextareaAutosize, Typography, useTheme } from '@mui/material'
 import React from 'react'
 
 export const ContactUs = () => {
@@ -49,8 +49,8 @@ export const ContactUs = () => {
 
       <Box width={'80%'} justifyContent={'center'} mx={'auto'} my={6}>
         <Typography variant="body1" color="inherit" width={'80%'} mx={'auto'}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error reiciendis accusantium ad nobis corporis assumenda dolore veritatis ex, illo, nostrum mollitia earum autem eius. Reprehenderit sint ea voluptatem, non et dolorem officiis qui debitis excepturi facilis, eum distinctio? Expedita, et?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error reiciendis accusantium ad nobis corporis assumenda dolore veritatis ex, illo, nostrum mollitia earum autem eius. Reprehenderit sint ea voluptatem, non et dolorem officiis qui debitis excepturi facilis, eum distinctio? Expedita, et?
+          Si está interesado en conocer más acerca de nuestros proyectos, o tiene alguna idea que pueda colaborar en dar solución a las problemáticas de calidad del aire y necesitas apoyo,  por favor escríbenos y déjanos tus datos, te estaremos contactando lo más pronto posible.
+
         </Typography>
       </Box>
 
@@ -60,7 +60,14 @@ export const ContactUs = () => {
             <CssTextField label={'Nombres'} variant='outlined' />
             <CssTextField label={'Correo'} />
             <CssTextField label={'Telefono'} />
-            <CssTextField label={'Comentarios'} multiline rows={5}/>
+            <CssTextField label={'Comentarios'} multiline rows={5} />
+            <Stack display={'flex'} direction={'row'} alignItems={'center'}>
+              <Checkbox />
+              <Typography variant="body1" color="inherit">
+                Autoriza el tratamiento de los datos personales suministrados conforme a la ley 1581 de 2012 de protección de datos personales.
+
+              </Typography>
+            </Stack>
           </Stack>
           <Button size='medium' variant='contained' color='secondary'>Enviar</Button>
 

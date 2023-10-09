@@ -13,8 +13,9 @@ export const useDevices = () => {
     }
 
     const getAllDevices = async () => {
+
         try {
-            
+
             const devices = await AirqualityApi.post('/device/getAllList', {}, {
                 headers: {
                     'x-token': token

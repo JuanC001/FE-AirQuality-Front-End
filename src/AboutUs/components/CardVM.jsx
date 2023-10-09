@@ -3,7 +3,7 @@ import React from 'react'
 
 export const CardVM = styled(Box)(({ theme }) => ({
 
-    height: 'auto',
+    height: '100%',
     borderRadius: '20px',
     borderColor: theme.palette.primary.main,
     borderStyle: 'hidden',

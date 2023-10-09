@@ -2,8 +2,8 @@ import { Box, CssBaseline, Grid } from '@mui/material'
 
 import { HomeStart } from '../components/HomeStart'
 import { AirControl } from '../components/AirControl'
-import { BannerDo } from '../components/BannerDo'
 import { FirstBanner } from '../components/FirstBanner'
+import { BannerAboutPM } from '../components/BannerAboutPM'
 
 export const Home = () => {
 
@@ -17,10 +17,11 @@ export const Home = () => {
         <HomeStart />
 
         <FirstBanner />
-
         <AirControl />
+        <BannerAboutPM />
 
-        <BannerDo />
+
+
       </Box >
     </>
   )

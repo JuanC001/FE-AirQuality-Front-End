@@ -13,7 +13,7 @@ export const Who = () => {
         <Grid container spacing={1} rowGap={3}>
           <Grid item xs={12} md={4} textAlign={"center"}>
             <Box className="texts" width={"90%"}>
-              <Typography variant="h2" color="primary.dark">
+              <Typography variant="h2" color="primary.dark" fontSize={{ xs: '10vw', sm: '5vw', md: '3vw' }}>
                 <strong>¿Quienes Somos?</strong>
               </Typography>
             </Box>
@@ -34,13 +34,8 @@ export const Who = () => {
               px={2}
               alignItems={"center"}
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-              nesciunt nam quos eum aperiam cupiditate quas accusamus harum
-              commodi sapiente earum, incidunt aspernatur sunt et saepe delectus
-              cumque aut doloremque quaerat similique excepturi fugit,
-              laboriosam facere fuga? Voluptate distinctio ducimus alias, ad
-              repudiandae culpa est asperiores incidunt id voluptatibus
-              veritatis.
+              El Instituto de Salud y Ambiente (ISA) es un grupo interdisciplinario de profesionales, adscrito a la vicerrectoría de investigaciones de la Universidad El Bosque, con interés en el análisis de la relación entre la salud y el ambiente en contextos urbanos y rurales, mediante la formulación y ejecución de proyectos de investigación básica y aplicada; con el propósito de contribuir con la formación de recurso humano y promover el mejoramiento de la calidad de vida de las comunidades, aportándoles herramientas para que fortalezcan su capacidad de gestión, acorde a su cultura y las problemáticas de sus territorios. A su vez, el Instituto de Salud y Ambiente busca ampliar y posicionar el conocimiento en temas ambientales y problemáticas en salud pública para motivar el diseño de acciones de promoción y prevención a nivel local y nacional.
+
             </Typography>
           </Grid>
 
@@ -51,7 +46,7 @@ export const Who = () => {
           </Grid>
         </Grid>
       </Slide>
-      
+
     </Box>
   );
 };
