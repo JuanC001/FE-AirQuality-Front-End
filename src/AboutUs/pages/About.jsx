@@ -17,6 +17,7 @@ import fnd03 from "../../assets/images/fondo03.png";
 import { Who } from "../components/Who";
 import { VisionMision } from "../components/VisionMision";
 import { OurTeam } from "../components/OurTeam";
+import { WhatWeDo } from "../components/WhatWeDo";
 
 export const About = () => {
   window.scrollTo(0, 0, { behavior: 'smooth' })
@@ -24,7 +25,7 @@ export const About = () => {
   return (
     <>
       <CssBaseline />
-      <Box pt={10} sx={{overflow: 'hidden'}}>
+      <Box pt={10} sx={{ overflow: 'hidden' }}>
         <Box
           minHeight={"50vh"}
           display={"flex"}
@@ -64,6 +65,8 @@ export const About = () => {
             justifyContent={"center"}
           ></Box>
         </Box>
+
+        <WhatWeDo />
 
         <OurTeam />
 

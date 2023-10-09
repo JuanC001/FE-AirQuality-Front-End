@@ -6,20 +6,20 @@ import { motion } from "framer-motion";
 export const FirstBanner = () => {
   const texts = {
     cantidad: {
-      title: "Cantidad",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas?",
+      title: "Personas en riesgo",
+      text: "Según la OMS, en 2019, el 99% de la población mundial vivía en lugares donde no se respetaban las Directrices de la OMS sobre la Calidad del Aire.",
     },
     calidad: {
-      title: "Calidad",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas?",
+      title: "Material Particulado",
+      text: "Uno de los Principales contaminantes es el Material Particulado (PM), el cual es una mezcla de partículas sólidas, y gotas líquidas que se encuentran en el aire. Partículas como el polvo, el hollín, o el humo, se pueden ver a simple vista, otras solo pueden detectarse a través del microscopio electrónico.",
     },
     recomendaciones: {
-      title: "Recomendaciones",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas?",
+      title: "Fuentes de PM",
+      text: "Dentro de las partículas que pueden detectarse con el microscopio electrónico están el PM10 (partículas de 10 micrómetros) y el PM 2,5 (partículas de 2,5 micrómetros). Estas partículas pueden inhalarse y acumularse en el sistema respiratorio, las de 2,5 micras pueden alojarse en lo más profundo de los pulmones.",
     },
     alertas: {
       title: "Alertas",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas?",
+      text: "EL PM puede ser emitido por obras en construcción, caminos sin asfaltar, campos, chimeneas o incendios, otras partículas se forman en la atmósfera producto de reacciones complejas de químicos contaminantes emitidos por centrales eléctricas, industrias y automóviles.",
     },
   };
 
@@ -121,6 +121,7 @@ const Stack_item = ({ title, text, delay = 0 }) => {
           bounce: "false",
         }}
         py={2}
+        height={"250px"}
       >
         <Typography color={'primary.main'} variant="h5" mb={2}>
           <strong>{title}</strong>

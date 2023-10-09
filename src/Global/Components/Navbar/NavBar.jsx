@@ -52,7 +52,7 @@ export const NavBar = () => {
       <Box
         component={motion.div}
         height={"100vh"}
-        width={"10px"}
+        width={"5px"}
         bgcolor={"secondary.dark"}
         style={{ scaleY: scrollYProgress }}
         position={"fixed"}
