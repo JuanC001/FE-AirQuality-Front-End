@@ -17,10 +17,9 @@ export const Home = () => {
         <HomeStart />
 
         <FirstBanner />
-
+        <AirControl />
         <BannerAboutPM />
 
-        <AirControl />
 
 
       </Box >
