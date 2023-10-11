@@ -48,7 +48,7 @@ export const LineChart = ({ particle }) => {
 
             <LC data={deviceData.measures}>
 
-              <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} />
+              <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} dot={false}/>
               <Tooltip active={true} cursor={false} position={{ y: 100 }} />
 
             </LC>

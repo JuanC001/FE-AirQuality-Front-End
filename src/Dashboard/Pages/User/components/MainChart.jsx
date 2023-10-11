@@ -1,6 +1,6 @@
-import { Box, Paper, Tooltip, Typography, styled } from '@mui/material'
+import { Box, Paper, Typography, styled } from '@mui/material'
 import React from 'react'
-import { Bar, BarChart, LabelList, Legend, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, Brush, LabelList, Legend, ResponsiveContainer, XAxis, Tooltip } from 'recharts'
 
 import { useTheme } from '@mui/material'
 
@@ -39,18 +39,18 @@ export const MainChart = ({ deviceData, dataKey }) => {
 
         const { measures } = deviceData
         return (
-            <DashBox component={Paper} elevation={6} height={'100%'} zIndex={1}>
+            <DashBox component={Paper} elevation={6} height={'100%'}>
 
                 <ResponsiveContainer width={'100%'} height={'100%'}>
 
                     <BarChart data={measures} margin={{ top: 30 }}>
-
+                        <Tooltip />
+                        <Brush dataKey={dataKey} height={30} width={'90%'} stroke={theme.palette.primary.main} travellerWidth={20} />
                         <Bar dataKey={dataKey} fill={theme.palette.primary.main} >
                             <LabelList dataKey={dataKey} position={'top'} formatter={cutNumber} />
                         </Bar>
 
                         <XAxis dataKey="date" />
-                        <Tooltip active={true} cursor={false} position={{ y: 100 }} />
 
                     </BarChart>
 
