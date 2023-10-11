@@ -56,7 +56,7 @@ export const LineChart = ({ title, particle, deviceData, dataReady = false, acti
                         <ResponsiveContainer width={'100%'} height={'80%'}>
                             <LC data={deviceData} >
 
-                                <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} />
+                                <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} dot={false}/>
                                 <Tooltip active={true} cursor={false} position={{ y: 100 }} />
 
                             </LC>

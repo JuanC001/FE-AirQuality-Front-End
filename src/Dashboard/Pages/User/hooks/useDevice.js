@@ -71,7 +71,7 @@ export const useDevice = () => {
 
         const interval = setInterval(() => {
             handleDevice()
-            setTimer(150000)
+            setTimer(60000)
         }, timer)
         return () => clearInterval(interval)
 

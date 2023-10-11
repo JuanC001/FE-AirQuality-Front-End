@@ -7,6 +7,7 @@ import { Quality } from '../components/Quality'
 import { MainChart } from '../components/MainChart'
 
 import { useDevice } from '../hooks/useDevice'
+import AirParticles from '../components/particles/AirParticles'
 
 export const User = () => {
 
@@ -17,8 +18,10 @@ export const User = () => {
             <Box component={'img'} src={fondo03} position={'absolute'} height={'500px'} width={'103%'} sx={{ top: '25%', left: '-2%' }} zIndex={-1} />
             <Grid container>
 
-                <Grid item xs={12} md={6} height={'50vh'}>
-
+                <Grid item xs={12} md={6} height={'50vh'} position={'relative'}>
+                    <Box height={'100px'} width={'100px'} position={'absolute'} zIndex={-2}>
+                        <AirParticles />
+                    </Box>
                     <Quality />
 
                 </Grid>
