@@ -11,15 +11,15 @@ export const FirstBanner = () => {
     },
     calidad: {
       title: "Material Particulado",
-      text: "Uno de los Principales contaminantes es el Material Particulado (PM), el cual es una mezcla de partículas sólidas, y gotas líquidas que se encuentran en el aire. Partículas como el polvo, el hollín, o el humo, se pueden ver a simple vista, otras solo pueden detectarse a través del microscopio electrónico.",
+      text: "Uno de los principales contaminantes es el Material Particulado (PM), que es una mezcla de partículas sólidas y líquidas presentes en el aire. Algunas son visibles, como el polvo, el hollín y el humo, mientras que otras solo se pueden detectar con un microscopio electrónico.",
     },
     recomendaciones: {
       title: "Fuentes de PM",
-      text: "Dentro de las partículas que pueden detectarse con el microscopio electrónico están el PM10 (partículas de 10 micrómetros) y el PM 2,5 (partículas de 2,5 micrómetros). Estas partículas pueden inhalarse y acumularse en el sistema respiratorio, las de 2,5 micras pueden alojarse en lo más profundo de los pulmones.",
+      text: "En las partículas detectables con el microscopio electrónico se encuentran el PM10 (10 micrómetros) y el PM2,5 (2,5 micrómetros). Estas partículas pueden ser inhaladas y acumularse en el sistema respiratorio, especialmente las de 2,5 micras, que llegan a lo más profundo de los pulmones.",
     },
     alertas: {
       title: "Alertas",
-      text: "EL PM puede ser emitido por obras en construcción, caminos sin asfaltar, campos, chimeneas o incendios, otras partículas se forman en la atmósfera producto de reacciones complejas de químicos contaminantes emitidos por centrales eléctricas, industrias y automóviles.",
+      text: "El PM puede provenir de construcciones, caminos sin asfaltar, campos, chimeneas e incendios. Otras partículas se forman en la atmósfera debido a reacciones químicas de contaminantes emitidos por fuentes como centrales eléctricas, industrias y vehículos.",
     },
   };
 

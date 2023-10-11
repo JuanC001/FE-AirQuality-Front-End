@@ -8,7 +8,7 @@ export const Admin = () => {
 
     const { getAllUsers } = useUsers()
     const [users, setUser] = useState([])
-    const [searchingInfo, setSearchingInfo] = useState(false)
+    const [searchingInfo, setSearchingInfo] = useState(true)
 
     const getUsers = async () => {
         setSearchingInfo(true)

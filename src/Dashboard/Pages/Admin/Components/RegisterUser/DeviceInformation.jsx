@@ -8,10 +8,11 @@ import Swal from 'sweetalert2';
 export const DeviceInformation = ({ handleNext, saveData, data }) => {
 
     const [selectedDevice, setSelectedDevice] = useState('')
+    const [selectedDeviceList, setSelectedDeviceList] = useState(null)
     const [devices, setDevices] = useState([])
     const [ready, setReady] = useState(false)
 
-    const { getAdminDeviceList } = useDevices()
+    const { getAdminDeviceList, getOneDevice } = useDevices()
 
     const getDevicesID = async () => {
 
@@ -28,44 +29,65 @@ export const DeviceInformation = ({ handleNext, saveData, data }) => {
 
     }, [])
 
-    const handleChangeDevice = (e = Event) => {
+    useEffect(() => {
+        setSelectedDeviceList(null)
+    }, [selectedDevice])
+
+    const handleChangeDevice = async (e = Event) => {
 
         e.preventDefault()
-        const device = devices.filter(filtro)
-        saveData({
-            device: device[0]._id,
-        })
 
-        if (selectedDevice === '') return Swal.fire({
+        if (selectedDeviceList === null) return Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Debes seleccionar un dispositivo',
         })
 
-        if (device[0].owner) return Swal.fire({
+        const device = await getOneDevice(selectedDeviceList)
+        saveData({
+            device: device._id,
+        })
+
+
+        if (device.owner) return Swal.fire({
+
             icon: 'warning',
             title: 'Este dispositivo ya tiene un dueño',
             html: `<p>Este dispositivo no se puede asignar</p>
             <p>Para asignarlo, deberás eliminar el usuario asociado: <b>${device[0].owner}</b></p>`
         })
 
-        handleNext()
-
+        Swal.fire({
+            icon: 'warning',
+            title: '¿Estás seguro?',
+            html: `<p>Estás a punto de asignar el dispositivo: <b>${device.id}</b></p>
+            <p>¿Deseas continuar?</p>`,
+            showCancelButton: true,
+            confirmButtonText: 'Si, continuar',
+            cancelButtonText: 'No, cancelar',
+            cancelButtonColor: 'error',
+            confirmButtonColor: 'success',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleNext()
+            }
+        })
+        return
     }
 
     const filtro = (item) => {
         const { id } = item
         if (selectedDevice === '') return item
-
         if (item === selectedDevice) return item
-
-        if (selectedDevice.toString().includes(id)) return item
+        if (selectedDevice.toString() === id.toString()) {
+            return item
+        }
     }
 
     const handleToggle = (e, item) => {
 
         if (item === null) return
-        setSelectedDevice(item)
+        setSelectedDeviceList(item)
     }
 
     return (
@@ -90,10 +112,10 @@ export const DeviceInformation = ({ handleNext, saveData, data }) => {
                         </Tooltip>
                     </Stack>
                     <Stack sx={{ overflowY: 'scroll' }} height={'50%'} gap={1}>
-                        <ToggleButtonGroup orientation="vertical" value={selectedDevice} onChange={handleToggle} exclusive fullWidth>
+                        <ToggleButtonGroup orientation="vertical" value={selectedDeviceList} onChange={handleToggle} exclusive fullWidth>
                             {ready &&
                                 devices.filter(filtro).map((device) => (
-                                    <ToggleButton key={device.id} value={device.id} color='secondary'>
+                                    <ToggleButton key={device.id} value={device._id} color='secondary'>
                                         <Grid container justifyContent={'center'} textAlign={'center'}>
 
                                             <Grid item xs={6} md={4}>
