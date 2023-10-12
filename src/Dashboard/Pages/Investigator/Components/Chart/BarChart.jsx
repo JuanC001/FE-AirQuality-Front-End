@@ -37,13 +37,13 @@ export const BarChart = () => {
 
                         <ComposedChart data={deviceData.measures} margin={{ top: 100 }}>
                             <Brush dataKey={keyActive} height={30} stroke={theme.palette.primary.main} travellerWidth={20} />
+                            <Tooltip />
 
                             <Bar dataKey={keyActive} fill={theme.palette.primary.main}>
 
                                 <LabelList dataKey={keyActive} position={'top'} formatter={cutNumber} />
 
                             </Bar>
-                            <Tooltip />
                             <XAxis dataKey="date" />
                         </ComposedChart>
 
