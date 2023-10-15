@@ -92,11 +92,12 @@ export const NavBar = () => {
               <Button color={"inherit"} component={NavLink} to={"/"}>
                 Inicio
               </Button>
+
+              <Button color="inherit" component={NavLink} to={"/about-air"}>
+                Mas Sobre el Aire
+              </Button>
               <Button color="inherit" component={NavLink} to={"/about-us"}>
                 Sobre Nosotros
-              </Button>
-              <Button color="inherit" component={NavLink} to={"/about-air"}>
-                Mas sobre el aire
               </Button>
             </Box>
           )}

@@ -4,6 +4,7 @@ import { useDevices } from '../../../../Hooks/useDevices'
 import { DataGrid, GridToolbarFilterButton } from '@mui/x-data-grid'
 import { DashboardContext } from '../../../../Context/DashboardContext'
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { ExportDeviceExcel } from './ExportDeviceExcel'
 
 export const DevicesList = () => {
 
@@ -73,8 +74,9 @@ export const DevicesList = () => {
 
 
             </Box>
-            <Box display={'flex'} justifyContent={'end'}>
+            <Box display={'flex'} justifyContent={'end'} gap={1}>
                 <Button onClick={onRefresh} variant='outlined' startIcon={<RefreshIcon />}>Actualizar</Button>
+                <ExportDeviceExcel />
             </Box>
         </>
     )

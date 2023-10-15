@@ -29,6 +29,7 @@ import dgarcia from '../../assets/PersonalImages/dgarcia.jpg'
 import cramirez from '../../assets/PersonalImages/cramirez.jpg'
 import mprieto from '../../assets/PersonalImages/mprieto.jpg'
 import dpalomino from '../../assets/PersonalImages/dpalomino.jpg'
+import gcampos from '../../assets/PersonalImages/gcampos.png'
 
 export const OurTeam = () => {
 
@@ -185,7 +186,7 @@ export const OurTeam = () => {
     }
 
     const developers = {
-        title: 'Desarrolladores',
+        title: 'Programa Ingeniería de Sistemas - Desarrolladores',
         persons: [
             {
                 name: 'Rabih Souiden',
@@ -205,6 +206,13 @@ export const OurTeam = () => {
                 name: 'Julio Alonso',
                 title: 'Ingeníeria de Sistemas',
                 img_url: jalon,
+                descripcion: 'Proyecto de Grado',
+                url_social: ''
+            },
+            {
+                name: 'German Campos',
+                title: 'Ingeníeria de Sistemas',
+                img_url: gcampos,
                 descripcion: 'Proyecto de Grado',
                 url_social: ''
             },
@@ -233,11 +241,11 @@ export const OurTeam = () => {
                 <Box component={motion.img} src={fnd01} position={'absolute'} zIndex={-1} width={'100%'} height={800} sx={{ scaleX: '-1', opacity: '0.3' }} whileInView={{ clipPath: ['circle(0% at 0% 100%)', 'circle(150% at 0% 100%)'] }} viewport={{ once: 'true' }} transition={{ duration: 2, delay: 2 }} />
 
                 <DinamycStack group={principals} />
-                <DinamycStack group={coInvestigadores} />
-                <DinamycStack group={developers} />
                 <DinamycStack group={electronics} />
-                <DinamycStack group={ambiental} />
                 <DinamycStack group={mathematiques} />
+                <DinamycStack group={developers} />
+                <DinamycStack group={ambiental} />
+                <DinamycStack group={coInvestigadores} />
 
             </Box>
 
@@ -256,7 +264,7 @@ const DinamycStack = ({ group }) => {
 
                     {group.persons.map(({ name, title, img_url }) =>
 
-                        <Box display={'flex'} justifyContent={'center'}>
+                        <Box key={img_url} display={'flex'} justifyContent={'center'}>
                             <AvatarBox title={name} subtitle={title} src={img_url} />
                         </Box>
 

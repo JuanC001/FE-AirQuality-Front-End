@@ -45,7 +45,7 @@ export const Footer = () => {
 
             <Typography variant="body1" color="initial" textAlign={'justify'}>Calle 131 No 7A – 68. Bogotá D.C. – Colombia</Typography>
             <Typography variant="body1" color="initial" textAlign={'justify'}>PBX: (601) 6489000 Exts. 1181 - 1417</Typography>
-            <Typography variant="body1" color="initial" textAlign={'justify'}>saludambiente@unbosque.edu.co</Typography>
+            <Typography variant="body1" color="initial" textAlign={'justify'}>semilleroteges@unbosque.edu.co</Typography>
 
           </Stack>
 
