@@ -1,0 +1,9 @@
+.img-air {
+
+    width: fit-content;
+    height: fit-content;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%);
+    top: -20%;
+    z-index: 1;
+}

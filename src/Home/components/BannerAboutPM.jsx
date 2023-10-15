@@ -2,6 +2,16 @@ import { Box, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import ReactPlayer from 'react-player'
 
+const Text1 = {
+    title: '¿Quienes son los mas afectados?',
+    text: 'Puede afectar Pulmones y Corazón. Algunas partículas de menos de 10 micrómetros de diámetro pueden penetrar los pulmones e ingresar al torrente sanguíneo.  Las personas con enfermedades cardíacas o pulmonares, los niños y las personas mayores pueden correr un mayor riesgo por la exposición al PM.',
+}
+
+const Text2 = {
+    title: 'Posibles Afectaciones',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iure quos veniam illo quo delectus suscipit? Voluptas nam excepturi temporibus obcaecati sed, a modi ipsum architecto explicabo quos quam labore.',
+}
+
 export const BannerAboutPM = () => {
     return (
         <Box bgcolor={'primary.light'} minHeight={'80vh'} width={'100vw'} px={5} py={2} >
@@ -20,7 +30,7 @@ export const BannerAboutPM = () => {
                     </Box>
                 </Grid>
 
-                <Grid item height={'700px'} xs={12} md={6} p={1}>
+                <Grid item minHeight={'70vh'} xs={12} md={6} p={1}>
 
                     <Grid container height={'100%'} gap={1}>
 
@@ -29,12 +39,12 @@ export const BannerAboutPM = () => {
                             <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
 
                                 <Stack my={'auto'} gap={3} p={4}>
-                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>¿Quienes son los mas afectados?</Typography>
+                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text1.title}</Typography>
 
                                     <Divider />
 
                                     <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
-                                        Puede afectar Pulmones y Corazón. Algunas partículas de menos de 10 micrómetros de diámetro pueden penetrar los pulmones e ingresar al torrente sanguíneo.  Las personas con enfermedades cardíacas o pulmonares, los niños y las personas mayores pueden correr un mayor riesgo por la exposición al PM.
+                                        {Text1.text}
                                     </Typography>
                                 </Stack>
 
@@ -42,21 +52,25 @@ export const BannerAboutPM = () => {
 
                         </Grid>
 
-                        <Grid item height={'40%'} xs={12}>
+                        <Grid item height={'50%'} xs={12}>
 
-                            <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
+                            <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
+
                                 <Stack my={'auto'} gap={3} p={4}>
-                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>Posibles Afectaciones</Typography>
+                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text2.title}</Typography>
 
                                     <Divider />
 
                                     <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iure quos veniam illo quo delectus suscipit? Voluptas nam excepturi temporibus obcaecati sed, a modi ipsum architecto explicabo quos quam labore.
+                                        {Text2.text}
                                     </Typography>
                                 </Stack>
+
                             </Box>
 
                         </Grid>
+
+
 
                     </Grid>
 
