@@ -17,7 +17,7 @@ export const MenuGeneral = (props) => {
         Sobre Nosotros
       </MenuItem>
       <MenuItem onClick={menuClose} component={NavLink} to={"/about-air"}>
-        Sobre el Aire
+        Mas Sobre El Aire
       </MenuItem>
       <Divider variant="middle" />
       {authStatus ? (

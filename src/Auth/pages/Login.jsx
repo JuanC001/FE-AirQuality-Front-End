@@ -9,6 +9,8 @@ import lines from '../../assets/SVG/Lines.svg'
 
 export const Login = () => {
 
+  window.scrollTo(0, 0)
+
   return (
 
     <>
