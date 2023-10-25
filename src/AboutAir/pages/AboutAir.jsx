@@ -20,7 +20,7 @@ const data_extra = 'Según el informe de Calidad del Aire de IQAir en 2022, en l
 const data_extra2 = 'En el año 2019, el Instituto Nacional de Salud de Colombia publicó un informe de carga ambiental en donde estableció que el 8% de la mortalidad anual de la nación se relaciona con la calidad del aire, agua y el suelo.'
 
 export const AboutAir = () => {
-  //window.scrollTo(0, 0, { behavior: 'smooth' })
+  window.scrollTo(0, 0, { behavior: 'smooth' })
   return (
     <Box bgcolor={'primary.light'} zIndex={3} sx={{ overflowY: 'hidden', overflowX: 'hidden' }} pt={10}>
       <CssBaseline />
