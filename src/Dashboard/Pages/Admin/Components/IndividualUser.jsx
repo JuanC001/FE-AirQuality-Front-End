@@ -128,9 +128,9 @@ export const IndividualUser = ({ user, getUsers }) => {
                 <TableCell>
                     <Grid container columnSpacing={2}>
 
-                        <Grid item xs={12} md={6}>
+                        {/*<Grid item xs={12} md={6}>
                             <Button variant={'outlined'} color={'primary'} onClick={() => { setModalOpen(true); }} fullWidth>Editar</Button>
-                        </Grid>
+                        </Grid>*/}
                         <Grid item xs={12} md={6}>
                             <Button variant={'outlined'} color={'error'} onClick={handleRemove} fullWidth>Eliminar</Button>
                         </Grid>
