@@ -9,7 +9,8 @@ const text2 = 'En la actualidad, el Instituto ha desarrollado un prototipo de Di
 
 export const FirstPart = () => {
     return (
-        <Grid container component={Paper} p={{ xs: 3, md: 10 }} rowGap={3} borderRadius={'15px'}>
+        <Grid container minHeight={'100%'} px={{ xs: 3, md: 10 }} pt={5} rowGap={3} borderRadius={'15px'} display={'flex'} alignItems={'center'} position={'relative'} >
+
             <Grid item xs={12} md={6} >
 
                 <Grid container spacing={2} display={'flex'} alignItems={'center'} my={'auto'}>
@@ -18,9 +19,6 @@ export const FirstPart = () => {
                     </Grid>
                     <Grid item>
                         <Typography variant={"body1"} textAlign={'justify'}>{text1}</Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography variant={"body1"} textAlign={'justify'}>{text2}</Typography>
                     </Grid>
                 </Grid>
 
