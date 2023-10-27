@@ -32,7 +32,6 @@ export const FirstPart = () => {
                     objectFit: 'cover'
                 }} />
 
-
             </Grid>
         </Grid>
     )
