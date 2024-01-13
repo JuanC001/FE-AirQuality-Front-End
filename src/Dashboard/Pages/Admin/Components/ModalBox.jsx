@@ -9,7 +9,7 @@ import {
 
   Stepper,
   StepLabel,
-  Step, Grid, MobileStepper,
+  Step, MobileStepper,
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -34,36 +34,31 @@ const ModalBoxStyle = styled(Box)(({ theme }) => ({
 const UserStepper = ({ step, saveData, handleNext, handleBack, data, handleClose }) => {
 
   return (
-    <>
-      <Box
-        width={"100%"}
-        height={"100%"}
-        display="flex"
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        {step == 0 && (
-          <BasicInformation saveData={saveData} handleNext={handleNext} />
-        )}
+    <Box
+      width={"100%"}
+      height={"100%"}
+      display="flex"
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+      {step == 0 && (
+        <BasicInformation saveData={saveData} handleNext={handleNext} />
+      )}
 
-        {step == 1 && (
-          <DeviceInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
-        )}
+      {step == 1 && (
+        <DeviceInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
+      )}
 
-        {step == 2 && (
+      {step == 2 && (
 
-          <AddressInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} />
+        <AddressInformation saveData={saveData} handleNext={handleNext} handleBack={handleBack} />
 
-        )}
-        {step == 3 && (
-          <CreatePassword saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
-        )}
+      )}
 
-        {step == 4 && (
-          <ConfirmationStep data={data} handleClose={handleClose} />
-        )}
-      </Box>
-    </>
+      {step == 3 && (
+        <ConfirmationStep data={data} handleClose={handleClose} />
+      )}
+    </Box>
   )
 
 }
@@ -134,12 +129,8 @@ export const ModalBox = ({ open, handleClose }) => {
 
   };
 
-  const steps = ["Registrar Datos Usuario", "Dispositivo", "Dirección", "Crea una Contraseña", "Confirmación"];
+  const steps = ["Registrar Datos Usuario", "Dispositivo", "Dirección", "Confirmación"];
   const steps2 = ["Registrar Datos Usuario", "Crea una Contraseña", "Confirmación"];
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const handleNext = () => {
     setStep(step + 1);

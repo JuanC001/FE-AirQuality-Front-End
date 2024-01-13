@@ -4,6 +4,7 @@ import { useUsers } from '../../../../Hooks/useUsers'
 import { Box, Button, Divider, Grid, Typography } from '@mui/material'
 
 import Swal from 'sweetalert2'
+import { Password } from '@mui/icons-material'
 
 export const ConfirmationStep = ({ data, handleClose }) => {
 
@@ -13,11 +14,28 @@ export const ConfirmationStep = ({ data, handleClose }) => {
     borderBottom: '1px solid',
   }
 
+  const generarContraseña = () => {
+    let longitud = 16;
+    let caracteres = "abcd%efghijkm*npqrtuvwxyz*-+.ABCDEFGHIJKLMNPQRTUV#WXYZ12346789";
+    let pass = "";
+    for (let i = 0; i < longitud; i++)
+      pass += caracteres.charAt(
+        Math.floor(Math.random() * caracteres.length)
+      );
+
+    return pass;
+  }
+
   const handleSaveUser = async () => {
 
     Swal.showLoading()
+    const userPass = generarContraseña()
+    const user = {
+      ...data,
+      password: userPass
+    }
 
-    const result = await createUser(data)
+    const result = await createUser(user)
 
     if (result.result === false) {
       Swal.fire({

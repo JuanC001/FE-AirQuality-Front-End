@@ -30,6 +30,17 @@ export const useDevices = () => {
         }
     }
 
+    const getAll = async () => {
+
+        const devices = await AirqualityApi.post('/device/getAll', {}, {
+            headers: {
+                'x-token': token
+            }
+        })
+
+        return devices.data
+    }
+
     const getOneDevice = async (id) => {
 
         const device = await AirqualityApi.post('/device/getOneDevice', { id })
@@ -40,7 +51,8 @@ export const useDevices = () => {
 
         getAllDevices,
         getOneDevice,
-        getAdminDeviceList
+        getAdminDeviceList,
+        getAll
 
     }
 

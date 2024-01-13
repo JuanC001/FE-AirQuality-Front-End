@@ -28,24 +28,20 @@ export const Actions = ({ getUsers }) => {
     };
 
     return (
-        <>
-            <Box component={Paper} elevation={6} height={'100%'} width={'100%'} borderRadius={'20px'} px={4} py={2} display={'flex'} alignContent={'center'} >
 
+        <Box height={'100%'} width={'100%'} display={'flex'} alignContent={'center'} >
 
-                <Box display={'flex'} width={'90%'} mx={'auto'} alignItems={'center'} justifyContent={'center'}>
-                    <Box flexGrow={1}>
-                        <TextField id="user" name='search' value={search} label="Search" variant="standard" color='secondary' InputProps={{
-                            endAdornment: <InputAdornment position="end"><SearchIcon /></InputAdornment>
-                        }} onChange={onInputChange} />
-                    </Box>
-
-                    <ButtonGroup variant='text' size='small'>
-                        <IconButton onClick={handleOpen}><PersonAddAlt1Icon color='primary' /></IconButton>
-                        <IconButton><PersonRemoveIcon color='error' /></IconButton>
-                        <IconButton onClick={e => getUsers()}><RefreshIcon color='info' /></IconButton>
-                    </ButtonGroup>
-
+            <Box display={'flex'} width={'100%'} mx={'auto'} alignItems={'center'} justifyContent={'center'}>
+                <Box flexGrow={1}>
+                    <TextField id="searchUser" name='searchUser' value={search} label="Search" variant="standard" color='secondary' InputProps={{
+                        endAdornment: <InputAdornment position="end"><SearchIcon /></InputAdornment>
+                    }} onChange={onInputChange} fullWidth/>
                 </Box>
+
+                <ButtonGroup variant='text' size='small'>
+                    <IconButton onClick={handleOpen}><PersonAddAlt1Icon color='primary' /></IconButton>
+                </ButtonGroup>
+
             </Box>
             <AnimatePresence>
 
@@ -54,6 +50,8 @@ export const Actions = ({ getUsers }) => {
                 }
 
             </AnimatePresence>
-        </>
+        </Box>
+
+
     )
 }

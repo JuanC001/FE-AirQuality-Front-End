@@ -9,7 +9,6 @@ import { SecondPart } from "../component/HowItWorks";
 import image8 from "../../assets/images/Imagen8.png";
 
 import { motion } from 'framer-motion'
-import { ThirdPart } from "../component/ThirdPart";
 import { Interest_docs } from "../component/Interest_docs";
 
 import fondo03 from '../../assets/images/fondo03.png'
@@ -44,7 +43,7 @@ export const AboutAir = () => {
         <AboutPM />
       </Box>
 
-      <Box width={'100%'} component={motion.div} minHeight={'40vh'} py={2} px={{ xs: 5, md: 40 }} display={'flex'} alignItems={'center'} bgcolor={'secondary.main'} sx={{
+      <Box width={'100%'} minHeight={'40vh'} py={2} px={{ xs: 5, md: 40 }} display={'flex'} alignItems={'center'} bgcolor={'secondary.main'} sx={{
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         backgroundPosition: '0px 23%',
@@ -52,21 +51,19 @@ export const AboutAir = () => {
       }}
 
       >
-        <motion.div initial={{ y: '200%' }} animate={imageView ? {y: 0} : {}}>
-          <Box component={Paper} p={2} mt={2} mb={2} borderRadius={'15px'} height={'80%'} bgcolor={'rgba(255, 255, 255, 0.8)'} >
-            <Grid container spacing={2} display={'flex'} alignItems={'center'} my={'auto'}>
+        <Box component={Paper} p={2} mt={2} mb={2} borderRadius={'15px'} height={'80%'} bgcolor={'rgba(255, 255, 255, 0.8)'} >
+          <Grid container spacing={2} display={'flex'} alignItems={'center'} my={'auto'}>
 
-              <Grid item xs={12} md={10}>
-                <Typography variant={'body1'} align={'center'}>{data_extra2}</Typography>
-              </Grid>
-              <Grid item xs={12} md={2} height={'20vh'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
-                <Box component={'img'} src={image8} height={'100%'} width={'object-fit'} />
-              </Grid>
-
+            <Grid item xs={12} md={10}>
+              <Typography variant={'body1'} align={'center'}>{data_extra2}</Typography>
             </Grid>
-          </Box>
-        </motion.div>
-        <motion.div onViewportEnter={() => setImageView(true)}/>
+            <Grid item xs={12} md={2} height={'20vh'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+              <Box component={'img'} src={image8} height={'100%'} width={'object-fit'} />
+            </Grid>
+
+          </Grid>
+        </Box>
+        <motion.div onViewportEnter={() => setImageView(true)} />
 
       </Box>
       <Box mt={10}>

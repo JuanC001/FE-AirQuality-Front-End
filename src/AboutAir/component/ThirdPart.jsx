@@ -15,7 +15,7 @@ export const ThirdPart = () => {
 
     return (
         <Box position={'relative'} zIndex={0}>
-            <Box component={motion.img} src={fondo03} sx={{
+            <Box src={fondo03} sx={{
                 width: "150%",
                 height: 500,
                 position: "absolute",
@@ -24,9 +24,6 @@ export const ThirdPart = () => {
                 opacity: "40%",
             }} zIndex={1}
 
-                initial={{ x: '-100%' }}
-                animate={inViewBackGround && { x: 0 }}
-                onViewportEnter={(e) => setinViewBackGround(true)}
             />
 
             <Box position={'relative'} zIndex={2}>
@@ -62,7 +59,6 @@ export const ThirdPart = () => {
                     </Grid>
 
                 </Grid>
-                <motion.div onViewportEnter={(e) => setinViewBackGround(true)} />
             </Box>
         </Box >
     )
