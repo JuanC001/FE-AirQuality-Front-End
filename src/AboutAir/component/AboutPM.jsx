@@ -16,16 +16,16 @@ export const AboutPM = () => {
             <Grid container >
 
                 <Grid item xs={12} sm={6} display={'flex'} alignItems={'center'} p={{ xs: 2, sm: 10 }}>
-                    <Box component={motion.img} src={iqair} width={'100%'} initial={{ y: '100%', opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} viewport={{ once: true }}/>
+                    <Box component={'img'} src={iqair} width={'100%'} />
                 </Grid>
 
                 <Grid item xs={12} sm={6} display={'flex'} alignItems={'center'}>
-                    <Grid container rowGap={3} component={motion.div} initial={{ y: '100%', opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }}>
+                    <Grid container rowGap={3}>
                         <Grid item>
                             <Typography variant={'h4'} color={'primary.dark'} textAlign={'center'}><b>¿Sabías Que?</b></Typography>
                             <Typography variant='body1' mt={2} textAlign={'justify'}>Según el informe de Calidad del Aire de IQAir en 2022, en lo que respecta al material particulado de 2.5 micrómetros (PM2.5), Colombia se encuentra en la posición número 63 a nivel mundial.</Typography>
                         </Grid>
-                        <Grid item component={motion.div} initial={{ y: '100%', opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} viewport={{once: true}}>
+                        <Grid item>
 
                             <Typography variant={'h4'} color={'primary.dark'} textAlign={'center'}><b>Las ciudades mas contaminadas por PM son:</b></Typography>
 
@@ -39,7 +39,7 @@ export const AboutPM = () => {
 
                                         <Grid item xs={2}>
 
-                                            <Box component={motion.img} src={medellin} sx={{
+                                            <Box component={'img'} src={medellin} sx={{
                                                 width: '90%',
                                                 height: 'object-fit',
                                             }} />

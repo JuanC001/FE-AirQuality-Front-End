@@ -2,62 +2,19 @@ import { Box, Button, Grid, Paper, Skeleton, Stack, Table, TableBody, TableCell,
 import React, { useEffect, useState } from 'react'
 
 import './User.css'
-import { useUsers } from '../../../Hooks/useUsers'
 import { IndividualUser } from './IndividualUser'
 import { USER_TYPES } from '../../../../Consts/UsersTypes'
 
-const SkeletonTemplate = () => {
+export const Users = ({ getUsers, users }) => {
 
     return (
+        <Box component={'div'} elevation={6} height={'100%'} borderRadius={5} mt={2} display={'flex'} alignItems={'center'}>
 
-        <Box height={'100%'} width={'100%'}>
-            <Grid container>
-
-                <Grid item xs={12} md={3}>
-                    <Skeleton variant={'text'} />
-                    <Skeleton variant={'text'} />
-
-                </Grid>
-
-                <Grid item xs={12} md={3}>
-
-                    <Skeleton variant={'text'} />
-                    <Skeleton variant={'text'} />
-
-                </Grid>
-
-                <Grid item xs={12} md={3} textAlign={'center'}>
-
-                    <Skeleton variant={'text'} />
-                    <Skeleton variant={'text'} />
-
-                </Grid>
-
-                <Grid item xs={12} md={3} display={'flex'} justifyContent={'center'}>
-
-                    <Stack gap={1} width={'100px'}>
-                        <Skeleton variant={'text'} />
-                        <Skeleton variant={'text'} />
-                    </Stack>
-                </Grid>
-
-            </Grid>
-
-        </Box>
-    )
-
-}
-
-export const Users = ({ getUsers, users, searchingInfo }) => {
-
-    return (
-        <Box component={Paper} elevation={6} height={'100%'} borderRadius={5} mt={2} display={'flex'} alignItems={'center'}>
-
-            <Box className={'usersBox'} width={'90%'} height={'90%'} bgcolor={'white'} borderRadius={'20px'} sx={{ overflowY: 'scroll' }} mx={'auto'}>
+            <Box className={'usersBox'} width={'100%'} height={'90%'} sx={{ overflowY: 'scroll' }} mx={'auto'}>
 
                 <TableContainer sx={{ maxHeight: '100%' }}>
                     <Table>
-                        <TableHead sx={{ position: 'sticky', top: 0, backgroundColor: 'rgba(255, 255, 255, 0.1)',backdropFilter: 'blur(10px)', zIndex: 1 }}>
+                        <TableHead sx={{ position: 'sticky', top: 0, backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', zIndex: 1 }}>
                             <TableRow>
                                 <TableCell>Nombre del Usuario</TableCell>
                                 <TableCell>Email</TableCell>
@@ -73,7 +30,7 @@ export const Users = ({ getUsers, users, searchingInfo }) => {
 
                                     user.role !== USER_TYPES.ADM &&
 
-                                    < IndividualUser key={user.email} user={user} getUsers={getUsers} />
+                                    <IndividualUser key={user.email} user={user} getUsers={getUsers} />
 
                                 )
                                 )
