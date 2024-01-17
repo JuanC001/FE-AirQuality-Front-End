@@ -7,31 +7,15 @@ import { useDevices } from '../../../Hooks/useDevices'
 
 import './User.css'
 
-export const Devices = () => {
+export const Devices = ({ devices }) => {
 
-    const [devices, setDevices] = useState(null)
-    const { getAdminDeviceList, getAll } = useDevices()
-
-    const getDevicesList = async () => {
-
-        const devicesList = await getAdminDeviceList()
-        setDevices(devicesList)
-
-    }
+    const { getAll } = useDevices()
 
     const getAllDevices = async () => {
 
         const devicesList = await getAll()
         console.log(devicesList)
     }
-
-
-    useEffect(() => {
-
-        getDevicesList()
-
-    }, [])
-
 
     return (
         <Box height={'100%'}>
