@@ -62,7 +62,7 @@ export const Admin = () => {
                     }
                     {
                         tabValue === 1 &&
-                        <Devices devices={devices} />
+                        <Devices devices={devices} getDevices={getDevicesList} />
                     }
                 </Box>
 
