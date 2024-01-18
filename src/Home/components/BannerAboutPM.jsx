@@ -31,6 +31,7 @@ export const BannerAboutPM = () => {
                         </Box>
                     </Grid>
 
+
                     <Grid item minHeight={'74vh'} xs={12} lg={6} p={1}>
 
                         <Grid container minHeight={'50vh'} gap={1}>
