@@ -24,7 +24,7 @@ export const BannerAboutPM = () => {
 
             <Grid container minHeight={'100vh'}>
 
-                <Grid item minHeight={{ xs: '50vh', md: '60vh' }} xs={12} md={6} p={1}>
+                <Grid item minHeight={'40vh'} xs={12} md={6} p={1}>
 
                     <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
                         <ReactPlayer url='https://www.youtube.com/watch?v=vdhDnYdBDhQ' width='100%' height='100%' controls={true} />
