@@ -79,10 +79,6 @@ const ElseStepper = ({ step, saveData, handleNext, handleBack, data, handleClose
       )}
 
       {step == 1 && (
-        <CreatePassword saveData={saveData} handleNext={handleNext} handleBack={handleBack} data={data} />
-      )}
-
-      {step == 2 && (
         <ConfirmationStep data={data} handleClose={handleClose} />
       )}
 
@@ -130,7 +126,7 @@ export const ModalBox = ({ open, handleClose }) => {
   };
 
   const steps = ["Registrar Datos Usuario", "Dispositivo", "Dirección", "Confirmación"];
-  const steps2 = ["Registrar Datos Usuario", "Crea una Contraseña", "Confirmación"];
+  const steps2 = ["Registrar Datos Usuario", "Confirmación"];
 
   const handleNext = () => {
     setStep(step + 1);

@@ -23,6 +23,8 @@ export const UserProvider = ({ children }) => {
         setUser(null);
         setAuthStatus(false);
         window.sessionStorage.removeItem('user');
+        window.sessionStorage.clear();
+        window.localStorage.clear();
 
     }
 

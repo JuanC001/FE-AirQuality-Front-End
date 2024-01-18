@@ -3,9 +3,13 @@ import { useDevices } from "../../../Hooks/useDevices"
 
 import { UserContext } from '../../../../Global/Context/UserContext'
 
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+
 export const useDevice = () => {
 
-    const { user } = useContext(UserContext);
+    const { user, logout } = useContext(UserContext);
+    const navigate = useNavigate()
 
     const { getOneDevice } = useDevices()
     const [deviceData, setDeviceData] = useState(null)
@@ -47,18 +51,36 @@ export const useDevice = () => {
     }
 
     const handleDevice = async () => {
+        try {
+            const data = await getOneDevice(user.device)
+            console.log(data)
+            setDeviceData(data)
+            setLastMeasures({
+                pm25: data.measures[data.measures.length - 1].pm25,
+                pm10: data.measures[data.measures.length - 1].pm10,
+                rh: data.measures[data.measures.length - 1].rh,
+                temp: data.measures[data.measures.length - 1].temp,
+                pressure: data.measures[data.measures.length - 1].pressure
+            })
 
-        const data = await getOneDevice(user.device)
-        setDeviceData(data)
-        setLastMeasures({
-            pm25: data.measures[data.measures.length - 1].pm25,
-            pm10: data.measures[data.measures.length - 1].pm10,
-            rh: data.measures[data.measures.length - 1].rh,
-            temp: data.measures[data.measures.length - 1].temp,
-            pressure: data.measures[data.measures.length - 1].pressure
-        })
+            setDataReady(true)
+        } catch (err) {
+            console.log(err)
+            Swal.fire({
+                title: '¿Sigues ahí?',
+                text: 'Se expiró la sesión, por favor vuelve a iniciar sesión',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
 
-        setDataReady(true)
+                logout()
+                navigate('/')
+
+
+            })
+
+        }
+
     }
 
     useEffect(() => {

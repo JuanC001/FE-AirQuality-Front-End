@@ -37,8 +37,8 @@ export const ExportDeviceExcel = () => {
 
         XLSX.utils.book_append_sheet(workBook, workSheet, "Mediciones")
         XLSX.utils.book_append_sheet(workBook, ws2, "Dispositivo")
-
         XLSX.writeFile(workBook, deviceData._id + ".xlsx")
+
         setloading(false)
 
     }

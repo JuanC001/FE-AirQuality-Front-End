@@ -12,6 +12,7 @@ import { motion } from 'framer-motion'
 import './Dashboard.css'
 
 import fnd02 from '../../../../assets/images/fondo03.png'
+import { LightweightCharts } from '../Components/LightWeigthCharts/LightweightCharts'
 
 export const Dashboard = () => {
     return (
@@ -34,7 +35,7 @@ export const Dashboard = () => {
                         <Grid item xs={12} md={8}>
                             <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
 
-                                <DashBox component={Paper} elevation={6} height={'50vh'} bgcolor={'primary.contrastText'} p={2}>
+                                <DashBox component={Paper} elevation={6} minHeight={'50vh'} bgcolor={'primary.contrastText'} p={2}>
 
                                     <TitleBox title={'Devices'} />
                                     <DevicesList />
@@ -43,22 +44,24 @@ export const Dashboard = () => {
                             </motion.div>
                         </Grid>
 
-                        <Grid item xs={12} md={12} lg={6}>
-                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
-
-                                <DashBox component={Paper} elevation={6} height={'50vh'} bgcolor={'primary.contrastText'} p={2}>
-                                    <TitleBox title={'Medición (24Hrs)'} />
-                                    <BarChart />
-                                </DashBox>
-                            </motion.div>
-
-                        </Grid>
-
-                        <Grid item xs={12} md={12} lg={6}>
+                        <Grid item xs={12}>
 
                             <GroupMeasures />
 
                         </Grid>
+
+                        <Grid item xs={12} md={12}>
+                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
+
+                                <DashBox component={Paper} elevation={6} minHeight={'50vh'} bgcolor={'primary.contrastText'} p={2}>
+                                    <TitleBox title={'Medición (24Hrs)'} />
+                                    <LightweightCharts />
+
+                                </DashBox>
+                            </motion.div>
+                        </Grid>
+
+
 
                     </Grid>
 

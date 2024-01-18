@@ -62,13 +62,13 @@ export const DevicesList = () => {
 
     return (
         <>
-            <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} height={'80%'} px={2} mb={1}>
+            <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} height={'40vh'} px={2} mb={1}>
 
                 {!loaded && <CircularProgress variant='indeterminate' size={100} />}
 
                 {loaded && <>
 
-                    <DataGrid rows={devices} columns={columns} components={{ Toolbar: toolBar }} sx={{ width: '90%' }} onRowClick={rowClickHandler} />
+                    <DataGrid rows={devices} columns={columns} components={{ Toolbar: toolBar }} sx={{ width: '90%', overflow: 'hidden' }} onRowClick={rowClickHandler} />
 
                 </>}
 

@@ -79,7 +79,7 @@ export const ConfirmationStep = ({ data, handleClose }) => {
           <Typography variant="h6" color="initial" textAlign={'center'}>Dirección:</Typography>
         </Grid>
         <Grid item xs={6} sx={styleSX}>
-          <Typography variant="h6" color="initial" textAlign={'center'}>{data.address}</Typography>
+          <Typography variant="h6" color="initial" textAlign={'center'}>{data.address ? data.address : 'No Aplica'}</Typography>
         </Grid>
 
         <Grid item xs={6} sx={styleSX}>

@@ -47,12 +47,19 @@ export const useDevices = () => {
         return device.data
     }
 
+    const deleteDevice = async (id) => {
+
+        const device = await AirqualityApi.post('/device/deleteDevice', { id })
+        return device.data
+    }
+
     return {
 
         getAllDevices,
         getOneDevice,
         getAdminDeviceList,
-        getAll
+        getAll,
+        deleteDevice
 
     }
 

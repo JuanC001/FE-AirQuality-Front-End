@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Users } from '../Components/Users'
 import { Actions } from '../Components/Actions'
@@ -6,6 +6,7 @@ import { useUsers } from '../../../Hooks/useUsers'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Devices } from '../Components/Devices'
+import { useDevices } from '../../../Hooks/useDevices'
 
 export const Admin = () => {
 
@@ -13,6 +14,15 @@ export const Admin = () => {
     const [users, setUser] = useState([])
     const [searchingInfo, setSearchingInfo] = useState(true)
     const [tabValue, setTabValue] = useState(0)
+    const [devices, setDevices] = useState([])
+    const { getAdminDeviceList } = useDevices()
+
+    const getDevicesList = async () => {
+
+        const devicesList = await getAdminDeviceList()
+        setDevices(devicesList)
+
+    }
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
@@ -27,6 +37,7 @@ export const Admin = () => {
 
     useEffect(() => {
         getUsers()
+        getDevicesList()
     }, [])
 
     return (
@@ -51,7 +62,7 @@ export const Admin = () => {
                     }
                     {
                         tabValue === 1 &&
-                        <Devices />
+                        <Devices devices={devices} getDevices={getDevicesList} />
                     }
                 </Box>
 

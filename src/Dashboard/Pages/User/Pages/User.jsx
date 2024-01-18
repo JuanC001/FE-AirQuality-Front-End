@@ -22,7 +22,7 @@ export const User = () => {
                     <Box height={'100px'} width={'100px'} position={'absolute'} zIndex={-2}>
                         <AirParticles />
                     </Box>
-                    <Quality />
+                    <Quality deviceData={deviceData}/>
 
                 </Grid>
 
