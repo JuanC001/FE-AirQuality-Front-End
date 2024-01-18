@@ -22,11 +22,11 @@ export const useZipCreator = () => {
             tempFiles.push({ file, name })
 
         })
-        setfiles(tempFiles)
+        createZip(tempFiles)
 
     }
 
-    const createZip = () => {
+    const createZip = (files) => {
 
         files.map((file) => {
             zip.file(file.name, file.file, { base64: true })
@@ -72,6 +72,5 @@ export const useZipCreator = () => {
 
     return {
         downloadDevices,
-        createZip,
     }
 }

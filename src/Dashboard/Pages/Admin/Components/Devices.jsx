@@ -11,12 +11,11 @@ import { useDevices } from '../../../Hooks/useDevices'
 
 export const Devices = ({ devices, getDevices }) => {
 
-    const { downloadDevices, createZip } = useZipCreator()
+    const { downloadDevices } = useZipCreator()
 
-    const getAllDevices = async () => {
+    const getAllDevices = () => {
 
-        await downloadDevices()
-        createZip()
+        downloadDevices()
 
     }
 

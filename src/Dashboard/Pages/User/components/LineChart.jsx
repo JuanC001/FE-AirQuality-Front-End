@@ -1,4 +1,4 @@
-import { Box, Divider, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
+import { Box, Divider, Paper, Stack, Typography, styled, useTheme, CircularProgress } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 
 import { ResponsiveContainer, LineChart as LC, Line, Tooltip } from 'recharts'
@@ -53,18 +53,27 @@ export const LineChart = ({ title, particle, deviceData, dataReady = false, acti
                         <Divider variant='middle' />
                     </Box>
                     <Box height={'75%'} >
-                        <ResponsiveContainer width={'100%'} height={'80%'}>
-                            <LC data={deviceData} >
+                        {
+                            dataReady ?
+                                <ResponsiveContainer width={'100%'} height={'80%'}>
+                                    <LC data={deviceData} >
 
-                                <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} dot={false}/>
-                                <Tooltip active={true} cursor={false} position={{ y: 100 }} />
+                                        <Line dataKey={particle} fill={theme.palette.secondary.main} stroke={theme.palette.secondary.main} dot={false} />
+                                        <Tooltip active={true} cursor={false} position={{ y: 100 }} />
 
-                            </LC>
-                        </ResponsiveContainer>
+                                    </LC>
+                                </ResponsiveContainer>
+                                :
+                                <Box textAlign={'center'} alignItems={'center'}>
+                                    <CircularProgress size={100} />
+                                </Box>
+                        }
                     </Box>
                 </Stack>
-                <Typography variant='h5' position={'absolute'} sx={{ bottom: '10%', fontSize: {xs: '7.5vw', md: '2.5vw', xl: '1vw'} }} width={'100%'} textAlign={'center'}><b>{lastMeasure}</b> ppm</Typography>
-
+                {
+                    dataReady &&
+                    <Typography variant='h5' position={'absolute'} sx={{ bottom: '10%', fontSize: { xs: '7.5vw', md: '2.5vw', xl: '1vw' } }} width={'100%'} textAlign={'center'}><b>{lastMeasure}</b> ppm</Typography>
+                }
             </Box >
         </DashBox>
     )
