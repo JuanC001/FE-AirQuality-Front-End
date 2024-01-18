@@ -19,9 +19,6 @@ export const Home = () => {
         <FirstBanner />
         <AirControl />
         <BannerAboutPM />
-
-
-
       </Box >
     </>
   )

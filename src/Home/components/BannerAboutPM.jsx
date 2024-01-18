@@ -14,7 +14,7 @@ const Text2 = {
 
 export const BannerAboutPM = () => {
     return (
-        <Box bgcolor={'primary.light'} minHeight={'80vh'} width={'100vw'} px={2} py={2} pb={20}>
+        <Box bgcolor={'primary.light'} width={'100vw'} px={2} py={2}>
 
             <Stack height={'10vh'} mb={4}>
 
@@ -22,62 +22,64 @@ export const BannerAboutPM = () => {
 
             </Stack>
 
-            <Grid container minHeight={'100vh'}>
+            <Grid container minHeight={'80vh'} display={'flex'} alignItems={'center'}>
 
-                <Grid item height={'40vh'} xs={12} md={6} p={1}>
+                    <Grid item height={'74vh'} xs={12} lg={6} p={1}>
 
-                    <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
-                        <ReactPlayer url='https://www.youtube.com/watch?v=vdhDnYdBDhQ' width='100%' height='100%' controls={true} />
-                    </Box>
-                </Grid>
-
-                <Grid item minHeight={'70vh'} xs={12} md={6} p={1}>
-
-                    <Grid container height={'50vh'} gap={1}>
-
-                        <Grid item height={'50%'} xs={12}>
-
-                            <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
-
-                                <Stack my={'auto'} gap={3} p={2}>
-                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text1.title}</Typography>
-
-                                    <Divider />
-
-                                    <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
-                                        {Text1.text}
-                                    </Typography>
-                                </Stack>
-
-                            </Box>
-
-                        </Grid>
-
-                        <Grid item minHeight={'50vh'} xs={12}>
-
-                            <Box minHeight={'50vh'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
+                        <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
+                            <ReactPlayer url='https://www.youtube.com/watch?v=vdhDnYdBDhQ' width='100%' height='100%' controls={true} />
+                        </Box>
+                    </Grid>
 
 
-                                <Stack my={'auto'} gap={3} p={4}>
-                                    <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text2.title}</Typography>
+                    <Grid item minHeight={'74vh'} xs={12} lg={6} p={1}>
 
-                                    <Divider />
+                        <Grid container minHeight={'50vh'} gap={1}>
 
-                                    <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
-                                        {Text2.text}
-                                    </Typography>
+                            <Grid item height={'50%'} xs={12}>
 
-                                </Stack>
+                                <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
 
-                            </Box>
+                                    <Stack my={'auto'} gap={3} p={2}>
+                                        <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text1.title}</Typography>
+
+                                        <Divider />
+
+                                        <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
+                                            {Text1.text}
+                                        </Typography>
+                                    </Stack>
+
+                                </Box>
+
+                            </Grid>
+
+                            <Grid item minHeight={'50vh'} xs={12}>
+
+                                <Box minHeight={'50vh'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
+
+
+                                    <Stack my={'auto'} gap={3} p={4}>
+                                        <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text2.title}</Typography>
+
+                                        <Divider />
+
+                                        <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
+                                            {Text2.text}
+                                        </Typography>
+
+                                    </Stack>
+
+                                </Box>
+
+                            </Grid>
 
                         </Grid>
 
                     </Grid>
 
-                </Grid>
+            </Grid >
 
-            </Grid>
         </Box>
     )
 }
