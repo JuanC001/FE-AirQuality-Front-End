@@ -26,7 +26,7 @@ export const Dashboard = () => {
 
                         <Grid item xs={12} md={4}>
                             <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.3 } }}>
-                                <DashBox height={'50vh'} width={'100%'} component={Paper} elevation={6}>
+                                <DashBox height={'53vh'} width={'100%'} component={Paper} elevation={6}>
                                     <Map />
                                 </DashBox>
                             </motion.div>
@@ -35,7 +35,7 @@ export const Dashboard = () => {
                         <Grid item xs={12} md={8}>
                             <motion.div initial={{ scale: 0 }} animate={{ scale: 1, transition: { delay: 0.4 } }}>
 
-                                <DashBox component={Paper} elevation={6} minHeight={'50vh'} bgcolor={'primary.contrastText'} p={2}>
+                                <DashBox component={Paper} elevation={6} minHeight={'53vh'} bgcolor={'primary.contrastText'} p={2}>
 
                                     <TitleBox title={'Devices'} />
                                     <DevicesList />
