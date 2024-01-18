@@ -24,8 +24,6 @@ export const BannerAboutPM = () => {
 
             <Grid container minHeight={'100vh'}>
 
-                <Grid item height={{ xs: '50vh', md: '78vh' }} xs={12} md={6} p={1}>
-
                 <Grid item minHeight={{ xs: '50vh', md: '70vh' }} xs={12} md={6} p={1}>
 
                     <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
