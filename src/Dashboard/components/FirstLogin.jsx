@@ -37,6 +37,32 @@ export const FirstLogin = ({ user }) => {
         setDoublePasswordError(passwordCheck)
 
         if (passwordCheck) return setIsLoading(false)
+        if (password1.length < 6) {
+            setIsLoading(false)
+            return Swal.fire({
+                title: 'La contraseña debe tener al menos 6 caracteres',
+                icon: 'error',
+                text: 'La contraseña debe tener al menos 6 caracteres',
+            })
+        }
+
+        if (password1 === oldPassword) {
+            setIsLoading(false)
+            return Swal.fire({
+                title: 'La contraseña debe ser diferente a la anterior',
+                icon: 'error',
+                text: 'La contraseña debe ser diferente a la anterior',
+            })
+        }
+
+        if (password1.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/) === null){
+            setIsLoading(false)
+            return Swal.fire({
+                title: 'La contraseña debe tener al menos una mayúscula, una minúscula y un número',
+                icon: 'error',
+                text: 'La contraseña debe tener al menos una mayúscula, una minúscula y un número',
+            })
+        }
 
         const { result, msg } = await changePassword(user.uid, oldPassword, password1)
         setPasswordError(!result)
@@ -74,6 +100,8 @@ export const FirstLogin = ({ user }) => {
                 height: '100%',
                 width: '100%',
                 display: 'flex',
+                position: 'absolute',
+                zIndex: 2
 
             }}>
 
