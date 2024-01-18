@@ -14,7 +14,7 @@ const Text2 = {
 
 export const BannerAboutPM = () => {
     return (
-        <Box bgcolor={'primary.light'} minHeight={'80vh'} width={'100vw'} px={5} py={2} >
+        <Box bgcolor={'primary.light'} minHeight={'80vh'} width={'100vw'} px={2} py={2} pb={20}>
 
             <Stack height={'10vh'} mb={4}>
 
@@ -25,6 +25,9 @@ export const BannerAboutPM = () => {
             <Grid container minHeight={'100vh'}>
 
                 <Grid item height={{ xs: '50vh', md: '78vh' }} xs={12} md={6} p={1}>
+
+                <Grid item minHeight={{ xs: '50vh', md: '70vh' }} xs={12} md={6} p={1}>
+
                     <Box height={'100%'} component={Paper} p={2} borderRadius={'20px'}>
                         <ReactPlayer url='https://www.youtube.com/watch?v=vdhDnYdBDhQ' width='100%' height='100%' controls={true} />
                     </Box>
@@ -56,6 +59,7 @@ export const BannerAboutPM = () => {
 
                             <Box minHeight={'50vh'} component={Paper} p={2} borderRadius={'20px'} display={'flex'}>
 
+
                                 <Stack my={'auto'} gap={3} p={4}>
                                     <Typography variant="h6" color="primary.dark" textAlign={'center'} my={'auto'}>{Text2.title}</Typography>
 
@@ -64,13 +68,12 @@ export const BannerAboutPM = () => {
                                     <Typography variant="body1" color="initial" textAlign={'justify'} my={'auto'}>
                                         {Text2.text}
                                     </Typography>
+
                                 </Stack>
 
                             </Box>
 
                         </Grid>
-
-
 
                     </Grid>
 
