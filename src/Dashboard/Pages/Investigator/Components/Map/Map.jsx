@@ -55,7 +55,7 @@ export const Map = () => {
   }
 
   return (
-    <Box height={'100%'} width={'100%'}>
+    <Box height={'100%'} width={'100%'} position={'relative'} zIndex={1}>
 
       <MapContainer center={coords} zoom={13} scrollWheelZoom={true}>
 
